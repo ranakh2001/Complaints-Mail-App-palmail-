@@ -1,5 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:finalproject/pages/new_inbox_view.dart';
+import 'package:finalproject/pages/sender_search_view.dart';
 import 'package:flutter/material.dart';
 
 void main() async {
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        body: NewInboxView(),
+        body: SenderSearchView(),
       ),
     );
   }
