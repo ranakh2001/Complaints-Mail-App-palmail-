@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class GuestScreen extends StatelessWidget {
   const GuestScreen({super.key});
@@ -14,14 +15,15 @@ class GuestScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                IconButton(
-                  onPressed: () {},
-                  icon: Icon(Icons.menu,size: 40,),
+                SvgPicture.asset(
+                  'assets/images/menu.svg',
+                  width: 26,
+                  height: 10,
                 ),
                 Container(
                   width: 40,
                   height: 40,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     shape: BoxShape.circle,
                     image: DecorationImage(
                       image: AssetImage('assets/images/hij.jpg'),
@@ -31,7 +33,7 @@ class GuestScreen extends StatelessWidget {
                 ),
               ],
             ),
-            Column(
+            const Column(
               children: [
                 Text('Hello Ahmed...'),
                 SizedBox(
@@ -41,7 +43,7 @@ class GuestScreen extends StatelessWidget {
               ],
             ),
             Container(
-              margin: EdgeInsets.all(50),
+              margin: const EdgeInsets.all(50),
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(
@@ -49,9 +51,9 @@ class GuestScreen extends StatelessWidget {
                   ),
                 ),
                 onPressed: () {},
-                child: Padding(
+                child: const Padding(
                   padding:
-                  const EdgeInsets.symmetric(horizontal: 70.0, vertical: 14),
+                  EdgeInsets.symmetric(horizontal: 70.0, vertical: 14),
                   child: Text('LOGOUT'),
                 ),
               ),

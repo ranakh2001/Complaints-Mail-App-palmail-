@@ -5,7 +5,7 @@ class CustomButton extends StatelessWidget {
   final String text;
   final EdgeInsets padding;
   const CustomButton({
-    super.key, required this.text, required this.padding,
+    super.key, required this.text,  this.padding = const EdgeInsets.all(8),
   });
 
   @override
@@ -17,14 +17,16 @@ class CustomButton extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30),
+
           ),
+          backgroundColor: Colors.blue
         ),
         child:  Padding(
-          padding: EdgeInsets.symmetric(
+          padding: const EdgeInsets.symmetric(
               horizontal: 80.0, vertical: 15),
           child: Text(
             text,
-            style: TextStyle(color: Colors.white),
+            style: const TextStyle(color: Colors.white),
           ),
         ),
       ),

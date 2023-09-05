@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class AdminUsersScreen extends StatefulWidget {
   const AdminUsersScreen({super.key});
@@ -26,12 +27,10 @@ class _AdminUsersScreenState extends State<AdminUsersScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.menu,
-                    size: 35,
-                  ),
+                SvgPicture.asset(
+                  'assets/images/menu.svg',
+                  width: 26,
+                  height: 10,
                 ),
                 const Text('users',style: TextStyle(fontSize: 18),),
                 Container(
