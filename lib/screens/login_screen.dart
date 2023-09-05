@@ -101,21 +101,29 @@ class _LoginScreenState extends State<LoginScreen>
                               color: const Color(0xffEAEAF5),
                             ),
                           ),
-                          child: TabBar(
-                            unselectedLabelColor: Colors.blue,
-                            labelColor: Colors.white,
-                            indicatorColor: Colors.white,
-                            indicatorWeight: 2,
-                            indicatorSize: TabBarIndicatorSize.tab,
-                            indicator: BoxDecoration(
-                              color: Colors.blue,
-                              borderRadius: BorderRadius.circular(30),
+                          child: Theme(
+                            data: Theme.of(context).copyWith(
+                              colorScheme:
+                                  Theme.of(context).colorScheme.copyWith(
+                                        surfaceVariant: Colors.transparent,
+                                      ),
                             ),
-                            controller: tabController,
-                            tabs: const [
-                              Tab(text: "Login"),
-                              Tab(text: "Sign Up"),
-                            ],
+                            child: TabBar(
+                              unselectedLabelColor: Colors.blue,
+                              labelColor: Colors.white,
+                              indicatorColor: Colors.white,
+                              indicatorWeight: 2,
+                              indicatorSize: TabBarIndicatorSize.tab,
+                              indicator: BoxDecoration(
+                                color: Colors.blue,
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                              controller: tabController,
+                              tabs: const [
+                                Tab(text: "Login"),
+                                Tab(text: "Sign Up"),
+                              ],
+                            ),
                           ),
                         ),
                       ],
@@ -134,10 +142,18 @@ class _LoginScreenState extends State<LoginScreen>
                           const Center(
                             child: Column(
                               children: [
-                                CustomTextField(label: 'Enter Email',keyboardType: TextInputType.emailAddress,),
-                                SizedBox(height: 5,),
+                                CustomTextField(
+                                  label: 'Enter Email',
+                                  keyboardType: TextInputType.emailAddress,
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
                                 CustomTextField(label: 'Password'),
-                                CustomButton(text: 'Login', padding: EdgeInsets.only(top: 80),),
+                                CustomButton(
+                                  text: 'Login',
+                                  padding: EdgeInsets.only(top: 80),
+                                ),
                               ],
                             ),
                           ),
@@ -146,24 +162,37 @@ class _LoginScreenState extends State<LoginScreen>
                           Center(
                             child: Column(
                               children: [
-                                const CustomTextField(label: 'Enter email or username',keyboardType: TextInputType.emailAddress,),
-                                const CustomTextField(label: 'Password',),
-                                const CustomTextField(label: 'Confirm password',),
-                                const CustomButton(text: 'Sign Up', padding: EdgeInsets.only(top: 50, bottom: 8),),
+                                const CustomTextField(
+                                  label: 'Enter email or username',
+                                  keyboardType: TextInputType.emailAddress,
+                                ),
+                                const CustomTextField(
+                                  label: 'Password',
+                                ),
+                                const CustomTextField(
+                                  label: 'Confirm password',
+                                ),
+                                const CustomButton(
+                                  text: 'Sign Up',
+                                  padding: EdgeInsets.only(top: 50, bottom: 8),
+                                ),
                                 const Text('OR'),
                                 const SizedBox(
                                   height: 20,
                                 ),
                                 Row(
                                   mainAxisAlignment:
-                                  MainAxisAlignment.spaceEvenly,
+                                      MainAxisAlignment.spaceEvenly,
                                   children: [
                                     IconButton(
-                                        onPressed: () {}, icon: Icon(Icons.add)),
+                                        onPressed: () {},
+                                        icon: Icon(Icons.add)),
                                     IconButton(
-                                        onPressed: () {}, icon: Icon(Icons.add)),
+                                        onPressed: () {},
+                                        icon: Icon(Icons.add)),
                                     IconButton(
-                                        onPressed: () {}, icon: Icon(Icons.add)),
+                                        onPressed: () {},
+                                        icon: Icon(Icons.add)),
                                   ],
                                 ),
                               ],
@@ -182,8 +211,6 @@ class _LoginScreenState extends State<LoginScreen>
     );
   }
 }
-
-
 
 // TabBarView (Content)
 // Expanded(
@@ -238,5 +265,3 @@ class _LoginScreenState extends State<LoginScreen>
 //     ),
 //   ),
 // ),
-
-

@@ -20,8 +20,9 @@ class _AdminUsersScreenState extends State<AdminUsersScreen> {
   Widget build(BuildContext context) {
 
     return Scaffold(
+      backgroundColor: Color(0xffE6E6E6),
       body: Padding(
-        padding: const EdgeInsets.all(30.0),
+        padding: const EdgeInsets.only(left: 30,right: 30,top: 30),
         child: Column(
           children: [
             Row(
@@ -100,25 +101,31 @@ class _AdminUsersScreenState extends State<AdminUsersScreen> {
                       padding: const EdgeInsets.symmetric(horizontal: 35, vertical: 12),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(35),
-                      )),
-                  child: const Text('save'),
+                      ),
+                    backgroundColor: Colors.blue,
+                  ),
+                  child: const Text('save',style: TextStyle(color: Colors.white),),
                 ),
               ),
             ),
-            BottomNavigationBar(
-              items: const <BottomNavigationBarItem>[
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.home),
-                  label: 'Home',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.group),
-                  label: 'Group',
-                ),
-              ],
-            ),
+
           ],
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.group),
+            label: 'Group',
+
+          ),
+        ],
       ),
     );
   }

@@ -43,18 +43,19 @@ class GuestScreen extends StatelessWidget {
               ],
             ),
             Container(
-              margin: const EdgeInsets.all(50),
+              margin: const EdgeInsets.all(40),
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30),
                   ),
+                  backgroundColor: Colors.blue
                 ),
                 onPressed: () {},
                 child: const Padding(
                   padding:
                   EdgeInsets.symmetric(horizontal: 70.0, vertical: 14),
-                  child: Text('LOGOUT'),
+                  child: Text('LOGOUT',style: TextStyle(color: Colors.white),),
                 ),
               ),
             ),
