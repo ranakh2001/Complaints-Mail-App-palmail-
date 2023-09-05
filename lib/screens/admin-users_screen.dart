@@ -108,7 +108,6 @@ class _AdminUsersScreenState extends State<AdminUsersScreen> {
                 ),
               ),
             ),
-
           ],
         ),
       ),
@@ -116,16 +115,17 @@ class _AdminUsersScreenState extends State<AdminUsersScreen> {
 
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Icon(Icons.home,color: Colors.blue,),
             label: 'Home',
-
+            backgroundColor: Colors.blue
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.group),
             label: 'Group',
-
+            backgroundColor: Colors.blue
           ),
         ],
+        selectedItemColor: Colors.blue,
       ),
     );
   }

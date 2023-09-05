@@ -14,3 +14,4 @@ Color kpendingStatus = const Color(0xffFFE120);
 Color kinProgressStatus = const Color(0xff6589FF);
 Color ktitleBlack = const Color(0xff272727);
 Color kiconColor = const Color(0xffB2B2B2);
+Color backgroundColor = const Color(0x67B2C7FF);

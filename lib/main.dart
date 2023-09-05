@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:finalproject/screens/admin-users_screen.dart';
 import 'package:finalproject/screens/guest-screen.dart';
 import 'package:finalproject/screens/login_screen.dart';
+import 'package:finalproject/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 void main()  {
@@ -33,7 +34,11 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: AdminUsersScreen(),
+      initialRoute: '/splash_screen',
+      routes: {
+        '/splash_screen': (context) => const SplashScreen(),
+        '/login_screen': (context) => const LoginScreen(),
+      },
     );
   }
 }
