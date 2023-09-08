@@ -1,4 +1,5 @@
 import 'package:finalproject/constants.dart';
+import 'package:finalproject/home/more_edits_sheet.dart';
 import 'package:finalproject/widgets/my_appBar.dart';
 import 'package:finalproject/widgets/my_expand_listTile.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +27,13 @@ class MailDetailsScreen extends StatelessWidget {
                   title: 'Home',
                   actions: [
                     IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          showModalBottomSheet(
+                            shape:const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(30))),
+                              context: context,
+
+                              builder: (context) => const MoreEditsSheet());
+                        },
                         icon: Icon(
                           Icons.more_horiz_rounded,
                           color: kinProgressStatus,
