@@ -1,9 +1,13 @@
-import 'package:finalproject/constants.dart';
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+
+import '../constants.dart';
 
 class MyAppBar extends StatelessWidget {
-  const MyAppBar({super.key});
+  final List<Widget>? actions;
+  final String title;
+  const MyAppBar({super.key, this.actions, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -11,64 +15,18 @@ class MyAppBar extends StatelessWidget {
       floating: true,
       pinned: true,
       snap: false,
+      leadingWidth: 20,
+      title: Text(
+        title,
+        style: TextStyle(color: kinProgressStatus, fontSize: 18),
+      ),
+      actions: actions,
       leading: IconButton(
-          onPressed: () {}, icon: SvgPicture.asset('assets/icons/menu.svg')),
-      actions: [
-        PopupMenuButton(
-          offset: const Offset(-20, 50),
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-          itemBuilder: (context) {
-            return [
-              PopupMenuItem(
-                value: 'change language',
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.language,
-                      color: kiconColor,
-                    ),
-                    const SizedBox(
-                      width: 8,
-                    ),
-                    Text(
-                      "change language",
-                      style: TextStyle(color: kiconColor),
-                    ),
-                  ],
-                ),
-              ),
-              PopupMenuItem(
-                value: 'logout',
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.logout,
-                      color: kiconColor,
-                    ),
-                    const SizedBox(
-                      width: 8,
-                    ),
-                    Text("logout", style: TextStyle(color: kiconColor)),
-                  ],
-                ),
-              ),
-            ];
-          },
-          child: Container(
-            margin: const EdgeInsets.symmetric(horizontal: 16),
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-                image: const DecorationImage(
-                    image: NetworkImage(
-                      'https://th.bing.com/th/id/OIP.jryuUgIHWL-1FVD2ww8oWgHaHa?pid=ImgDet&rs=1',
-                    ),
-                    fit: BoxFit.cover),
-                shape: BoxShape.circle,
-                border: Border.all(color: Colors.white, width: 2)),
-          ),
-        )
-      ],
+          onPressed: () => Navigator.pop(context),
+          icon: Icon(
+            Icons.arrow_back_ios_new_rounded,
+            color: kinProgressStatus,
+          )),
     );
   }
 }

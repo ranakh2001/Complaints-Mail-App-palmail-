@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../constants.dart';
 import '../widgets/mail_container.dart';
-import '../widgets/my_appBar.dart';
+import '../widgets/home_appBar.dart';
 import '../widgets/my_expand_listTile.dart';
 import '../widgets/satus_grid.dart';
 import '../widgets/search_container.dart';
@@ -14,9 +14,8 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: NestedScrollView(
-        physics: const BouncingScrollPhysics(),
         headerSliverBuilder: (context, innerBoxIsScrolled) => [
-          const MyAppBar(),
+          const HomeAppBar(),
         ],
         body: Stack(children: [
           SingleChildScrollView(
@@ -33,7 +32,7 @@ class HomePage extends StatelessWidget {
                         itemBuilder: (context, index) {
                           return const CustomExpansionTile(
                             body: MailContainer(),
-                            title: "NGO's",
+                            title: Text("NGO's"),
                             numOfMails: 12,
                           );
                         },

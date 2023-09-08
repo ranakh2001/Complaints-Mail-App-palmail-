@@ -2,6 +2,7 @@ import 'package:finalproject/constants.dart';
 import 'package:finalproject/widgets/home_mails.dart';
 import 'package:flutter/material.dart';
 
+import '../home/mail_details_screen.dart';
 
 class MailContainer extends StatelessWidget {
   const MailContainer({
@@ -19,7 +20,11 @@ class MailContainer extends StatelessWidget {
         child: ListView.separated(
             shrinkWrap: true,
             itemBuilder: (context, index) {
-              return const HomeMails();
+              return GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, MailDetailsScreen.id);
+                  },
+                  child: const HomeMails());
             },
             separatorBuilder: (context, index) => Padding(
                   padding:

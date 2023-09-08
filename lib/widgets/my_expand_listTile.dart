@@ -1,14 +1,17 @@
+// ignore_for_file: library_private_types_in_public_api, file_names
+
 import 'package:finalproject/constants.dart';
 import 'package:flutter/material.dart';
 
 class CustomExpansionTile extends StatefulWidget {
-  final String title;
+  final Widget title;
   final Widget body;
-  final int numOfMails;
+  final int? numOfMails;
   const CustomExpansionTile({
+    super.key,
     required this.title,
     required this.body,
-    required this.numOfMails,
+    this.numOfMails,
   });
 
   @override
@@ -31,21 +34,18 @@ class _CustomExpansionTileState extends State<CustomExpansionTile> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Text(
-                widget.title,
-                style: const TextStyle(fontSize: 20),
-              ),
+              widget.title,
               const Spacer(),
-              _isExpanded
+              widget.numOfMails == null
                   ? const SizedBox()
                   : Text(
-                      "${widget.numOfMails}",
-                      style: TextStyle(color: kiconColor, fontSize: 14),
+                      widget.numOfMails.toString(),
+                      style: TextStyle(color: kiconColor),
                     ),
               _isExpanded
                   ? Icon(
                       Icons.keyboard_arrow_down_rounded,
-                      color: kopenArrowColor,
+                      color: kinProgressStatus,
                       size: 32,
                     )
                   : Icon(

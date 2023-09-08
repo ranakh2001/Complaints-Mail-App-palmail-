@@ -2,6 +2,7 @@ import 'package:finalproject/home/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'home/mail_details_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
       // locale: context.locale,
       title: 'PalMail',
       theme: ThemeData(
+        fontFamily: 'Poppins',
         iconTheme: const IconThemeData(color: Color(0xffB2B2B2)),
         textTheme: TextTheme(
             bodySmall: GoogleFonts.poppins(
@@ -33,6 +35,7 @@ class MyApp extends StatelessWidget {
         // useMaterial3: true,
       ),
       home: const HomePage(),
+      routes: {MailDetailsScreen.id: (context) => const MailDetailsScreen()},
     );
   }
 }
