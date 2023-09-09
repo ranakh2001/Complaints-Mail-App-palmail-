@@ -70,8 +70,7 @@ class _NewInboxViewState extends State<NewInboxView> {
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                    child: DateArchiveContainer(
-                        dateInputController: dateInputController),
+                    child: DateArchiveContainer(),
                   ),
                   const SizedBox(
                     height: 12,
@@ -97,7 +96,7 @@ class _NewInboxViewState extends State<NewInboxView> {
                           ),
                           IconButton(
                             icon: Icon(
-                              Icons.navigate_next,
+                              Icons.navigate_next_outlined,
                               size: 35,
                               color: ksecondaryColor.withOpacity(0.6),
                             ),
@@ -142,7 +141,7 @@ class _NewInboxViewState extends State<NewInboxView> {
                           ),
                           IconButton(
                             icon: Icon(
-                              Icons.navigate_next_sharp,
+                              Icons.navigate_next_outlined,
                               size: 35,
                               color: ksecondaryColor.withOpacity(0.6),
                             ),
@@ -192,7 +191,7 @@ class _NewInboxViewState extends State<NewInboxView> {
                         IconButton(
                           onPressed: () {},
                           icon: Icon(
-                            Icons.keyboard_arrow_down,
+                            Icons.navigate_next_outlined,
                             color: kinProgressStatus.withOpacity(0.7),
                             size: 35,
                           ),

@@ -37,7 +37,8 @@ dependencies:
   provider:
   easy_localization: ^3.0.3
   flutter_svg: ^2.0.5
-
+  calendar_date_picker2: 0.5.3
+  intl:
 
 
 
