@@ -1,15 +1,33 @@
+
 import 'package:finalproject/providers/mail_filter_provider.dart';
 import 'package:finalproject/view/home/home_page.dart';
 import 'package:finalproject/view/search/search_screen.dart';
+
+import 'package:finalproject/screens/admin-users_screen.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:finalproject/pages/new_inbox_view.dart';
+import 'package:finalproject/screens/guest-screen.dart';
+import 'package:finalproject/screens/login_screen.dart';
+import 'package:finalproject/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import 'view/home/mail_details_screen.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  runApp(const MyApp());
+
+void main()  {
+  // WidgetsFlutterBinding.ensureInitialized();
+  // await EasyLocalization.ensureInitialized();
+  runApp(
+      const MyApp()
+      // EasyLocalization(
+      // path: 'assets/translation',
+      // supportedLocales: const [Locale('en'), Locale('ar')],
+      // fallbackLocale: const Locale('en'),
+      // child: )
+       );
+
 }
 
 class MyApp extends StatelessWidget {
@@ -45,9 +63,10 @@ class MyApp extends StatelessWidget {
         home: const HomePage(),
         routes: {
           MailDetailsScreen.id: (context) => const MailDetailsScreen(),
-          SearchScreen.id: (context) => const SearchScreen()
+          SearchScreen.id: (context) => const SearchScreen(),
+          '/splash_screen': (context) => const SplashScreen(),
+        '/login_screen': (context) => const LoginScreen(),
         },
-      ),
     );
   }
 }

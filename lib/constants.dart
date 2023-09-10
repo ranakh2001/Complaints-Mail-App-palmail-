@@ -25,3 +25,4 @@ Color kdescriptionColor = const Color(0xff898989);
 Color kremoveColor = const Color(0xffFF2E2E);
 Color ktextFieldFillColor = const Color(0xffEEEEF6);
 Color kcloseBackground = const Color(0xffAFAFAF);
+Color backgroundColor = const Color(0x67B2C7FF);
