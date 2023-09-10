@@ -1,5 +1,7 @@
-import 'package:easy_localization/easy_localization.dart';
+
 import 'package:finalproject/screens/admin-users_screen.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:finalproject/pages/new_inbox_view.dart';
 import 'package:finalproject/screens/guest-screen.dart';
 import 'package:finalproject/screens/login_screen.dart';
 import 'package:finalproject/screens/splash_screen.dart';
@@ -25,6 +27,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      home:NewInboxView(),
       debugShowCheckedModeBanner: false,
       // localizationsDelegates: context.localizationDelegates,
       // supportedLocales: context.supportedLocales,
@@ -34,7 +37,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      initialRoute: '/splash_screen',
+//       initialRoute: '/splash_screen',
       routes: {
         '/splash_screen': (context) => const SplashScreen(),
         '/login_screen': (context) => const LoginScreen(),
