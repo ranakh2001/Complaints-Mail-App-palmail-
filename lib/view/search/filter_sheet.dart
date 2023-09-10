@@ -42,6 +42,9 @@ class FilterSheet extends StatelessWidget {
               height: 18,
             ),
             const StatusesContainer(),
+            const SizedBox(
+              height: 18,
+            ),
             const DatePickerContainer(),
           ],
         ),
