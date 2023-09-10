@@ -45,12 +45,12 @@ class _CustomExpansionTileState extends State<CustomExpansionTile> {
                   ? Icon(
                       Icons.keyboard_arrow_down_rounded,
                       color: kinProgressStatus,
-                      size: 32,
+                      size: 35,
                     )
                   : Icon(
                       Icons.keyboard_arrow_right_rounded,
                       color: kiconColor,
-                      size: 32,
+                      size: 35,
                     ),
             ],
           ),

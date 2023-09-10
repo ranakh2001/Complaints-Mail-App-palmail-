@@ -1,3 +1,4 @@
+import 'package:finalproject/widgets/custom_expansion_tile.dart';
 import 'package:flutter/material.dart';
 
 class WideContainer extends StatelessWidget {
@@ -18,7 +19,10 @@ class WideContainer extends StatelessWidget {
       ),
       child: Padding(
         padding: const EdgeInsets.all(12.0),
-        child: child,
+        child: CustomExpansionTile(
+          title: child,
+          body: SizedBox(),
+        ),
       ),
     );
   }

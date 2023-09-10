@@ -1,3 +1,4 @@
+import 'package:finalproject/widgets/custom_expansion_tile.dart';
 import 'package:finalproject/widgets/title_and_desription_container.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +24,7 @@ class _NewInboxViewState extends State<NewInboxView> {
   TextEditingController? addNewActivityController;
   TextEditingController? dateInputController;
   TextEditingController? descriptionController;
+
   @override
   void initState() {
     senderController = TextEditingController();
@@ -43,7 +45,9 @@ class _NewInboxViewState extends State<NewInboxView> {
         child: Column(
           children: [
             SafeArea(
-              child: CustomAppBar(),
+              child: CustomAppBar(
+                title: 'New Inbox',
+              ),
             ),
             Expanded(
               child: ListView(
@@ -79,28 +83,15 @@ class _NewInboxViewState extends State<NewInboxView> {
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
                     child: WideContainer(
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Row(
-                            children: [
-                              Icon(Icons.tag, color: ksecondaryColor),
-                              const SizedBox(
-                                width: 16,
-                              ),
-                              Text(
-                                'Tags',
-                                style: TextStyle(
-                                    fontSize: 20, color: ksecondaryColor),
-                              ),
-                            ],
+                          Icon(Icons.tag, color: ksecondaryColor),
+                          const SizedBox(
+                            width: 16,
                           ),
-                          IconButton(
-                            icon: Icon(
-                              Icons.navigate_next_outlined,
-                              size: 35,
-                              color: ksecondaryColor.withOpacity(0.6),
-                            ),
-                            onPressed: () {},
+                          Text(
+                            'Tags',
+                            style:
+                                TextStyle(fontSize: 20, color: ksecondaryColor),
                           ),
                         ],
                       ),
@@ -113,39 +104,26 @@ class _NewInboxViewState extends State<NewInboxView> {
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
                     child: WideContainer(
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Icon(Icons.tag, color: ksecondaryColor),
-                              const SizedBox(
-                                width: 12,
-                              ),
-                              Container(
-                                height: 32,
-                                width: 76,
-                                decoration: BoxDecoration(
-                                  color: Colors.red.withOpacity(0.8),
-                                  borderRadius: BorderRadius.circular(40),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    'Inbox',
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 20),
-                                  ),
-                                ),
-                              ),
-                            ],
+                          Icon(Icons.tag, color: ksecondaryColor),
+                          const SizedBox(
+                            width: 12,
                           ),
-                          IconButton(
-                            icon: Icon(
-                              Icons.navigate_next_outlined,
-                              size: 35,
-                              color: ksecondaryColor.withOpacity(0.6),
+                          Container(
+                            height: 32,
+                            width: 76,
+                            decoration: BoxDecoration(
+                              color: Colors.red.withOpacity(0.8),
+                              borderRadius: BorderRadius.circular(40),
                             ),
-                            onPressed: () {},
+                            child: Center(
+                              child: Text(
+                                'Inbox',
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 20),
+                              ),
+                            ),
                           ),
                         ],
                       ),
@@ -180,25 +158,14 @@ class _NewInboxViewState extends State<NewInboxView> {
                     height: 12,
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 35.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
+                      padding: const EdgeInsets.symmetric(horizontal: 35.0),
+                      child: CustomExpansionTile(
+                        title: Text(
                           'Activity',
                           style: TextStyle(fontSize: 25),
                         ),
-                        IconButton(
-                          onPressed: () {},
-                          icon: Icon(
-                            Icons.navigate_next_outlined,
-                            color: kinProgressStatus.withOpacity(0.7),
-                            size: 35,
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
+                        body: SizedBox(),
+                      )),
                   Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 20.0, vertical: 10),

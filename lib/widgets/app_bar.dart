@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import '../constants.dart';
 
 class CustomAppBar extends StatelessWidget {
+  final String title;
   const CustomAppBar({
+    required this.title,
     super.key,
   });
 
@@ -14,17 +16,23 @@ class CustomAppBar extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(
-            'cancel',
-            style: TextStyle(fontSize: 25, color: kinProgressStatus),
+          TextButton(
+            onPressed: () {},
+            child: Text(
+              'cancel',
+              style: TextStyle(fontSize: 25, color: kinProgressStatus),
+            ),
           ),
           Text(
-            'New Inbox',
+            title,
             style: TextStyle(fontSize: 25, color: ktitleBlack),
           ),
-          Text(
-            'Done',
-            style: TextStyle(fontSize: 25, color: kinProgressStatus),
+          TextButton(
+            onPressed: () {},
+            child: Text(
+              'Done',
+              style: TextStyle(fontSize: 25, color: kinProgressStatus),
+            ),
           ),
         ],
       ),
