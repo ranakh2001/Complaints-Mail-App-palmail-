@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../constants.dart';
+import '../../constants.dart';
 import 'my_expand_listTile.dart';
 
 class DetailsTagsContainer extends StatelessWidget {

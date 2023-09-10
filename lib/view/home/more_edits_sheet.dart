@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../constants.dart';
+import '../../constants.dart';
 import '../widgets/button_container.dart';
+import '../widgets/close_widget.dart';
 
 class MoreEditsSheet extends StatelessWidget {
   const MoreEditsSheet({super.key});
@@ -23,17 +24,7 @@ class MoreEditsSheet extends StatelessWidget {
                 style: TextStyle(color: ktitleBlack, fontSize: 14),
               ),
               const Spacer(),
-              GestureDetector(
-                onTap: () => Navigator.pop(context),
-                child: Container(
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle, color: kcloseBackground),
-                  child: Icon(
-                    Icons.close_rounded,
-                    color: kscaffoldBackgroundColor,
-                  ),
-                ),
-              )
+              const CloseIconWidget(),
             ],
           ),
           const SizedBox(

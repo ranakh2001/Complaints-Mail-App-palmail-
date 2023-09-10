@@ -1,7 +1,7 @@
 import 'package:finalproject/constants.dart';
-import 'package:finalproject/home/more_edits_sheet.dart';
-import 'package:finalproject/widgets/my_appBar.dart';
-import 'package:finalproject/widgets/my_expand_listTile.dart';
+import 'package:finalproject/view/home/more_edits_sheet.dart';
+import 'package:finalproject/view/widgets/my_appBar.dart';
+import 'package:finalproject/view/widgets/my_expand_listTile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 

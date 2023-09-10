@@ -1,6 +1,7 @@
+import 'package:finalproject/view/search/search_screen.dart';
 import 'package:flutter/material.dart';
 
-import '../constants.dart';
+import '../../constants.dart';
 
 class SearchContainer extends StatelessWidget {
   const SearchContainer({super.key});
@@ -8,7 +9,9 @@ class SearchContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.pushNamed(context, SearchScreen.id);
+      },
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 16),
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),

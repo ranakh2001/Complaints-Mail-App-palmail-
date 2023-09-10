@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
 
-import '../constants.dart';
+import '../../constants.dart';
 import 'mail_title_widget.dart';
 
 class HomeMails extends StatelessWidget {
-  const HomeMails({super.key});
+  final bool singleMail;
+  const HomeMails({super.key, required this.singleMail});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Container(
+      padding:singleMail? const EdgeInsets.symmetric(horizontal: 16, vertical: 8):null,
+      decoration:singleMail? BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadiusDirectional.circular(30)):null,
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           MailTitle(
@@ -31,6 +37,7 @@ class HomeMails extends StatelessWidget {
             ),
           )
         ],
-      );
+      ),
+    );
   }
 }

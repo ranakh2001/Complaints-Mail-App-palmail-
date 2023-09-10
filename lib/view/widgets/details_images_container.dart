@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../constants.dart';
+import '../../constants.dart';
 import 'image_row.dart';
 
 class DetailsImagesContainer extends StatelessWidget {

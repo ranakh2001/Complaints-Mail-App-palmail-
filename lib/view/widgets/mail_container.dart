@@ -1,5 +1,5 @@
 import 'package:finalproject/constants.dart';
-import 'package:finalproject/widgets/home_mails.dart';
+import 'package:finalproject/view/widgets/home_mails.dart';
 import 'package:flutter/material.dart';
 
 import '../home/mail_details_screen.dart';
@@ -24,7 +24,7 @@ class MailContainer extends StatelessWidget {
                   onTap: () {
                     Navigator.pushNamed(context, MailDetailsScreen.id);
                   },
-                  child: const HomeMails());
+                  child: const HomeMails(singleMail: false,));
             },
             separatorBuilder: (context, index) => Padding(
                   padding:
