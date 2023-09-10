@@ -1,3 +1,4 @@
+import 'package:finalproject/widgets/app_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -42,25 +43,8 @@ class _SenderSearchViewState extends State<SenderSearchView> {
       child: Column(
         children: [
           SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'cancel',
-                    style: TextStyle(fontSize: 25, color: kinProgressStatus),
-                  ),
-                  Text(
-                    'Sender',
-                    style: TextStyle(fontSize: 25, color: ktitleBlack),
-                  ),
-                  Text(
-                    'Done',
-                    style: TextStyle(fontSize: 25, color: kinProgressStatus),
-                  ),
-                ],
-              ),
+            child: CustomAppBar(
+              title: 'Sender',
             ),
           ),
           Padding(
