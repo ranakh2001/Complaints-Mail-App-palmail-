@@ -1,6 +1,8 @@
-import 'package:finalproject/screens/widgets/custom_button.dart';
-import 'package:finalproject/screens/widgets/custom_text_field.dart';
+
 import 'package:flutter/material.dart';
+
+import '../widgets/custom_button.dart';
+import '../widgets/custom_text_field.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key});
@@ -139,7 +141,7 @@ class _LoginScreenState extends State<LoginScreen>
                         controller: tabController,
                         children: [
                           // Login Tab View
-                          const Center(
+                           Center(
                             child: Column(
                               children: [
                                 CustomTextField(
@@ -151,6 +153,7 @@ class _LoginScreenState extends State<LoginScreen>
                                 ),
                                 CustomTextField(label: 'Password'),
                                 CustomButton(
+                                  onPressed: (){},
                                   text: 'Login',
                                   padding: EdgeInsets.only(top: 80),
                                 ),
@@ -172,7 +175,8 @@ class _LoginScreenState extends State<LoginScreen>
                                 const CustomTextField(
                                   label: 'Confirm password',
                                 ),
-                                const CustomButton(
+                                 CustomButton(
+                                  onPressed: (){},
                                   text: 'Sign Up',
                                   padding: EdgeInsets.only(top: 50, bottom: 8),
                                 ),
@@ -212,56 +216,4 @@ class _LoginScreenState extends State<LoginScreen>
   }
 }
 
-// TabBarView (Content)
-// Expanded(
-//   child: TabBarView(
-//     children: [
-//       Center(
-//         child: Text("Login Content"),
-//       ),
-//       Center(
-//         child: Text("Sign Up Content"),
-//       ),
-//     ],
-//   ),
-// ),
-// Padding(
-//   padding: EdgeInsets.symmetric(horizontal: 80),
-//   child: TextField(
-//     keyboardType: TextInputType.emailAddress,
-//     decoration: InputDecoration(
-//       labelText: 'Enter Email',
-//     ),
-//     onChanged: (value) {},
-//   ),
-// ),
-// Padding(
-//   padding: EdgeInsets.symmetric(horizontal: 80),
-//   child: TextField(
-//     keyboardType: TextInputType.emailAddress,
-//     decoration: InputDecoration(
-//       labelText: 'Password',
-//       // You can add more decoration options here
-//     ),
-//     onChanged: (value) {},
-//   ),
-// ),
-// Padding(
-//   padding: const EdgeInsets.only(top: 130),
-//   child: ElevatedButton(
-//     onPressed: () {},
-//     style: ElevatedButton.styleFrom(
-//       shape: RoundedRectangleBorder(
-//         borderRadius: BorderRadius.circular(30),
-//       ),
-//     ),
-//     child: Padding(
-//       padding: const EdgeInsets.symmetric(
-//           horizontal: 80.0, vertical: 15),
-//       child: Text(
-//         'Login',
-//         style: TextStyle(color: Colors.white),
-//       ),
-//     ),
-//   ),
-// ),
+

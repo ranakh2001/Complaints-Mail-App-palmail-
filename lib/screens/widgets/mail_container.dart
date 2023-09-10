@@ -1,8 +1,8 @@
 import 'package:finalproject/constants.dart';
-import 'package:finalproject/view/widgets/home_mails.dart';
 import 'package:flutter/material.dart';
 
-import '../home/mail_details_screen.dart';
+import '../../screens/home/mail_details_screen.dart';
+import 'home_mails.dart';
 
 class MailContainer extends StatelessWidget {
   const MailContainer({

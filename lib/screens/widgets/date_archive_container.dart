@@ -1,9 +1,9 @@
-import 'package:finalproject/widgets/custom_expansion_tile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../constants.dart';
+import '../../constants.dart';
+
 
 class DateArchiveContainer extends StatefulWidget {
   const DateArchiveContainer({
@@ -177,10 +177,8 @@ class _DateArchiveContainerState extends State<DateArchiveContainer> {
   }
 
   updateDateAndName(DateTime date) {
-    if (date != null) {
-      selectedDate = date;
-      dayName = DateFormat('EEEE').format(date);
-      setState(() {});
-    }
+    selectedDate = date;
+    dayName = DateFormat('EEEE').format(date);
+    setState(() {});
   }
 }

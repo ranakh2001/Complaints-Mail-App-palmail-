@@ -1,16 +1,15 @@
 
 import 'package:finalproject/providers/mail_filter_provider.dart';
-import 'package:finalproject/screens/login_screen.dart';
-import 'package:finalproject/screens/splash_screen.dart';
-import 'package:finalproject/view/home/home_page.dart';
-import 'package:finalproject/view/search/search_screen.dart';
-import 'package:finalproject/screens/admin-users_screen.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:finalproject/screens/home/home_page.dart';
+import 'package:finalproject/screens/search/search_screen.dart';
+import 'package:finalproject/screens/auth/login_screen.dart';
+import 'package:finalproject/screens/splash/splash_screen.dart';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-import 'view/home/mail_details_screen.dart';
+import 'screens/home/mail_details_screen.dart';
 
 
 

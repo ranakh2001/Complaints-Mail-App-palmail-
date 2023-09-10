@@ -1,7 +1,7 @@
-import 'package:finalproject/widgets/app_bar.dart';
+import 'package:finalproject/screens/widgets/app_bar.dart';
 import 'package:flutter/material.dart';
 
-import '../constants.dart';
+import '../../constants.dart';
 
 class TagView extends StatefulWidget {
   const TagView({Key? key}) : super(key: key);

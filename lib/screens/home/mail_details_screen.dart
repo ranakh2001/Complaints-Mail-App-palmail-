@@ -1,16 +1,18 @@
 import 'package:finalproject/constants.dart';
-import 'package:finalproject/view/home/more_edits_sheet.dart';
-import 'package:finalproject/view/widgets/my_appBar.dart';
-import 'package:finalproject/view/widgets/my_expand_listTile.dart';
+import 'package:finalproject/screens/home/more_edits_sheet.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+
 import '../widgets/activity_container.dart';
+import '../widgets/custom_expansion_tile.dart';
 import '../widgets/decision_container.dart';
 import '../widgets/details_images_container.dart';
 import '../widgets/details_status_container.dart';
 import '../widgets/details_tags_container.dart';
 import '../widgets/mail_details_container.dart';
+import '../widgets/my_appBar.dart';
 
 class MailDetailsScreen extends StatelessWidget {
   static const id = '/mailDetailsScreen';
@@ -50,7 +52,7 @@ class MailDetailsScreen extends StatelessWidget {
                   const MailDetailsContainer(),
                   const DetailsTagsContainer(),
                   const DetailsStatusContainer(),
-                  const DecisionContainer(),
+                  const DecisionContainer(addDecisionController: null,),
                   const DetailsImagesContainer(),
                   Padding(
                     padding: const EdgeInsets.symmetric(

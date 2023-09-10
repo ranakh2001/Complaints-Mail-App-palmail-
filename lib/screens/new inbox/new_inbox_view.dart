@@ -1,16 +1,15 @@
-import 'package:finalproject/widgets/custom_expansion_tile.dart';
-import 'package:finalproject/widgets/title_and_desription_container.dart';
+import 'package:finalproject/screens/widgets/add_activity_container.dart';
+import 'package:finalproject/screens/widgets/app_bar.dart';
+import 'package:finalproject/screens/widgets/custom_expansion_tile.dart';
+import 'package:finalproject/screens/widgets/date_archive_container.dart';
+import 'package:finalproject/screens/widgets/decision_container.dart';
+import 'package:finalproject/screens/widgets/sender_and_category_container.dart';
+import 'package:finalproject/screens/widgets/title_and_desription_container.dart';
+import 'package:finalproject/screens/widgets/wide_container.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
-import '../constants.dart';
-import '../widgets/add_activity_container.dart';
-import '../widgets/app_bar.dart';
-import '../widgets/date_archive_container.dart';
-import '../widgets/decision_container.dart';
-import '../widgets/sender_and_category_container.dart';
-import '../widgets/wide_container.dart';
+import '../../constants.dart';
 
 class NewInboxView extends StatefulWidget {
   @override

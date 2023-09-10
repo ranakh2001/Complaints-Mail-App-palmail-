@@ -4,8 +4,9 @@ class CustomButton extends StatelessWidget {
 
   final String text;
   final EdgeInsets padding;
+  final Function onPressed;
   const CustomButton({
-    super.key, required this.text,  this.padding = const EdgeInsets.all(8),
+    super.key, required this.text,  this.padding = const EdgeInsets.all(8), required this.onPressed,
   });
 
   @override

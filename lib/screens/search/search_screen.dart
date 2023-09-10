@@ -1,10 +1,10 @@
 import 'package:finalproject/constants.dart';
-import 'package:finalproject/view/widgets/my_appBar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../widgets/close_widget.dart';
 import '../widgets/home_mails.dart';
+import '../widgets/my_appBar.dart';
 import 'filter_sheet.dart';
 
 class SearchScreen extends StatelessWidget {

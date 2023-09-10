@@ -1,5 +1,5 @@
 import 'package:finalproject/constants.dart';
-import 'package:finalproject/view/widgets/status_container.dart';
+import 'package:finalproject/screens/widgets/status_container.dart';
 import 'package:flutter/material.dart';
 
 class StatusGrid extends StatelessWidget {

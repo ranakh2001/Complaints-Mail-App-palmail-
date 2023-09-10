@@ -1,9 +1,10 @@
-import 'package:finalproject/widgets/app_bar.dart';
+import 'package:finalproject/screens/widgets/app_bar.dart';
+import 'package:finalproject/screens/widgets/search_bar_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../constants.dart';
-import '../widgets/search_bar_widget.dart';
+import '../../constants.dart';
+
 
 class SenderSearchView extends StatefulWidget {
   const SenderSearchView({Key? key}) : super(key: key);

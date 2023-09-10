@@ -1,7 +1,7 @@
-import 'package:finalproject/view/search/search_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants.dart';
+import '../search/search_screen.dart';
 
 class SearchContainer extends StatelessWidget {
   const SearchContainer({super.key});
