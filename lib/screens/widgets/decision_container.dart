@@ -11,7 +11,7 @@ class DecisionContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 100,
+      height: 110,
       width: 350,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(35),

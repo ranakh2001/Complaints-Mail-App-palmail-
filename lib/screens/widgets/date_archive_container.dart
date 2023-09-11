@@ -4,7 +4,6 @@ import 'package:intl/intl.dart';
 
 import '../../constants.dart';
 
-
 class DateArchiveContainer extends StatefulWidget {
   const DateArchiveContainer({
     super.key,
@@ -26,7 +25,7 @@ class _DateArchiveContainerState extends State<DateArchiveContainer> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 160,
+      height: 175,
       width: 378,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(35),

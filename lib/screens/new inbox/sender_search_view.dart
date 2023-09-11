@@ -1,44 +1,19 @@
-import 'package:finalproject/screens/widgets/app_bar.dart';
-import 'package:finalproject/screens/widgets/search_bar_widget.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'package:provider/provider.dart';
 import '../../constants.dart';
+import '../../providers/sender_search_provider.dart';
+import '../widgets/app_bar.dart';
+import '../widgets/search_bar_widget.dart';
 
-
-class SenderSearchView extends StatefulWidget {
+class SenderSearchView extends StatelessWidget {
   const SenderSearchView({Key? key}) : super(key: key);
 
   @override
-  State<SenderSearchView> createState() => _SenderSearchViewState();
-}
-
-class _SenderSearchViewState extends State<SenderSearchView> {
-  late TextEditingController senderSearchController = TextEditingController();
-  List<String> orgsSenders = ['Logain', 'Rana', 'Tasneem'];
-  List<String> otherSenders = ['Logain', 'Rana', 'Tasneem'];
-
-  void searchSender(String query) {
-    setState(() {
-      // Filter orgSenders
-      final filteredOrgSenders = orgsSenders.where(
-        (sender) => sender.toLowerCase().contains(query.toLowerCase()),
-      );
-
-      // Filter otherSenders
-      final filteredOtherSenders = otherSenders.where(
-        (sender) => sender.toLowerCase().contains(query.toLowerCase()),
-      );
-
-      // Combine filtered results from both lists
-      filteredSenders = [...filteredOrgSenders, ...filteredOtherSenders];
-    });
-  }
-
-  List<String> filteredSenders = [];
-
-  @override
   Widget build(BuildContext context) {
+    final senderSearchModel = Provider.of<SenderSearchProvider>(context);
+    final senderSearchController = senderSearchModel.senderSearchController;
+    final filteredSenders = senderSearchModel.filteredSenders;
+
     return Container(
       color: backgroundColor,
       child: Column(
@@ -54,7 +29,7 @@ class _SenderSearchViewState extends State<SenderSearchView> {
               autoFocus: true,
               height: 50,
               prefixIcon: Icon(
-                CupertinoIcons.search,
+                Icons.search,
                 color: Colors.black45.withOpacity(0.6),
                 size: 25,
               ),
@@ -68,7 +43,7 @@ class _SenderSearchViewState extends State<SenderSearchView> {
               boxShadow: true,
               textController: senderSearchController,
               onSuffixTap: null,
-              onSubmitted: searchSender,
+              onSubmitted: senderSearchModel.searchSender,
             ),
           ),
           Divider(
@@ -118,14 +93,14 @@ class _SenderSearchViewState extends State<SenderSearchView> {
                 ),
                 title: Text(filteredSenders.isNotEmpty
                     ? filteredSenders[index]
-                    : orgsSenders[index]),
+                    : senderSearchModel.orgsSenders[index]),
               ),
               separatorBuilder: (context, index) => Divider(
                 indent: 20,
               ),
               itemCount: filteredSenders.isNotEmpty
                   ? filteredSenders.length
-                  : orgsSenders.length,
+                  : senderSearchModel.orgsSenders.length,
             ),
           ),
           Padding(
@@ -152,14 +127,14 @@ class _SenderSearchViewState extends State<SenderSearchView> {
                 ),
                 title: Text(filteredSenders.isNotEmpty
                     ? filteredSenders[index]
-                    : otherSenders[index]),
+                    : senderSearchModel.otherSenders[index]),
               ),
               separatorBuilder: (context, index) => Divider(
                 indent: 20,
               ),
               itemCount: filteredSenders.isNotEmpty
                   ? filteredSenders.length
-                  : otherSenders.length,
+                  : senderSearchModel.otherSenders.length,
             ),
           ),
         ],

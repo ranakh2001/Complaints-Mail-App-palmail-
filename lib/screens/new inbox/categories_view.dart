@@ -1,103 +1,107 @@
-import 'package:finalproject/screens/widgets/app_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../constants.dart';
+import '../../providers/category_notifier.dart';
+import '../widgets/app_bar.dart';
 
-class CategoryView extends StatefulWidget {
-  const CategoryView({Key? key}) : super(key: key);
+// ... Rest of your imports ...
 
-  @override
-  State<CategoryView> createState() => _CategoryViewState();
-}
+class CategoryView extends StatelessWidget {
+  CategoryView({Key? key}) : super(key: key);
 
-class _CategoryViewState extends State<CategoryView> {
-  List<String> categories = [
+  final List<String> categories = [
     'NGOs',
     'Official Organizations',
     'Official Organizations',
     'UnBorder',
   ];
-  int clickedIndex = 0;
-
-  toggleIndex(index) {
-    clickedIndex = index;
-  }
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: [
-      SafeArea(
+    return Column(
+      children: [
+        const SafeArea(
           child: CustomAppBar(
-        title: 'Category',
-      )),
-      const SizedBox(
-        height: 20,
-      ),
-      Padding(
-        padding: const EdgeInsets.all(30.0),
-        child: Container(
-          height: 350,
-          width: double.infinity,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(30),
-            color: Colors.white,
+            title: 'Category',
           ),
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Add Category',
-                      style: TextStyle(
+        ),
+        const SizedBox(
+          height: 20,
+        ),
+        Padding(
+          padding: const EdgeInsets.all(30.0),
+          child: Container(
+            height: 350,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(30),
+              color: Colors.white,
+            ),
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Add Category',
+                        style: TextStyle(
                           color: kinProgressStatus,
                           fontSize: 20,
-                          letterSpacing: 2),
-                    ),
-                    IconButton(
-                      icon: Icon(
-                        Icons.edit,
-                        color: kinProgressStatus,
+                          letterSpacing: 2,
+                        ),
                       ),
-                      onPressed: () {},
-                    )
-                  ],
+                      IconButton(
+                        icon: Icon(
+                          Icons.edit,
+                          color: kinProgressStatus,
+                        ),
+                        onPressed: () {},
+                      )
+                    ],
+                  ),
                 ),
-              ),
-              Expanded(
-                child: ListView.separated(
+                Expanded(
+                  child: ListView.separated(
                     itemCount: categories.length,
-                    itemBuilder: (context, index) => clickedIndex != index
-                        ? ListTile(
-                            onTap: () {
-                              toggleIndex(index);
-                              setState(() {});
-                            },
-                            title: Padding(
-                              padding: const EdgeInsets.only(left: 8.0),
-                              child: Text(
-                                categories[index],
-                                style: TextStyle(fontSize: 20),
+                    itemBuilder: (context, index) {
+                      final categoryModel =
+                          Provider.of<CategoryProvider>(context);
+                      final clickedIndex = categoryModel.clickedIndex;
+
+                      return index != clickedIndex
+                          ? ListTile(
+                              onTap: () {
+                                categoryModel.setClickedIndex(index);
+                              },
+                              title: Padding(
+                                padding: const EdgeInsets.only(left: 8.0),
+                                child: Text(
+                                  categories[index],
+                                  style: TextStyle(fontSize: 20),
+                                ),
                               ),
-                            ),
-                          )
-                        : ListTile(
-                            onTap: toggleIndex(index),
-                            title: Padding(
-                              padding: const EdgeInsets.only(left: 8.0),
-                              child: Text(
-                                categories[index],
-                                style: TextStyle(fontSize: 20),
+                            )
+                          : ListTile(
+                              onTap: () {
+                                categoryModel.setClickedIndex(index);
+                              },
+                              title: Padding(
+                                padding: const EdgeInsets.only(left: 8.0),
+                                child: Text(
+                                  categories[index],
+                                  style: TextStyle(fontSize: 20),
+                                ),
                               ),
-                            ),
-                            trailing: Icon(
-                              Icons.check,
-                              size: 25,
-                              color: Colors.blue,
-                            ),
-                          ),
+                              trailing: Icon(
+                                Icons.check,
+                                size: 25,
+                                color: Colors.blue,
+                              ),
+                            );
+                    },
                     separatorBuilder: (context, index) => index != 2
                         ? Divider(
                             thickness: 1,
@@ -105,12 +109,14 @@ class _CategoryViewState extends State<CategoryView> {
                           )
                         : Divider(
                             thickness: 2,
-                          )),
-              ),
-            ],
+                          ),
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
-      )
-    ]);
+        )
+      ],
+    );
   }
 }

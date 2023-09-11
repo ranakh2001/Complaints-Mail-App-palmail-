@@ -1,6 +1,9 @@
-
 import 'package:finalproject/providers/mail_filter_provider.dart';
-import 'package:finalproject/screens/home/home_page.dart';
+import 'package:finalproject/providers/new_inbox_provider.dart';
+import 'package:finalproject/providers/sender_search_provider.dart';
+import 'package:finalproject/providers/status_provider.dart';
+
+import 'package:finalproject/screens/new%20inbox/tag_view.dart';
 import 'package:finalproject/screens/search/search_screen.dart';
 import 'package:finalproject/screens/auth/login_screen.dart';
 import 'package:finalproject/screens/splash/splash_screen.dart';
@@ -9,9 +12,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
+import 'providers/category_notifier.dart';
 import 'screens/home/mail_details_screen.dart';
-
-
 
 void main() {
   // WidgetsFlutterBinding.ensureInitialized();
@@ -31,11 +33,18 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-
     return MultiProvider(
         providers: [
           ChangeNotifierProvider<MailFilterProvider>(
-              create: (context) => MailFilterProvider())
+              create: (context) => MailFilterProvider()),
+          ChangeNotifierProvider<CategoryProvider>(
+              create: (context) => CategoryProvider()),
+          ChangeNotifierProvider<NewInboxProvider>(
+              create: (context) => NewInboxProvider()),
+          ChangeNotifierProvider<SenderSearchProvider>(
+              create: (context) => SenderSearchProvider()),
+          ChangeNotifierProvider<StatusProvider>(
+              create: (context) => StatusProvider()),
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
@@ -56,7 +65,16 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             // useMaterial3: true,
           ),
-          home: const HomePage(),
+          home: const Scaffold(
+              body: TagView(
+            items: [
+              '#item 1',
+              '#item 2',
+              '#item 3',
+              '#item 4',
+              '#item 4',
+            ],
+          )),
           routes: {
             MailDetailsScreen.id: (context) => const MailDetailsScreen(),
             SearchScreen.id: (context) => const SearchScreen(),

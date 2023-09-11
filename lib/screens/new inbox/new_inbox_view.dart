@@ -1,43 +1,27 @@
-import 'package:finalproject/screens/widgets/add_activity_container.dart';
-import 'package:finalproject/screens/widgets/app_bar.dart';
-import 'package:finalproject/screens/widgets/custom_expansion_tile.dart';
-import 'package:finalproject/screens/widgets/date_archive_container.dart';
-import 'package:finalproject/screens/widgets/decision_container.dart';
-import 'package:finalproject/screens/widgets/sender_and_category_container.dart';
-import 'package:finalproject/screens/widgets/title_and_desription_container.dart';
-import 'package:finalproject/screens/widgets/wide_container.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'package:provider/provider.dart';
 import '../../constants.dart';
+import '../../providers/new_inbox_provider.dart';
+import '../widgets/add_activity_container.dart';
+import '../widgets/app_bar.dart';
+import '../widgets/custom_expansion_tile.dart';
+import '../widgets/date_archive_container.dart';
+import '../widgets/decision_container.dart';
+import '../widgets/sender_and_category_container.dart';
+import '../widgets/title_and_desription_container.dart';
+import '../widgets/wide_container.dart';
 
-class NewInboxView extends StatefulWidget {
-  @override
-  State<NewInboxView> createState() => _NewInboxViewState();
-}
-
-class _NewInboxViewState extends State<NewInboxView> {
-  TextEditingController? senderController;
-  TextEditingController? titleController;
-  TextEditingController? addDecisionController;
-  TextEditingController? addNewActivityController;
-  TextEditingController? dateInputController;
-  TextEditingController? descriptionController;
-
-  @override
-  void initState() {
-    senderController = TextEditingController();
-    senderController = TextEditingController();
-    titleController = TextEditingController();
-    addDecisionController = TextEditingController();
-    addNewActivityController = TextEditingController();
-    dateInputController = TextEditingController();
-    descriptionController = TextEditingController();
-    super.initState();
-  }
-
+class NewInboxView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final newInboxProvider = Provider.of<NewInboxProvider>(context);
+    final senderController = newInboxProvider.senderController;
+    final titleController = newInboxProvider.titleController;
+    final addDecisionController = newInboxProvider.addDecisionController;
+    final addNewActivityController = newInboxProvider.addNewActivityController;
+    final dateInputController = newInboxProvider.dateInputController;
+    final descriptionController = newInboxProvider.descriptionController;
+
     return Scaffold(
       body: Container(
         color: backgroundColor,

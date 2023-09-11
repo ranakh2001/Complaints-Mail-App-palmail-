@@ -4,21 +4,15 @@ import 'package:flutter/material.dart';
 import '../../constants.dart';
 
 class TagView extends StatefulWidget {
-  const TagView({Key? key}) : super(key: key);
+  final List<String> items;
+
+  const TagView({Key? key, required this.items}) : super(key: key);
 
   @override
   State<TagView> createState() => _TagViewState();
 }
 
 class _TagViewState extends State<TagView> {
-  final List<String> items = [
-    'Item 1',
-    'Item 2',
-    'Item 3',
-    'Item 4',
-    'Item 5',
-    // Add more items dynamically
-  ];
   Color selectedTextColor = Colors.white;
   Color unselectedTextColor = ksecondaryColor;
   Color selectedContainerColor = kinProgressStatus;
@@ -61,7 +55,7 @@ class _TagViewState extends State<TagView> {
               child: Wrap(
                 spacing: 16.0,
                 runSpacing: 16.0,
-                children: items.asMap().entries.map((entry) {
+                children: widget.items.asMap().entries.map((entry) {
                   final index = entry.key;
                   final item = entry.value;
                   return InkWell(
