@@ -5,7 +5,7 @@ import '../../constants.dart';
 import '../../providers/category_notifier.dart';
 import '../widgets/app_bar.dart';
 
-// ... Rest of your imports ...
+import 'package:http/http.dart' as http;
 
 class CategoryView extends StatelessWidget {
   CategoryView({Key? key}) : super(key: key);

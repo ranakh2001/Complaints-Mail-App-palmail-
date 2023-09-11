@@ -10,6 +10,7 @@ import '../widgets/decision_container.dart';
 import '../widgets/sender_and_category_container.dart';
 import '../widgets/title_and_desription_container.dart';
 import '../widgets/wide_container.dart';
+import 'package:http/http.dart' as http;
 
 class NewInboxView extends StatelessWidget {
   @override

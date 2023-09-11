@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../providers/status_provider.dart';
 import '../widgets/app_bar.dart';
+import 'package:http/http.dart' as http;
 
 class StatusView extends StatelessWidget {
   const StatusView({Key? key}) : super(key: key);

@@ -2,6 +2,7 @@ import 'package:finalproject/constants.dart';
 import 'package:finalproject/models/category.dart';
 import 'package:finalproject/models/satus.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 class MailFilterProvider extends ChangeNotifier {
   List<Category> categorys = [

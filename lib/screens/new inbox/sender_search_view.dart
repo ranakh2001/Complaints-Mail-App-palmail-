@@ -4,6 +4,7 @@ import '../../constants.dart';
 import '../../providers/sender_search_provider.dart';
 import '../widgets/app_bar.dart';
 import '../widgets/search_bar_widget.dart';
+import 'package:http/http.dart' as http;
 
 class SenderSearchView extends StatelessWidget {
   const SenderSearchView({Key? key}) : super(key: key);
