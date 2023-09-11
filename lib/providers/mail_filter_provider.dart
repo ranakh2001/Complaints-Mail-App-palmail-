@@ -18,9 +18,7 @@ class MailFilterProvider extends ChangeNotifier {
     Status(title: 'Completed', color: kcompletedStatus),
   ];
 
-  List<DateTime> dates = [
-    DateTime.now()
-  ];
+  List<DateTime> dates = [DateTime.now()];
 
   void toggleCategory(int index) {
     categorys[index].isSelected = !categorys[index].isSelected;
