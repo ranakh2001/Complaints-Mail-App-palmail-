@@ -4,7 +4,6 @@ import 'package:finalproject/screens/home/more_edits_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-
 import '../widgets/activity_container.dart';
 import '../widgets/custom_expansion_tile.dart';
 import '../widgets/decision_container.dart';
@@ -31,9 +30,10 @@ class MailDetailsScreen extends StatelessWidget {
                     IconButton(
                         onPressed: () {
                           showModalBottomSheet(
-                            shape:const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(30))),
+                              shape: const RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.vertical(
+                                      top: Radius.circular(30))),
                               context: context,
-
                               builder: (context) => const MoreEditsSheet());
                         },
                         icon: Icon(
@@ -52,7 +52,15 @@ class MailDetailsScreen extends StatelessWidget {
                   const MailDetailsContainer(),
                   const DetailsTagsContainer(),
                   const DetailsStatusContainer(),
-                  const DecisionContainer(addDecisionController: null,),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  const DecisionContainer(
+                    addDecisionController: null,
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
                   const DetailsImagesContainer(),
                   Padding(
                     padding: const EdgeInsets.symmetric(

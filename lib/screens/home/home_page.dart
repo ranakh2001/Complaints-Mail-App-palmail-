@@ -7,7 +7,6 @@ import '../widgets/mail_container.dart';
 import '../widgets/satus_grid.dart';
 import '../widgets/search_container.dart';
 
-
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 

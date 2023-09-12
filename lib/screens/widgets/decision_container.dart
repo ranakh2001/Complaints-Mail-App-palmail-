@@ -11,7 +11,7 @@ class DecisionContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 100,
+      // height: 100,
       width: 350,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(35),
@@ -22,12 +22,12 @@ class DecisionContainer extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Decision', style: TextStyle(fontSize: 25)),
-            Container(
+            const Text('Decision', style: TextStyle(fontSize: 25)),
+            SizedBox(
               width: 200,
               child: TextField(
                 controller: addDecisionController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   hintText: 'Add decision...',
                   border: InputBorder.none,
                 ),
