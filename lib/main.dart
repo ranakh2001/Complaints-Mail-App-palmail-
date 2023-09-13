@@ -2,7 +2,10 @@ import 'package:finalproject/providers/mail_filter_provider.dart';
 import 'package:finalproject/providers/new_inbox_provider.dart';
 import 'package:finalproject/providers/sender_search_provider.dart';
 import 'package:finalproject/providers/status_provider.dart';
-
+import 'package:finalproject/providers/tag_provider.dart';
+import 'package:finalproject/screens/new%20inbox/categories_view.dart';
+import 'package:finalproject/screens/new%20inbox/items.dart';
+import 'package:finalproject/screens/new%20inbox/status_view.dart';
 import 'package:finalproject/screens/new%20inbox/tag_view.dart';
 import 'package:finalproject/screens/search/search_screen.dart';
 import 'package:finalproject/screens/auth/login_screen.dart';
@@ -45,6 +48,8 @@ class MyApp extends StatelessWidget {
               create: (context) => SenderSearchProvider()),
           ChangeNotifierProvider<StatusProvider>(
               create: (context) => StatusProvider()),
+          ChangeNotifierProvider<TagStateNotifier>(
+              create: (context) => TagStateNotifier()),
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
@@ -65,16 +70,7 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             // useMaterial3: true,
           ),
-          home: const Scaffold(
-              body: TagView(
-            items: [
-              '#item 1',
-              '#item 2',
-              '#item 3',
-              '#item 4',
-              '#item 4',
-            ],
-          )),
+          home: Scaffold(body: TagView()),
           routes: {
             MailDetailsScreen.id: (context) => const MailDetailsScreen(),
             SearchScreen.id: (context) => const SearchScreen(),

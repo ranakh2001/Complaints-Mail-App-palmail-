@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class MailFilterProvider extends ChangeNotifier {
-  List<Category> categorys = [
+  List<Category> categories = [
     Category(title: 'Official organization'),
     Category(title: "NGO's"),
     Category(title: 'UnBorder'),
@@ -22,7 +22,7 @@ class MailFilterProvider extends ChangeNotifier {
   List<DateTime> dates = [DateTime.now()];
 
   void toggleCategory(int index) {
-    categorys[index].isSelected = !categorys[index].isSelected;
+    categories[index].isSelected = !categories[index].isSelected;
     notifyListeners();
   }
 

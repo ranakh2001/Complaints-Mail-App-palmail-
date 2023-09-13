@@ -1,7 +1,9 @@
+import 'package:finalproject/models/category_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../constants.dart';
+import '../../controllers/categories_controller.dart';
 import '../../providers/category_notifier.dart';
 import '../widgets/app_bar.dart';
 
@@ -9,16 +11,18 @@ import 'package:http/http.dart' as http;
 
 class CategoryView extends StatelessWidget {
   CategoryView({Key? key}) : super(key: key);
-
-  final List<String> categories = [
-    'NGOs',
-    'Official Organizations',
-    'Official Organizations',
-    'UnBorder',
-  ];
+  //
+  // final List<String> categories = [
+  //   'NGOs',
+  //   'Official Organizations',
+  //   'Official Organizations',
+  //   'UnBorder',
+  // ];
 
   @override
   Widget build(BuildContext context) {
+    Future<List<CategoryElement>?> categoriesFuture = getCategories(context);
+
     return Column(
       children: [
         const SafeArea(
@@ -63,55 +67,69 @@ class CategoryView extends StatelessWidget {
                     ],
                   ),
                 ),
-                Expanded(
-                  child: ListView.separated(
-                    itemCount: categories.length,
-                    itemBuilder: (context, index) {
-                      final categoryModel =
-                          Provider.of<CategoryProvider>(context);
-                      final clickedIndex = categoryModel.clickedIndex;
+                FutureBuilder<List<CategoryElement>?>(
+                  future: categoriesFuture,
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return CircularProgressIndicator();
+                    } else if (snapshot.hasError) {
+                      return Text('Error: ${snapshot.error}');
+                    } else if (!snapshot.hasData || snapshot.data == null) {
+                      return Text('No categories available.');
+                    } else {
+                      final categories = snapshot.data;
+                      return Expanded(
+                        child: ListView.separated(
+                          itemCount: categories!.length,
+                          itemBuilder: (context, index) {
+                            final categoryModel =
+                                Provider.of<CategoryProvider>(context);
+                            final clickedIndex = categoryModel.clickedIndex;
 
-                      return index != clickedIndex
-                          ? ListTile(
-                              onTap: () {
-                                categoryModel.setClickedIndex(index);
-                              },
-                              title: Padding(
-                                padding: const EdgeInsets.only(left: 8.0),
-                                child: Text(
-                                  categories[index],
-                                  style: TextStyle(fontSize: 20),
+                            return index != clickedIndex
+                                ? ListTile(
+                                    onTap: () {
+                                      categoryModel.setClickedIndex(index);
+                                    },
+                                    title: Padding(
+                                      padding: const EdgeInsets.only(left: 8.0),
+                                      child: Text(
+                                        '${categories[index]}',
+                                        style: TextStyle(fontSize: 20),
+                                      ),
+                                    ),
+                                  )
+                                : ListTile(
+                                    onTap: () {
+                                      categoryModel.setClickedIndex(index);
+                                    },
+                                    title: Padding(
+                                      padding: const EdgeInsets.only(left: 8.0),
+                                      child: Text(
+                                        '${categories[index]}',
+                                        style: TextStyle(fontSize: 20),
+                                      ),
+                                    ),
+                                    trailing: Icon(
+                                      Icons.check,
+                                      size: 25,
+                                      color: Colors.blue,
+                                    ),
+                                  );
+                          },
+                          separatorBuilder: (context, index) => index != 2
+                              ? Divider(
+                                  thickness: 1,
+                                  indent: 15,
+                                )
+                              : Divider(
+                                  thickness: 2,
                                 ),
-                              ),
-                            )
-                          : ListTile(
-                              onTap: () {
-                                categoryModel.setClickedIndex(index);
-                              },
-                              title: Padding(
-                                padding: const EdgeInsets.only(left: 8.0),
-                                child: Text(
-                                  categories[index],
-                                  style: TextStyle(fontSize: 20),
-                                ),
-                              ),
-                              trailing: Icon(
-                                Icons.check,
-                                size: 25,
-                                color: Colors.blue,
-                              ),
-                            );
-                    },
-                    separatorBuilder: (context, index) => index != 2
-                        ? Divider(
-                            thickness: 1,
-                            indent: 15,
-                          )
-                        : Divider(
-                            thickness: 2,
-                          ),
-                  ),
-                ),
+                        ),
+                      );
+                    }
+                  },
+                )
               ],
             ),
           ),

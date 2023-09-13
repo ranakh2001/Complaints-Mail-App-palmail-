@@ -28,12 +28,12 @@ class CategoriewContainer extends StatelessWidget {
                     children: [
                       Text(
                         Provider.of<MailFilterProvider>(context)
-                            .categorys[index]
+                            .categories[index]
                             .title,
                         style: TextStyle(color: ktitleBlack, fontSize: 16),
                       ),
                       Provider.of<MailFilterProvider>(context)
-                              .categorys[index]
+                              .categories[index]
                               .isSelected
                           ? SvgPicture.asset(
                               'assets/icons/selected.svg',
@@ -48,6 +48,6 @@ class CategoriewContainer extends StatelessWidget {
                   color: kdividerColor,
                 ),
             itemCount:
-                Provider.of<MailFilterProvider>(context).categorys.length));
+                Provider.of<MailFilterProvider>(context).categories.length));
   }
 }

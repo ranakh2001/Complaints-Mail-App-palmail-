@@ -1,5 +1,10 @@
-// api links
 import 'package:flutter/material.dart';
+
+// api links
+String palmailUrl = 'https://palmail.gsgtt.tech/api';
+String getCategoriesUrl = '${palmailUrl}/categories';
+String addCategoryUrl = '${palmailUrl}/categories';
+String getStatusListUrl = '${palmailUrl}/statuses?mail=false';
 
 const String baseUrl = "https://palmail.gsgtt.tech/api";
 //add the endpoints that you use (لانهم كتار)

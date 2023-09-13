@@ -1,48 +1,25 @@
-import 'package:finalproject/screens/widgets/app_bar.dart';
+import 'package:finalproject/screens/new%20inbox/items.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
+
 import '../../constants.dart';
-import 'package:http/http.dart' as http;
+import '../../providers/tag_provider.dart';
+import '../widgets/app_bar.dart';
 
-class TagView extends StatefulWidget {
-  final List<String> items;
-
-  const TagView({Key? key, required this.items}) : super(key: key);
-
-  @override
-  State<TagView> createState() => _TagViewState();
-}
-
-class _TagViewState extends State<TagView> {
-  Color selectedTextColor = Colors.white;
-  Color unselectedTextColor = ksecondaryColor;
-  Color selectedContainerColor = kinProgressStatus;
-  Color unselectedContainerColor = kiconColor;
-
-//ليش يعني هدول الموجودين تحتي ،، ما بيرضى نستخدم فيهم المتغيرات اللي معرفها فوقي !!!!
-
-  List<Color> containerColors = List<Color>.filled(
-    5, // Change this to items.length
-    kiconColor,
-  );
-
-  List<Color> textColors = List<Color>.filled(
-    5, // Change this to items.length
-    ksecondaryColor,
-  );
+class TagView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // Initialize color lists with the length of items list
+    final tagStateNotifier = context.watch<TagStateNotifier>();
 
-    return Column(
-      children: [
-        // Your other UI code here...
-        SafeArea(
-          child: CustomAppBar(
-            title: 'Tags',
-          ),
+    final List<String> tags = items;
+
+    return Column(children: [
+      SafeArea(
+        child: CustomAppBar(
+          title: 'Tags',
         ),
-        Padding(
+      ),
+      Padding(
           padding: const EdgeInsets.all(16.0),
           child: Container(
             decoration: BoxDecoration(
@@ -54,9 +31,9 @@ class _TagViewState extends State<TagView> {
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Wrap(
-                spacing: 16.0,
-                runSpacing: 16.0,
-                children: widget.items.asMap().entries.map((entry) {
+                runSpacing: 16,
+                spacing: 16,
+                children: items.asMap().entries.map((entry) {
                   final index = entry.key;
                   final item = entry.value;
                   return InkWell(
@@ -65,58 +42,63 @@ class _TagViewState extends State<TagView> {
                       width: MediaQuery.of(context).size.width * 0.23,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(30),
-                        color: containerColors[index],
+                        color: index < tagStateNotifier.selectedTags.length &&
+                                tagStateNotifier.selectedTags[index]
+                            ? kcloseBackground
+                            : kinProgressStatus,
                       ),
                       padding: EdgeInsets.all(8.0),
-                      // Adjust padding as needed
                       child: Center(
                         child: Text(
                           '#$item',
                           style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 15,
-                              color: textColors[index]),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15,
+                            color:
+                                index < tagStateNotifier.selectedTags.length &&
+                                        tagStateNotifier.selectedTags[index]
+                                    ? ktagColor
+                                    : Colors.white,
+                          ),
                         ),
                       ),
                     ),
                     onTap: () {
-                      setState(() {
-                        containerColors[index] =
-                            (containerColors[index] == unselectedContainerColor)
-                                ? selectedContainerColor
-                                : unselectedContainerColor;
-                        textColors[index] =
-                            (textColors[index] == unselectedTextColor)
-                                ? selectedTextColor
-                                : unselectedTextColor;
-                      });
+                      tagStateNotifier.toggleTag(index);
                     },
                   );
                 }).toList(),
               ),
             ),
+          )),
+      Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            color: Colors.white,
+          ),
+          width: 378,
+          height: 44,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 16.0),
+            child: TextField(
+              decoration: InputDecoration(
+                hintText: 'Add New Tag ...',
+                border: InputBorder.none,
+                hintStyle: TextStyle(
+                  color: tagStateNotifier.selectedTags.length > items.length &&
+                          tagStateNotifier.selectedTags[items.length]
+                      ? Colors.white
+                      : ksecondaryColor,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                ),
+              ),
+            ),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20), color: Colors.white),
-              width: 378,
-              height: 44,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 16.0),
-                child: TextField(
-                    decoration: InputDecoration(
-                        hintText: 'Add New Tag ...',
-                        border: InputBorder.none,
-                        hintStyle: TextStyle(
-                            color: unselectedContainerColor,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16))),
-              )),
-        ),
-      ],
-    );
+      )
+    ]);
   }
 }
