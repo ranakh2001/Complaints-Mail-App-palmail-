@@ -1,7 +1,9 @@
 // ignore_for_file: library_private_types_in_public_api, file_names
 
 import 'package:finalproject/core/util/constants.dart';
+import 'package:finalproject/providers/app_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class CustomExpansionTile extends StatefulWidget {
   final Widget title;
@@ -42,17 +44,26 @@ class _CustomExpansionTileState extends State<CustomExpansionTile> {
                       widget.numOfMails.toString(),
                       style: TextStyle(color: kiconColor),
                     ),
-              _isExpanded
-                  ? Icon(
-                      Icons.keyboard_arrow_down_rounded,
-                      color: kinProgressStatus,
-                      size: 32,
-                    )
-                  : Icon(
-                      Icons.keyboard_arrow_right_rounded,
-                      color: kiconColor,
-                      size: 32,
-                    ),
+              if (_isExpanded) ...{
+                Icon(
+                  Icons.keyboard_arrow_down_rounded,
+                  color: kinProgressStatus,
+                  size: 32,
+                )
+              } else ...{
+                Provider.of<AppProvider>(context).appLocale ==
+                        const Locale('en')
+                    ? Icon(
+                        Icons.keyboard_arrow_right_rounded,
+                        color: kiconColor,
+                        size: 32,
+                      )
+                    : Icon(
+                        Icons.keyboard_arrow_left_rounded,
+                        color: kiconColor,
+                        size: 32,
+                      ),
+              }
             ],
           ),
         ),

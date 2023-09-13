@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:finalproject/providers/app_provider.dart';
+import 'package:finalproject/providers/category_provider.dart';
 import 'package:finalproject/providers/mail_filter_provider.dart';
 import 'package:finalproject/providers/status_provider.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +25,8 @@ class MyApp extends StatelessWidget {
       ChangeNotifierProvider<AppProvider>(
         create: (context) => AppProvider(),
       ),
-      ChangeNotifierProvider<StatusProvider>(create: (context) => StatusProvider(),)
+      ChangeNotifierProvider<StatusProvider>(create: (context) => StatusProvider(),),
+      ChangeNotifierProvider<CategoriesProvider>(create: (context) => CategoriesProvider(),)
     ], child: const AppLocalization());
   }
 }

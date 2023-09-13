@@ -1,8 +1,13 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:finalproject/models/category.dart';
 import 'package:finalproject/screens/new%20inbox/new_inbox_view.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import '../../core/helpers/api_response.dart';
 import '../../core/util/constants.dart';
+import '../../providers/category_provider.dart';
+import '../widgets/categories_listView.dart';
 import '../widgets/custom_expansion_tile.dart';
 import '../widgets/home_appBar.dart';
 import '../widgets/mail_container.dart';
@@ -27,22 +32,7 @@ class HomePage extends StatelessWidget {
               children: [
                 const SearchContainer(),
                 const StatusGrid(),
-                Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                    child: ListView.separated(
-                        physics: const NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemBuilder: (context, index) {
-                          return CustomExpansionTile(
-                            body: const MailContainer(),
-                            title: Text("ngo's".tr()),
-                            numOfMails: 12,
-                          );
-                        },
-                        separatorBuilder: (context, index) => const SizedBox(
-                              height: 8,
-                            ),
-                        itemCount: 3)),
+                const CategoriesListView(),
                 Padding(
                   padding: const EdgeInsets.symmetric(
                       vertical: 16.0, horizontal: 16),
@@ -89,8 +79,11 @@ class HomePage extends StatelessWidget {
                 onTap: () {
                   showModalBottomSheet(
                     isScrollControlled: true,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-                    context: context, builder: (context) =>const NewInboxView(),);
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30)),
+                    context: context,
+                    builder: (context) => const NewInboxView(),
+                  );
                 },
                 child: Container(
                   padding:

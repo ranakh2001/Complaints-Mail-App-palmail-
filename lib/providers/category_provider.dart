@@ -9,7 +9,7 @@ class CategoriesProvider extends ChangeNotifier {
 
   late ApiResponse<List<CategoryElement>> _categoryList;
 
-  ApiResponse<List<CategoryElement>> get statusList => _categoryList;
+  ApiResponse<List<CategoryElement>> get categoryList => _categoryList;
 
   CategoriesProvider() {
     _categoriesRepo = CategoryRepository();
@@ -17,6 +17,15 @@ class CategoriesProvider extends ChangeNotifier {
   }
 
   fetchCategories()async{
-    
+     _categoryList = ApiResponse.loading('Fetching statuses');
+    notifyListeners();
+    try {
+      List<CategoryElement> mailCategories = await _categoriesRepo.getAllCategories();
+      _categoryList = ApiResponse.completed(mailCategories);
+      notifyListeners();
+    } catch (e) {
+      _categoryList = ApiResponse.error(e.toString());
+      notifyListeners();
+    }
   }
 }
