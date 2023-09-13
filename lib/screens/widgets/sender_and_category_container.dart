@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
-import '../../constants.dart';
-
+import '../../core/util/constants.dart';
 
 class SenderAndCategoryContainer extends StatelessWidget {
   const SenderAndCategoryContainer({
@@ -15,7 +15,7 @@ class SenderAndCategoryContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 140,
+      padding:const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
       width: 378,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(35),
@@ -30,22 +30,16 @@ class SenderAndCategoryContainer extends StatelessWidget {
               autofocus: true,
               controller: senderController,
               decoration: InputDecoration(
-                border: InputBorder.none,
-                hintText: 'Sender',
-                hintStyle: TextStyle(color: kiconColor),
-                prefix: Padding(
-                  padding: const EdgeInsets.only(right: 8.0),
-                  child: Icon(
-                    CupertinoIcons.person,
-                    color: kiconColor,
+                  border: InputBorder.none,
+                  hintText: 'Sender',
+                  hintStyle: TextStyle(color: kiconColor, fontSize: 16),
+                  prefixIcon: Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 8),
+                    child: SvgPicture.asset(
+                      'assets/icons/person.svg',
+                    ),
                   ),
-                ),
-                suffix: Icon(
-                  CupertinoIcons.info,
-                  size: 30,
-                  color: kinProgressStatus,
-                ),
-              ),
+                  prefixIconConstraints: const BoxConstraints()),
             ),
           ),
           const Padding(
@@ -53,13 +47,13 @@ class SenderAndCategoryContainer extends StatelessWidget {
             child: Divider(),
           ),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 12.0),
+            padding: const EdgeInsets.symmetric(horizontal: 12.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
+                const Text(
                   'Category',
-                  style: TextStyle(fontSize: 20),
+                  style: TextStyle(fontSize: 16),
                 ),
                 GestureDetector(
                   onTap: () {},
@@ -68,7 +62,7 @@ class SenderAndCategoryContainer extends StatelessWidget {
                     children: [
                       Text(
                         'Other',
-                        style: TextStyle(color: ksecondaryColor, fontSize: 16),
+                        style: TextStyle(color: ksecondaryColor, fontSize: 14),
                       ),
                       GestureDetector(
                         onTap: () {},

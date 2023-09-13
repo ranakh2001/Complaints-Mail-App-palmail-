@@ -1,11 +1,12 @@
-
 import 'package:flutter/material.dart';
 
+import '../home/home_page.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/custom_text_field.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key});
+  static const id = '/loginScreen';
+  const LoginScreen({super.key});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -136,26 +137,29 @@ class _LoginScreenState extends State<LoginScreen>
                   ),
                   Expanded(
                     child: AnimatedContainer(
-                      duration: Duration(seconds: 2),
+                      duration: const Duration(seconds: 2),
                       child: TabBarView(
                         controller: tabController,
                         children: [
                           // Login Tab View
-                           Center(
+                          Center(
                             child: Column(
                               children: [
-                                CustomTextField(
+                                const CustomTextField(
                                   label: 'Enter Email',
                                   keyboardType: TextInputType.emailAddress,
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 5,
                                 ),
-                                CustomTextField(label: 'Password'),
+                                const CustomTextField(label: 'Password'),
                                 CustomButton(
-                                  onPressed: (){},
+                                  onPressed: () {
+                                    Navigator.pushReplacementNamed(
+                                        context, HomePage.id);
+                                  },
                                   text: 'Login',
-                                  padding: EdgeInsets.only(top: 80),
+                                  padding: const EdgeInsets.only(top: 80),
                                 ),
                               ],
                             ),
@@ -175,10 +179,14 @@ class _LoginScreenState extends State<LoginScreen>
                                 const CustomTextField(
                                   label: 'Confirm password',
                                 ),
-                                 CustomButton(
-                                  onPressed: (){},
+                                CustomButton(
+                                  onPressed: () {
+                                    Navigator.pushReplacementNamed(
+                                        context, HomePage.id);
+                                  },
                                   text: 'Sign Up',
-                                  padding: EdgeInsets.only(top: 50, bottom: 8),
+                                  padding:
+                                      const EdgeInsets.only(top: 50, bottom: 8),
                                 ),
                                 const Text('OR'),
                                 const SizedBox(
@@ -215,5 +223,3 @@ class _LoginScreenState extends State<LoginScreen>
     );
   }
 }
-
-

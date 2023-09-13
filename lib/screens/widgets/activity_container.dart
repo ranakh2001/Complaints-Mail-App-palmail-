@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../constants.dart';
+import '../../core/util/constants.dart';
 
 class ActivityContainer extends StatelessWidget {
   const ActivityContainer({super.key});

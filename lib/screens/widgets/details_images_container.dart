@@ -1,6 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-import '../../constants.dart';
+import '../../core/util/constants.dart';
 import 'image_row.dart';
 
 class DetailsImagesContainer extends StatelessWidget {
@@ -18,7 +19,7 @@ class DetailsImagesContainer extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Add Image",
+                            "addImage".tr(),
                             style: TextStyle(
                                 color: kinProgressStatus, fontSize: 16),
                           ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../constants.dart';
+import '../../core/util/constants.dart';
 
 class CloseIconWidget extends StatelessWidget {
   const CloseIconWidget({super.key});

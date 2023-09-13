@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../constants.dart';
+import '../../core/util/constants.dart';
 
 class CustomAppBar extends StatelessWidget {
   final String title;
@@ -20,18 +20,18 @@ class CustomAppBar extends StatelessWidget {
             onPressed: () {},
             child: Text(
               'cancel',
-              style: TextStyle(fontSize: 25, color: kinProgressStatus),
+              style: TextStyle(fontSize: 18, color: kinProgressStatus),
             ),
           ),
           Text(
             title,
-            style: TextStyle(fontSize: 25, color: ktitleBlack),
+            style: TextStyle(fontSize: 18, color: ktitleBlack),
           ),
           TextButton(
             onPressed: () {},
             child: Text(
               'Done',
-              style: TextStyle(fontSize: 25, color: kinProgressStatus),
+              style: TextStyle(fontSize: 18, color: kinProgressStatus),
             ),
           ),
         ],

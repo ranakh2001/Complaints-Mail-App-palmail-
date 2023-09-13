@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
-import '../../constants.dart';
-
+import '../../core/util/constants.dart';
 
 class AddActivityContainer extends StatelessWidget {
   const AddActivityContainer({
@@ -14,46 +14,35 @@ class AddActivityContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 60,
-      width: 350,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(35),
-        color: kiconColor,
-      ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 10),
-        child: Container(
-          width: 300,
-          child: TextField(
-            controller: addNewActivityController,
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              hintText: 'Add New Activity ...',
-              prefix: Padding(
-                padding: const EdgeInsets.only(right: 16.0),
-                child: CircleAvatar(
-                  backgroundColor: Colors.white,
-                  radius: 8,
-                  child: Icon(
-                    CupertinoIcons.person,
-                    size: 12,
-                  ),
-                ),
-              ),
-              hintStyle: TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
-              suffixIcon: Padding(
-                padding: const EdgeInsets.only(left: 55),
-                child: Icon(
-                  CupertinoIcons.location_fill,
-                  color: Colors.blue.withOpacity(0.5),
-                ),
-              ),
-            ),
-          ),
+    return TextField(
+      controller: TextEditingController(),
+      decoration: InputDecoration(
+        suffixIconConstraints: const BoxConstraints(),
+        prefixIconConstraints: const BoxConstraints(),
+        contentPadding: const EdgeInsets.symmetric(vertical: 0, horizontal: 16),
+        hintText: 'Add new Activity …',
+        hintStyle: TextStyle(fontSize: 14, color: kdescriptionColor),
+        suffixIcon: SvgPicture.asset(
+          'assets/icons/send.svg',
         ),
+        prefixIcon: Container(
+          margin: const EdgeInsets.symmetric(horizontal: 8),
+          width: 20,
+          height: 20,
+          decoration: const BoxDecoration(
+              shape: BoxShape.circle,
+              image: DecorationImage(
+                  image: NetworkImage(
+                      'https://th.bing.com/th/id/OIP.jryuUgIHWL-1FVD2ww8oWgHaHa?pid=ImgDet&rs=1'))),
+        ),
+        filled: true,
+        fillColor: ktextFieldFillColor,
+        focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(30),
+            borderSide: BorderSide.none),
+        enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(30),
+            borderSide: BorderSide.none),
       ),
     );
   }

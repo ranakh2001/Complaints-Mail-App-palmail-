@@ -1,4 +1,5 @@
-import 'package:finalproject/constants.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:finalproject/core/util/constants.dart';
 import 'package:finalproject/screens/widgets/status_container.dart';
 import 'package:flutter/material.dart';
 
@@ -15,14 +16,14 @@ class StatusGrid extends StatelessWidget {
             children: [
               StatusContainer(
                 color: kinBoxStatus,
-                title: 'Inbox',
+                title: 'inBox'.tr(),
               ),
               const SizedBox(
                 width: 8,
               ),
               StatusContainer(
                 color: kpendingStatus,
-                title: 'Pending',
+                title: 'pending'.tr(),
               ),
             ],
           ),
@@ -33,14 +34,14 @@ class StatusGrid extends StatelessWidget {
             children: [
               StatusContainer(
                 color: kinProgressStatus,
-                title: 'In progress',
+                title: 'inProgress'.tr(),
               ),
               const SizedBox(
                 width: 8,
               ),
               StatusContainer(
                 color: kcompletedStatus,
-                title: 'Completed',
+                title: 'completted'.tr(),
               ),
             ],
           )

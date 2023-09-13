@@ -1,8 +1,12 @@
 // ignore_for_file: file_names
 
-import 'package:finalproject/constants.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:finalproject/core/util/constants.dart';
+import 'package:finalproject/providers/app_provider.dart';
+import 'package:finalproject/screens/auth/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 
 class HomeAppBar extends StatelessWidget {
   const HomeAppBar({super.key});
@@ -23,6 +27,11 @@ class HomeAppBar extends StatelessWidget {
           itemBuilder: (context) {
             return [
               PopupMenuItem(
+                onTap: () {
+                  Provider.of<AppProvider>(context, listen: false)
+                      .changeLanguage();
+                  Navigator.pushReplacementNamed(context, LoginScreen.id);
+                },
                 value: 'change language',
                 child: Row(
                   children: [
@@ -34,13 +43,16 @@ class HomeAppBar extends StatelessWidget {
                       width: 8,
                     ),
                     Text(
-                      "change language",
+                      "changeLang".tr(),
                       style: TextStyle(color: kiconColor),
                     ),
                   ],
                 ),
               ),
               PopupMenuItem(
+                onTap: () {
+                  Navigator.pushReplacementNamed(context, LoginScreen.id);
+                },
                 value: 'logout',
                 child: Row(
                   children: [
@@ -51,7 +63,7 @@ class HomeAppBar extends StatelessWidget {
                     const SizedBox(
                       width: 8,
                     ),
-                    Text("logout", style: TextStyle(color: kiconColor)),
+                    Text("logout".tr(), style: TextStyle(color: kiconColor)),
                   ],
                 ),
               ),

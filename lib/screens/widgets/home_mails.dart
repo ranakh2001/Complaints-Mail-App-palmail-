@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../constants.dart';
+import '../../core/util/constants.dart';
 import 'mail_title_widget.dart';
 
 class HomeMails extends StatelessWidget {

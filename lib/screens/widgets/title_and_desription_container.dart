@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../constants.dart';
-
+import '../../core/util/constants.dart';
 
 class MailAndDescriptionContainer extends StatelessWidget {
   const MailAndDescriptionContainer({
@@ -25,7 +24,7 @@ class MailAndDescriptionContainer extends StatelessWidget {
       child: Column(
         children: [
           Padding(
-            padding: EdgeInsets.only(left: 12, top: 12),
+            padding: const EdgeInsets.only(left: 12, top: 12),
             child: Container(
               width: 320,
               child: TextField(
@@ -33,7 +32,7 @@ class MailAndDescriptionContainer extends StatelessWidget {
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   hintText: 'Title of mail',
-                  hintStyle: TextStyle(color: kiconColor, fontSize: 26),
+                  hintStyle: TextStyle(color: kiconColor, fontSize: 20),
                 ),
               ),
             ),
@@ -43,7 +42,7 @@ class MailAndDescriptionContainer extends StatelessWidget {
             child: Divider(),
           ),
           Padding(
-            padding: EdgeInsets.only(
+            padding: const EdgeInsets.only(
               left: 12,
             ),
             child: Container(
@@ -54,7 +53,7 @@ class MailAndDescriptionContainer extends StatelessWidget {
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   hintText: 'Description',
-                  hintStyle: TextStyle(color: kiconColor, fontSize: 18),
+                  hintStyle: TextStyle(color: kiconColor, fontSize: 14),
                 ),
               ),
             ),

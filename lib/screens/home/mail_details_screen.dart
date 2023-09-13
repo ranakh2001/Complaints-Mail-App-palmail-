@@ -1,10 +1,9 @@
-import 'package:finalproject/constants.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:finalproject/core/util/constants.dart';
 import 'package:finalproject/screens/home/more_edits_sheet.dart';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-
 import '../widgets/activity_container.dart';
+import '../widgets/add_activity_container.dart';
 import '../widgets/custom_expansion_tile.dart';
 import '../widgets/decision_container.dart';
 import '../widgets/details_images_container.dart';
@@ -25,7 +24,7 @@ class MailDetailsScreen extends StatelessWidget {
           // physics: const BouncingScrollPhysics(),
           headerSliverBuilder: (context, innerBoxIsScrolled) => [
                 MyAppBar(
-                  title: 'Home',
+                  title: 'home'.tr(),
                   actions: [
                     IconButton(
                         onPressed: () {
@@ -81,39 +80,7 @@ class MailDetailsScreen extends StatelessWidget {
                                 ),
                             itemCount: 2)),
                   ),
-                  TextField(
-                    controller: TextEditingController(),
-                    decoration: InputDecoration(
-                      suffixIconConstraints: const BoxConstraints(),
-                      prefixIconConstraints: const BoxConstraints(),
-                      contentPadding: const EdgeInsets.symmetric(
-                          vertical: 0, horizontal: 16),
-                      hintText: 'Add new Activity …',
-                      hintStyle:
-                          TextStyle(fontSize: 14, color: kdescriptionColor),
-                      suffixIcon: SvgPicture.asset(
-                        'assets/icons/send.svg',
-                      ),
-                      prefixIcon: Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 8),
-                        width: 20,
-                        height: 20,
-                        decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            image: DecorationImage(
-                                image: NetworkImage(
-                                    'https://th.bing.com/th/id/OIP.jryuUgIHWL-1FVD2ww8oWgHaHa?pid=ImgDet&rs=1'))),
-                      ),
-                      filled: true,
-                      fillColor: ktextFieldFillColor,
-                      focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(30),
-                          borderSide: BorderSide.none),
-                      enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(30),
-                          borderSide: BorderSide.none),
-                    ),
-                  )
+                  const AddActivityContainer(addNewActivityController: null),
                 ],
               ),
             ),

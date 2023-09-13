@@ -1,4 +1,4 @@
-import 'package:finalproject/constants.dart';
+import 'package:finalproject/core/util/constants.dart';
 import 'package:finalproject/providers/mail_filter_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';

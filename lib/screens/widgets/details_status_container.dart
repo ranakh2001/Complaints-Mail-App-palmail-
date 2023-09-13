@@ -1,7 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../constants.dart';
+import '../../core/util/constants.dart';
 
 class DetailsStatusContainer extends StatelessWidget {
   const DetailsStatusContainer({super.key});
@@ -30,7 +31,7 @@ class DetailsStatusContainer extends StatelessWidget {
                             borderRadius: BorderRadiusDirectional.circular(30),
                             color: kpendingStatus),
                         child: Text(
-                          "Pending",
+                          "pending".tr(),
                           style: TextStyle(fontSize: 16, color: ktitleBlack),
                         ),
                       ),

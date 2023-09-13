@@ -1,6 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-import '../../constants.dart';
+import '../../core/util/constants.dart';
 import '../search/search_screen.dart';
 
 class SearchContainer extends StatelessWidget {
@@ -28,7 +29,7 @@ class SearchContainer extends StatelessWidget {
             width: 8,
           ),
           Text(
-            "search",
+            "search".tr(),
             style: TextStyle(color: kiconColor),
           )
         ]),

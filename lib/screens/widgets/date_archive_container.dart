@@ -2,8 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../../constants.dart';
-
+import '../../core/util/constants.dart';
 
 class DateArchiveContainer extends StatefulWidget {
   const DateArchiveContainer({
@@ -26,7 +25,6 @@ class _DateArchiveContainerState extends State<DateArchiveContainer> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 160,
       width: 378,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(35),
@@ -58,7 +56,7 @@ class _DateArchiveContainerState extends State<DateArchiveContainer> {
                         children: [
                           const Text(
                             'Date',
-                            style: TextStyle(fontSize: 20),
+                            style: TextStyle(fontSize: 16),
                           ),
                           Container(
                             width: 150,
@@ -71,7 +69,7 @@ class _DateArchiveContainerState extends State<DateArchiveContainer> {
                                 // '${DateTime.now().month.toString()}/ ${DateTime.now().day}/ ${DateTime.now().year}',
                                 hintStyle: TextStyle(
                                     color: kinProgressStatus.withOpacity(0.5),
-                                    fontSize: 15),
+                                    fontSize: 12),
                                 border: InputBorder.none,
                               ),
                               // onTap: () async {
@@ -130,11 +128,11 @@ class _DateArchiveContainerState extends State<DateArchiveContainer> {
                     children: [
                       const Text(
                         'Archive Number',
-                        style: TextStyle(fontSize: 20),
+                        style: TextStyle(fontSize: 16),
                       ),
                       Text(
                         '${DateTime.now().year} / archNum',
-                        style: TextStyle(fontSize: 13),
+                        style: TextStyle(fontSize: 12),
                       ),
                     ],
                   ),

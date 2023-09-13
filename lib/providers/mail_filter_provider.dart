@@ -1,4 +1,4 @@
-import 'package:finalproject/constants.dart';
+import 'package:finalproject/core/util/constants.dart';
 import 'package:finalproject/models/category.dart';
 import 'package:finalproject/models/satus.dart';
 import 'package:flutter/material.dart';

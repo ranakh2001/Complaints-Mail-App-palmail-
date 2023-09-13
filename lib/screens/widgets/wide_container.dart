@@ -12,7 +12,6 @@ class WideContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 62,
       width: 378,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(35),

@@ -6,12 +6,15 @@ import 'package:finalproject/screens/widgets/decision_container.dart';
 import 'package:finalproject/screens/widgets/sender_and_category_container.dart';
 import 'package:finalproject/screens/widgets/title_and_desription_container.dart';
 import 'package:finalproject/screens/widgets/wide_container.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
-import '../../constants.dart';
+import '../../core/util/constants.dart';
 
 class NewInboxView extends StatefulWidget {
+  static const id = '/newInbox';
+  const NewInboxView({super.key});
+
   @override
   State<NewInboxView> createState() => _NewInboxViewState();
 }
@@ -38,12 +41,14 @@ class _NewInboxViewState extends State<NewInboxView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        color: backgroundColor,
-        child: Column(
+    return Container(
+      decoration: const BoxDecoration(
+          borderRadius: BorderRadius.vertical(top: Radius.circular(30))),
+      height: MediaQuery.of(context).size.height * 0.95,
+      child: Scaffold(
+        body: Column(
           children: [
-            SafeArea(
+            const SafeArea(
               child: CustomAppBar(
                 title: 'New Inbox',
               ),
@@ -51,16 +56,13 @@ class _NewInboxViewState extends State<NewInboxView> {
             Expanded(
               child: ListView(
                 children: [
-                  const SizedBox(
-                    height: 8,
-                  ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
                     child: SenderAndCategoryContainer(
                         senderController: senderController),
                   ),
                   const SizedBox(
-                    height: 12,
+                    height: 8,
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -68,11 +70,11 @@ class _NewInboxViewState extends State<NewInboxView> {
                         titleController: titleController,
                         descriptionController: descriptionController),
                   ),
-                  SizedBox(
-                    height: 12,
+                  const SizedBox(
+                    height: 8,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20.0),
                     child: DateArchiveContainer(),
                   ),
                   const SizedBox(
@@ -85,19 +87,19 @@ class _NewInboxViewState extends State<NewInboxView> {
                         children: [
                           Icon(Icons.tag, color: ksecondaryColor),
                           const SizedBox(
-                            width: 16,
+                            width: 8,
                           ),
                           Text(
                             'Tags',
                             style:
-                                TextStyle(fontSize: 20, color: ksecondaryColor),
+                                TextStyle(fontSize: 16, color: ksecondaryColor),
                           ),
                         ],
                       ),
                     ),
                   ),
                   const SizedBox(
-                    height: 12,
+                    height: 8,
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -105,9 +107,13 @@ class _NewInboxViewState extends State<NewInboxView> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Icon(Icons.tag, color: ksecondaryColor),
+                          SvgPicture.asset(
+                            'assets/icons/pending_icon.svg',
+                            width: 24,
+                            height: 24,
+                          ),
                           const SizedBox(
-                            width: 12,
+                            width: 8,
                           ),
                           Container(
                             height: 32,
@@ -116,11 +122,11 @@ class _NewInboxViewState extends State<NewInboxView> {
                               color: Colors.red.withOpacity(0.8),
                               borderRadius: BorderRadius.circular(40),
                             ),
-                            child: Center(
+                            child: const Center(
                               child: Text(
                                 'Inbox',
                                 style: TextStyle(
-                                    color: Colors.white, fontSize: 20),
+                                    color: Colors.white, fontSize: 16),
                               ),
                             ),
                           ),
@@ -129,7 +135,7 @@ class _NewInboxViewState extends State<NewInboxView> {
                     ),
                   ),
                   const SizedBox(
-                    height: 12,
+                    height: 8,
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -137,7 +143,7 @@ class _NewInboxViewState extends State<NewInboxView> {
                         addDecisionController: addDecisionController),
                   ),
                   const SizedBox(
-                    height: 12,
+                    height: 8,
                   ),
                   Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -148,20 +154,20 @@ class _NewInboxViewState extends State<NewInboxView> {
                             'Add Image',
                             style: TextStyle(
                                 color: kinProgressStatus,
-                                fontSize: 20,
+                                fontSize: 16,
                                 fontWeight: FontWeight.w400),
                           ),
                         ),
                       )),
                   const SizedBox(
-                    height: 12,
+                    height: 8,
                   ),
-                  Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 35.0),
+                  const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 30.0),
                       child: CustomExpansionTile(
                         title: Text(
                           'Activity',
-                          style: TextStyle(fontSize: 25),
+                          style: TextStyle(fontSize: 20),
                         ),
                         body: SizedBox(),
                       )),
