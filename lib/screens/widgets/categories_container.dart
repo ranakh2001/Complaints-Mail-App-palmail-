@@ -20,34 +20,34 @@ class CategoriewContainer extends StatelessWidget {
             itemBuilder: (context, index) {
               return GestureDetector(
                 onTap: () {
-                  Provider.of<MailFilterProvider>(context, listen: false)
-                      .toggleCategory(index);
+                  // Provider.of<MailFilterProvider>(context, listen: false)
+                  //     .toggleCategory(index);
                 },
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        Provider.of<MailFilterProvider>(context)
-                            .categorys[index]
-                            .title,
+                        'status',
+                        // Provider.of<MailFilterProvider>(context)
+                        //     .categorys[index]
+                        //     .title,
                         style: TextStyle(color: ktitleBlack, fontSize: 16),
                       ),
-                      Provider.of<MailFilterProvider>(context)
-                              .categorys[index]
-                              .isSelected
-                          ? SvgPicture.asset(
-                              'assets/icons/selected.svg',
-                              width: 20,
-                              height: 20,
-                            )
-                          : const SizedBox()
+                      // Provider.of<MailFilterProvider>(context)
+                      //         .categorys[index]
+                      //         .isSelected
+                      //     ? SvgPicture.asset(
+                      //         'assets/icons/selected.svg',
+                      //         width: 20,
+                      //         height: 20,
+                      //       )
+                      //     : const SizedBox()
                     ]),
               );
             },
             separatorBuilder: (context, index) => Divider(
                   color: kdividerColor,
                 ),
-            itemCount:
-                Provider.of<MailFilterProvider>(context).categorys.length));
+            itemCount: 4));
   }
 }

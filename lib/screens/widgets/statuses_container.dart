@@ -18,17 +18,17 @@ class StatusesContainer extends StatelessWidget {
           itemBuilder: (context, index) {
             return GestureDetector(
               onTap: () {
-                Provider.of<MailFilterProvider>(context, listen: false)
-                    .toggleStatus(index);
+                // Provider.of<MailFilterProvider>(context, listen: false)
+                //     .toggleStatus(index);
               },
               child: Row(
                 children: [
                   Container(
                     padding: const EdgeInsets.all(14),
                     decoration: BoxDecoration(
-                      color: Provider.of<MailFilterProvider>(context)
-                          .statuses[index]
-                          .color,
+                      // color: Provider.of<MailFilterProvider>(context)
+                      //     .statuses[index]
+                      //     .color,
                       borderRadius: BorderRadiusDirectional.circular(10),
                     ),
                   ),
@@ -36,21 +36,22 @@ class StatusesContainer extends StatelessWidget {
                     width: 16,
                   ),
                   Text(
-                    Provider.of<MailFilterProvider>(context)
-                        .statuses[index]
-                        .title,
+                    'status',
+                    // Provider.of<MailFilterProvider>(context)
+                    //     .statuses[index]
+                    //     .title,
                     style: TextStyle(fontSize: 16, color: ktitleBlack),
                   ),
                   const Spacer(),
-                  Provider.of<MailFilterProvider>(context)
-                          .statuses[index]
-                          .isSelected
-                      ? SvgPicture.asset(
-                          'assets/icons/selected.svg',
-                          width: 20,
-                          height: 20,
-                        )
-                      : const SizedBox(),
+                  // Provider.of<MailFilterProvider>(context)
+                  //         .statuses[index]
+                  //         .isSelected
+                  // ? SvgPicture.asset(
+                  //     'assets/icons/selected.svg',
+                  //     width: 20,
+                  //     height: 20,
+                  //   )
+                  // : const SizedBox(),
                 ],
               ),
             );
@@ -58,7 +59,7 @@ class StatusesContainer extends StatelessWidget {
           separatorBuilder: (context, index) => Divider(
                 color: kdividerColor,
               ),
-          itemCount: Provider.of<MailFilterProvider>(context).statuses.length),
+          itemCount: 4),
     );
   }
 }
