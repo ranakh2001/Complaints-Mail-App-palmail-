@@ -3,6 +3,7 @@ import 'package:finalproject/providers/app_provider.dart';
 import 'package:finalproject/providers/category_provider.dart';
 import 'package:finalproject/providers/mail_filter_provider.dart';
 import 'package:finalproject/providers/status_provider.dart';
+import 'package:finalproject/providers/tags_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'app_localization.dart';
@@ -25,8 +26,15 @@ class MyApp extends StatelessWidget {
       ChangeNotifierProvider<AppProvider>(
         create: (context) => AppProvider(),
       ),
-      ChangeNotifierProvider<StatusProvider>(create: (context) => StatusProvider(),),
-      ChangeNotifierProvider<CategoriesProvider>(create: (context) => CategoriesProvider(),)
+      ChangeNotifierProvider<StatusProvider>(
+        create: (context) => StatusProvider(),
+      ),
+      ChangeNotifierProvider<CategoriesProvider>(
+        create: (context) => CategoriesProvider(),
+      ),
+      ChangeNotifierProvider<TagProvider>(
+        create: (context) => TagProvider(),
+      )
     ], child: const AppLocalization());
   }
 }

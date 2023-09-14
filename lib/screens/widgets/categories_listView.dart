@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 
 import '../../core/helpers/api_response.dart';
 import '../../core/util/constants.dart';
-import '../../models/category.dart';
+import '../../models/categories.dart';
 import '../../providers/category_provider.dart';
 import 'custom_expansion_tile.dart';
 import 'mail_container.dart';
@@ -36,6 +36,7 @@ class CategoriesListView extends StatelessWidget {
                   CategoryElement category =
                       categoryProvider.categoryList.data![index];
                   return CustomExpansionTile(
+                    categoryId: category.id,
                     body: const MailContainer(),
                     title: Text(
                       category.name!.tr(),

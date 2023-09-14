@@ -5,12 +5,17 @@ import '../../core/util/constants.dart';
 class StatusContainer extends StatelessWidget {
   final String title;
   final Color color;
-
-  const StatusContainer({super.key, required this.title, required this.color});
+  final Function() onTap;
+  const StatusContainer(
+      {super.key,
+      required this.title,
+      required this.color,
+      required this.onTap});
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
+    return GestureDetector(
+      onTap: onTap,
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
         decoration: BoxDecoration(

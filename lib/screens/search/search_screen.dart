@@ -68,8 +68,13 @@ class SearchScreen extends StatelessWidget {
                   ListView.separated(
                       shrinkWrap: true,
                       itemBuilder: (context, index) {
-                        return const HomeMails(
+                        return HomeMails(
+                          organization: "",
                           singleMail: true,
+                          color: '',
+                          date: DateTime(2000),
+                          description: '',
+                          subject: '',
                         );
                       },
                       separatorBuilder: (context, index) => const SizedBox(

@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:provider/provider.dart';
 
 import '../../core/util/constants.dart';
-import '../../providers/mail_filter_provider.dart';
 
 class CategoriewContainer extends StatelessWidget {
   const CategoriewContainer({super.key});

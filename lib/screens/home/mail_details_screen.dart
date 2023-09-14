@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:finalproject/core/util/constants.dart';
 import 'package:finalproject/screens/home/more_edits_sheet.dart';
 import 'package:flutter/material.dart';
+import '../../models/mail.dart';
 import '../widgets/activity_container.dart';
 import '../widgets/add_activity_container.dart';
 import '../widgets/custom_expansion_tile.dart';
