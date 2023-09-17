@@ -25,7 +25,11 @@ class MoreEditsSheet extends StatelessWidget {
                 style: TextStyle(color: ktitleBlack, fontSize: 14),
               ),
               const Spacer(),
-              const CloseIconWidget(),
+              CloseIconWidget(
+                ontap: () {
+                  Navigator.pop(context);
+                },
+              ),
             ],
           ),
           const SizedBox(

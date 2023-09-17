@@ -1,5 +1,7 @@
 import 'package:finalproject/core/util/constants.dart';
+import 'package:finalproject/providers/search_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../widgets/categories_container.dart';
 import '../widgets/date_piker_container.dart';
@@ -30,7 +32,14 @@ class FilterSheet extends StatelessWidget {
                   style: TextStyle(color: ktitleBlack, fontSize: 18),
                 ),
                 TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Provider.of<SearchProvider>(context, listen: false)
+                          .fetchMails(Provider.of<SearchProvider>(context,
+                                  listen: false)
+                              .searchController
+                              .text);
+                      Navigator.pop(context);
+                    },
                     child: Text(
                       "Done",
                       style: TextStyle(color: kinProgressStatus, fontSize: 18),

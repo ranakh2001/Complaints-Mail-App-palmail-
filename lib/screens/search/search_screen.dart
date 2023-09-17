@@ -1,5 +1,6 @@
 import 'package:finalproject/core/util/constants.dart';
 import 'package:finalproject/providers/search_provider.dart';
+import 'package:finalproject/screens/widgets/search_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
@@ -15,20 +16,40 @@ class SearchScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: NestedScrollView(
-          headerSliverBuilder: (context, innerBoxIsScrolled) =>
-              [const MyAppBar(title: 'Home')],
-          body: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
-            child: SingleChildScrollView(
-              child: Consumer<SearchProvider>(
-                builder: (context, searchProvider, child) {
-                  return Column(
+        appBar: AppBar(
+          elevation: 0,
+          leading: IconButton(
+              onPressed: () => Navigator.pop(context),
+              icon: Icon(
+                Icons.arrow_back_ios_new_rounded,
+                color: kinProgressStatus,
+              )),
+          title: Text(
+            'Home',
+            style: TextStyle(color: kinProgressStatus, fontSize: 16),
+          ),
+        ),
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
+          child: SingleChildScrollView(
+            child: Consumer<SearchProvider>(
+              builder: (context, searchProvider, child) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  child: Column(
                     children: [
                       Row(
                         children: [
                           Expanded(
                             child: TextField(
+                              cursorColor: kinProgressStatus,
+                              onChanged: (value) {
+                                if (value == null || value == '') {
+                                  searchProvider.searchMails.data!.clear();
+                                } else {
+                                  searchProvider.fetchMails(value);
+                                }
+                              },
                               controller: searchProvider.searchController,
                               decoration: InputDecoration(
                                   enabledBorder: OutlineInputBorder(
@@ -73,19 +94,18 @@ class SearchScreen extends StatelessWidget {
                               ))
                         ],
                       ),
-                      ListView.separated(
-                          shrinkWrap: true,
-                          itemBuilder: (context, index) {},
-                          separatorBuilder: (context, index) => const SizedBox(
-                                height: 16,
-                              ),
-                          itemCount: 3)
+                      searchProvider.startSearch
+                          ? const Padding(
+                              padding: EdgeInsets.symmetric(vertical: 16.0),
+                              child: SearchList(),
+                            )
+                          : const SizedBox()
                     ],
-                  );
-                },
-              ),
+                  ),
+                );
+              },
             ),
-          )),
-    );
+          ),
+        ));
   }
 }

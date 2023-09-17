@@ -31,6 +31,7 @@ class MailStatus {
   DateTime? updatedAt;
   String? mailsCount;
   List<Mail>? mails;
+  bool isSelected = false;
 
   MailStatus({
     this.id,

@@ -1,5 +1,4 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:finalproject/models/tags.dart';
 import 'package:finalproject/providers/tags_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

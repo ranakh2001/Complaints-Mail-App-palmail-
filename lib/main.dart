@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:finalproject/providers/app_provider.dart';
 import 'package:finalproject/providers/category_provider.dart';
-import 'package:finalproject/providers/mail_filter_provider.dart';
+import 'package:finalproject/providers/search_provider.dart';
 import 'package:finalproject/providers/status_provider.dart';
 import 'package:finalproject/providers/tags_provider.dart';
 import 'package:flutter/material.dart';
@@ -21,8 +21,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(providers: [
-      ChangeNotifierProvider<MailFilterProvider>(
-          create: (context) => MailFilterProvider()),
       ChangeNotifierProvider<AppProvider>(
         create: (context) => AppProvider(),
       ),
@@ -34,7 +32,8 @@ class MyApp extends StatelessWidget {
       ),
       ChangeNotifierProvider<TagProvider>(
         create: (context) => TagProvider(),
-      )
+      ),
+      ChangeNotifierProvider<SearchProvider>(create: (context) => SearchProvider(),)
     ], child: const AppLocalization());
   }
 }

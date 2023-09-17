@@ -5,7 +5,7 @@ const String baseUrl = "https://palmail.gsgtt.tech/api";
 
 //add the endpoints that you use (لانهم كتار)
 
-String token = '148|YIQZRTtiITX6C5LZTDxskTufIai7Bu4Gd7KjfuLy';
+String token = '282|8fPNmAQy8A0XN2h2jNBDoB33FKeaRAvcTnV8MRrS';
 
 // colors
 Color kprimaryColor = const Color(0xff003AFC);

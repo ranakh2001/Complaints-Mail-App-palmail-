@@ -11,6 +11,8 @@ class CategoriesProvider extends ChangeNotifier {
   late ApiResponse<List<CategoryElement>> _categoryList;
 
   ApiResponse<List<CategoryElement>> get categoryList => _categoryList;
+
+  CategoryElement? selectedCategory;
   CategoriesProvider() {
     _categoriesRepo = CategoryRepository();
     fetchCategories();
@@ -37,5 +39,12 @@ class CategoriesProvider extends ChangeNotifier {
     } catch (err) {
       return Future.error(err);
     }
+  }
+
+  toggleCategory(CategoryElement category) {
+    category.isSelected = !category.isSelected;
+    notifyListeners();
+    selectedCategory = category;
+    notifyListeners();
   }
 }

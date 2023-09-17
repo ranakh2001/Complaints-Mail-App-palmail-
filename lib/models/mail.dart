@@ -4,6 +4,11 @@
 
 import 'dart:convert';
 
+import 'package:finalproject/models/sender.dart';
+
+import 'activity.dart';
+import 'attachment.dart';
+
 Mail mailFromMap(String str) => Mail.fromMap(json.decode(str));
 
 String mailToMap(Mail data) => json.encode(data.toMap());
@@ -22,8 +27,8 @@ class Mail {
   DateTime? updatedAt;
   Sender? sender;
   MStatus? status;
-  List<dynamic>? attachments;
-  List<dynamic>? activities;
+  List<Attachment>? attachments;
+    List<Activity>? activities;
   List<Tag>? tags;
 
   Mail({
@@ -46,31 +51,21 @@ class Mail {
   });
 
   factory Mail.fromMap(Map<String, dynamic> json) => Mail(
-        id: json["id"],
+  id: json["id"],
         subject: json["subject"],
         description: json["description"],
         senderId: json["sender_id"],
         archiveNumber: json["archive_number"],
-        archiveDate: json["archive_date"] == null
-            ? null
-            : DateTime.parse(json["archive_date"]),
+        archiveDate: json["archive_date"] == null ? null : DateTime.parse(json["archive_date"]),
         decision: json["decision"],
         statusId: json["status_id"],
         finalDecision: json["final_decision"],
-        createdAt: json["created_at"] == null
-            ? null
-            : DateTime.parse(json["created_at"]),
-        updatedAt: json["updated_at"] == null
-            ? null
-            : DateTime.parse(json["updated_at"]),
+        createdAt: json["created_at"] == null ? null : DateTime.parse(json["created_at"]),
+        updatedAt: json["updated_at"] == null ? null : DateTime.parse(json["updated_at"]),
         sender: json["sender"] == null ? null : Sender.fromMap(json["sender"]),
         status: json["status"] == null ? null : MStatus.fromMap(json["status"]),
-        attachments: json["attachments"] == null
-            ? []
-            : List<dynamic>.from(json["attachments"]!.map((x) => x)),
-        activities: json["activities"] == null
-            ? []
-            : List<dynamic>.from(json["activities"]!.map((x) => x)),
+        attachments: json["attachments"] == null ? [] : List<Attachment>.from(json["attachments"]!.map((x) => Attachment.fromMap(x))),
+        activities: json["activities"] == null ? [] : List<Activity>.from(json["activities"]!.map((x) => Activity.fromMap(x))),
         tags: json["tags"] == null
             ? []
             : List<Tag>.from(json["tags"]!.map((x) => Tag.fromMap(x))),
@@ -101,75 +96,7 @@ class Mail {
       };
 }
 
-class Sender {
-  int? id;
-  String? name;
-  String? mobile;
-  dynamic address;
-  String? categoryId;
-  DateTime? createdAt;
-  DateTime? updatedAt;
-  Category? category;
 
-  Sender({
-    this.id,
-    this.name,
-    this.mobile,
-    this.address,
-    this.categoryId,
-    this.createdAt,
-    this.updatedAt,
-    this.category,
-  });
-
-  factory Sender.fromMap(Map<String, dynamic> json) => Sender(
-        id: json["id"],
-        name: json["name"],
-        mobile: json["mobile"],
-        address: json["address"],
-        categoryId: json["category_id"],
-        createdAt: json["created_at"] == null
-            ? null
-            : DateTime.parse(json["created_at"]),
-        updatedAt: json["updated_at"] == null
-            ? null
-            : DateTime.parse(json["updated_at"]),
-        category: json["category"] == null
-            ? null
-            : Category.fromMap(json["category"]),
-      );
-
-  Map<String, dynamic> toMap() => {
-        "id": id,
-        "name": name,
-        "mobile": mobile,
-        "address": address,
-        "category_id": categoryId,
-        "created_at": createdAt?.toIso8601String(),
-        "updated_at": updatedAt?.toIso8601String(),
-        "category": category?.toMap(),
-      };
-}
-
-class Category {
-  int? id;
-  String? name;
-
-  Category({
-    this.id,
-    this.name,
-  });
-
-  factory Category.fromMap(Map<String, dynamic> json) => Category(
-        id: json["id"],
-        name: json["name"],
-      );
-
-  Map<String, dynamic> toMap() => {
-        "id": id,
-        "name": name,
-      };
-}
 
 class MStatus {
   int? id;
