@@ -36,7 +36,7 @@ class HomeMails extends StatelessWidget {
           MailTitle(
             organiztion: organization,
             color: color,
-            date: DateFormat('DDD,hh:mm').format(date),
+            date: DateFormat('dd/MM/yyyy ,hh:mm').format(date),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24.0),

@@ -35,14 +35,29 @@ class CategoriesListView extends StatelessWidget {
                 itemBuilder: (context, index) {
                   CategoryElement category =
                       categoryProvider.categoryList.data![index];
-                  return CustomExpansionTile(
-                    categoryId: category.id,
-                    body: const MailContainer(),
-                    title: Text(
-                      category.name!.tr(),
-                      style: TextStyle(color: ktitleBlack, fontSize: 20),
-                    ),
-                    numOfMails: 12,
+                  return FutureBuilder(
+                    future: categoryProvider.getCategoryMails(category.id!),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return Center(
+                          child: CircularProgressIndicator(
+                            color: kinProgressStatus,
+                          ),
+                        );
+                      } else if (snapshot.hasData) {
+                        return CustomExpansionTile(
+                          body: MailContainer(
+                            categoryId: category.id!,
+                          ),
+                          title: Text(
+                            category.name!.tr(),
+                            style: TextStyle(color: ktitleBlack, fontSize: 20),
+                          ),
+                          numOfMails: snapshot.data!.length,
+                        );
+                      }
+                      return const Text('no data');
+                    },
                   );
                 },
                 separatorBuilder: (context, index) => const SizedBox(

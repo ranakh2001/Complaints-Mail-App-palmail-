@@ -1,19 +1,17 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:finalproject/core/util/constants.dart';
-import 'package:finalproject/providers/category_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class CustomExpansionTile extends StatefulWidget {
   final Widget title;
   final Widget body;
   final int? numOfMails;
-  final int? categoryId;
   const CustomExpansionTile({
     super.key,
     required this.title,
     required this.body,
     this.numOfMails,
-    this.categoryId,
   });
 
   @override
@@ -29,10 +27,6 @@ class _CustomExpansionTileState extends State<CustomExpansionTile> {
       children: <Widget>[
         InkWell(
           onTap: () {
-            if (widget.categoryId != null) {
-              Provider.of<CategoriesProvider>(context, listen: false)
-                  .getCategoryMails(widget.categoryId!);
-            }
             setState(() {
               _isExpanded = !_isExpanded;
             });

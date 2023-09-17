@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../core/util/constants.dart';
-import 'my_expand_listTile.dart';
+import 'custom_expansion_tile.dart';
 
 class DetailsTagsContainer extends StatelessWidget {
   const DetailsTagsContainer({super.key});

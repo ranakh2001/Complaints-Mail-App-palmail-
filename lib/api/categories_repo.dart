@@ -19,7 +19,6 @@ class CategoryRepository {
     final mails = await _helper.get('/categories/$categoryId/mails', {
       'Authorization': 'Bearer $token',
     });
-    print(mails);
     return CategoryMails.fromMap(mails).mails!;
   }
 }

@@ -3,14 +3,15 @@ import 'package:finalproject/providers/category_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../core/helpers/api_response.dart';
 import '../../models/mail.dart';
 import '../../screens/home/mail_details_screen.dart';
 import 'home_mails.dart';
 
 class MailContainer extends StatelessWidget {
+  final int categoryId;
   const MailContainer({
     super.key,
+    required this.categoryId,
   });
 
   @override
@@ -23,47 +24,50 @@ class MailContainer extends StatelessWidget {
         ),
         child: Consumer<CategoriesProvider>(
           builder: (context, categoryProvider, child) {
-            if (categoryProvider.categoryMailList.status == Status.LOADING) {
-              return Center(
-                child: CircularProgressIndicator(
-                  color: kinProgressStatus,
-                ),
-              );
-            } else if (categoryProvider.categoryMailList.status ==
-                Status.ERROR) {
-              return Center(
-                child: Text('${categoryProvider.categoryMailList.message}'),
-              );
-            }
-            List<Mail> categoryMails = categoryProvider.categoryMailList.data!;
-            return ListView.separated(
-                shrinkWrap: true,
-                itemBuilder: (context, index) {
-                  Mail mail = categoryMails[index];
-                  return GestureDetector(
-                      onTap: () {
-                        Navigator.pushNamed(context, MailDetailsScreen.id);
-                      },
-                      child: HomeMails(
-                        singleMail:
-                            categoryProvider.categoryList.data!.length >= 2
-                                ? false
-                                : true,
-                        organization: mail.sender!.category!.name!,
-                        color: mail.status!.color!,
-                        date: mail.createdAt!,
-                        description: mail.description ?? '',
-                        subject: mail.subject!,
-                      ));
-                },
-                separatorBuilder: (context, index) => Padding(
-                      padding:
-                          const EdgeInsetsDirectional.symmetric(horizontal: 16),
-                      child: Divider(
-                        color: kiconColor,
-                      ),
+            return FutureBuilder(
+              future: categoryProvider.getCategoryMails(categoryId),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Center(
+                    child: CircularProgressIndicator(
+                      color: kinProgressStatus,
                     ),
-                itemCount: categoryMails.length);
+                  );
+                } else if (snapshot.hasData) {
+                  return ListView.separated(
+                      shrinkWrap: true,
+                      itemBuilder: (context, index) {
+                        Mail mail = snapshot.data![index];
+                        return GestureDetector(
+                            onTap: () {
+                              Navigator.pushNamed(
+                                  context, MailDetailsScreen.id);
+                            },
+                            child: HomeMails(
+                              singleMail:
+                                  categoryProvider.categoryList.data!.length >=
+                                          2
+                                      ? false
+                                      : true,
+                              organization: mail.sender!.category!.name!,
+                              color: mail.status!.color!,
+                              date: mail.createdAt!,
+                              description: mail.description ?? '',
+                              subject: mail.subject!,
+                            ));
+                      },
+                      separatorBuilder: (context, index) => Padding(
+                            padding: const EdgeInsetsDirectional.symmetric(
+                                horizontal: 16),
+                            child: Divider(
+                              color: kiconColor,
+                            ),
+                          ),
+                      itemCount: snapshot.data!.length);
+                }
+                return const Text("No Data");
+              },
+            );
           },
         ));
   }

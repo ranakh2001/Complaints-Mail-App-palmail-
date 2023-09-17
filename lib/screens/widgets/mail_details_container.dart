@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../core/util/constants.dart';
-import 'my_expand_listTile.dart';
+import 'custom_expansion_tile.dart';
 
 class MailDetailsContainer extends StatelessWidget {
   const MailDetailsContainer({super.key});

@@ -1,9 +1,10 @@
 import 'package:finalproject/core/util/constants.dart';
+import 'package:finalproject/providers/search_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 
 import '../widgets/close_widget.dart';
-import '../widgets/home_mails.dart';
 import '../widgets/my_appBar.dart';
 import 'filter_sheet.dart';
 
@@ -20,68 +21,68 @@ class SearchScreen extends StatelessWidget {
           body: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
             child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Row(
+              child: Consumer<SearchProvider>(
+                builder: (context, searchProvider, child) {
+                  return Column(
                     children: [
-                      Expanded(
-                        child: TextField(
-                          decoration: InputDecoration(
-                              enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(30),
-                                  borderSide: BorderSide.none),
-                              focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(30),
-                                  borderSide: BorderSide.none),
-                              contentPadding: const EdgeInsets.symmetric(
-                                  vertical: 0, horizontal: 16),
-                              suffixIconConstraints: const BoxConstraints(),
-                              suffixIcon: const CloseIconWidget(),
-                              prefixIcon: Icon(
-                                Icons.search,
-                                color: kcloseBackground,
-                              ),
-                              filled: true,
-                              fillColor: ktagBackground),
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 8,
-                      ),
-                      GestureDetector(
-                          onTap: () {
-                            showModalBottomSheet(
-                                isScrollControlled: true,
-                                shape: const RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.vertical(
-                                        top: Radius.circular(30))),
-                                context: context,
-                                builder: (context) => const FilterSheet());
-                          },
-                          child: SvgPicture.asset(
-                            'assets/icons/filter.svg',
-                            width: 25,
-                            height: 25,
-                          ))
-                    ],
-                  ),
-                  ListView.separated(
-                      shrinkWrap: true,
-                      itemBuilder: (context, index) {
-                        return HomeMails(
-                          organization: "",
-                          singleMail: true,
-                          color: '',
-                          date: DateTime(2000),
-                          description: '',
-                          subject: '',
-                        );
-                      },
-                      separatorBuilder: (context, index) => const SizedBox(
-                            height: 16,
+                      Row(
+                        children: [
+                          Expanded(
+                            child: TextField(
+                              controller: searchProvider.searchController,
+                              decoration: InputDecoration(
+                                  enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(30),
+                                      borderSide: BorderSide.none),
+                                  focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(30),
+                                      borderSide: BorderSide.none),
+                                  contentPadding: const EdgeInsets.symmetric(
+                                      vertical: 0, horizontal: 16),
+                                  suffixIconConstraints: const BoxConstraints(),
+                                  suffixIcon: CloseIconWidget(
+                                    ontap: () {
+                                      searchProvider.searchController.clear();
+                                    },
+                                  ),
+                                  prefixIcon: Icon(
+                                    Icons.search,
+                                    color: kcloseBackground,
+                                  ),
+                                  filled: true,
+                                  fillColor: ktagBackground),
+                            ),
                           ),
-                      itemCount: 3)
-                ],
+                          const SizedBox(
+                            width: 8,
+                          ),
+                          GestureDetector(
+                              onTap: () {
+                                showModalBottomSheet(
+                                    isScrollControlled: true,
+                                    shape: const RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.vertical(
+                                            top: Radius.circular(30))),
+                                    context: context,
+                                    builder: (context) => const FilterSheet());
+                              },
+                              child: SvgPicture.asset(
+                                'assets/icons/filter.svg',
+                                width: 25,
+                                height: 25,
+                              ))
+                        ],
+                      ),
+                      ListView.separated(
+                          shrinkWrap: true,
+                          itemBuilder: (context, index) {},
+                          separatorBuilder: (context, index) => const SizedBox(
+                                height: 16,
+                              ),
+                          itemCount: 3)
+                    ],
+                  );
+                },
               ),
             ),
           )),
