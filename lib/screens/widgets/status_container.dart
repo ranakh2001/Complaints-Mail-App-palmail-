@@ -6,11 +6,12 @@ class StatusContainer extends StatelessWidget {
   final String title;
   final Color color;
   final Function() onTap;
+  final String numOfMails;
   const StatusContainer(
       {super.key,
       required this.title,
       required this.color,
-      required this.onTap});
+      required this.onTap, required this.numOfMails});
 
   @override
   Widget build(BuildContext context) {
@@ -39,9 +40,9 @@ class StatusContainer extends StatelessWidget {
                   decoration:
                       BoxDecoration(shape: BoxShape.circle, color: color),
                 ),
-                const Text(
-                  "9",
-                  style: TextStyle(fontSize: 20),
+                 Text(
+                  numOfMails,
+                  style:const TextStyle(fontSize: 20),
                 )
               ],
             ),

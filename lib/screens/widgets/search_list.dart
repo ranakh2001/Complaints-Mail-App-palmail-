@@ -31,13 +31,7 @@ class SearchList extends StatelessWidget {
               Mail mail = searchProvider.searchMails.data![index];
               return HomeMails(
                   singleMail: true,
-                  organization:
-                      mail.sender == null ? "" : mail.sender!.category!.name!,
-                  subject: mail.subject ?? '',
-                  description: mail.description ?? '',
-                  date: mail.createdAt!,
-                  color:
-                      mail.status == null ? '0xff003AFC' : mail.status!.color!);
+                 mail: mail,);
             },
             separatorBuilder: (context, index) => const SizedBox(
                   height: 16,

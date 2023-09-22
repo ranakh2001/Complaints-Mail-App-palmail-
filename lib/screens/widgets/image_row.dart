@@ -1,45 +1,60 @@
 import 'package:flutter/material.dart';
 
 import '../../core/util/constants.dart';
+import 'image_view.dart';
 
 class ImageRow extends StatelessWidget {
-  const ImageRow({super.key});
+  final String url;
+  const ImageRow({super.key, required this.url});
 
   @override
   Widget build(BuildContext context) {
-    return  Row(
-                            children: [
-                              Container(
-                                decoration: BoxDecoration(
-                                    color: kremoveColor,
-                                    shape: BoxShape.circle),
-                                child: const Icon(
-                                  Icons.remove,
-                                  color: Colors.white,
-                                ),
-                              ),
-                              Container(
-                                width: 32,
-                                height: 32,
-                                margin:
-                                    const EdgeInsets.symmetric(horizontal: 12),
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    image: const DecorationImage(
-                                        image: NetworkImage(
-                                            'https://th.bing.com/th/id/OIP.jryuUgIHWL-1FVD2ww8oWgHaHa?pid=ImgDet&rs=1'))),
-                              ),
-                              Text(
-                                'Image',
-                                style:
-                                    TextStyle(fontSize: 16, color: ktitleBlack),
-                              ),
-                              const Spacer(),
-                              Icon(
-                                Icons.menu_rounded,
-                                color: kiconColor,
-                              )
-                            ],
-                          );
+    return Row(
+      children: [
+        GestureDetector(
+          onTap: () {},
+          child: Container(
+            decoration:
+                BoxDecoration(color: kremoveColor, shape: BoxShape.circle),
+            child: const Icon(
+              Icons.remove,
+              color: Colors.white,
+            ),
+          ),
+        ),
+        GestureDetector(
+          onTap: () {
+            showDialog(
+              context: context,
+              builder: (context) => ImageView(imageUrl: "$storageUrl/$url"),
+            );
+            // Navigator.push(
+            //     context,
+            //     MaterialPageRoute(
+            //       builder: (context) => ImageView(imageUrl: "$storageUrl/$url"),
+            //     ));
+          },
+          child: Container(
+            width: 32,
+            height: 32,
+            margin: const EdgeInsets.symmetric(horizontal: 12),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                image: DecorationImage(
+                    image: NetworkImage("$storageUrl/$url"),
+                    fit: BoxFit.cover)),
+          ),
+        ),
+        Text(
+          'Image',
+          style: TextStyle(fontSize: 16, color: ktitleBlack),
+        ),
+        const Spacer(),
+        Icon(
+          Icons.menu_rounded,
+          color: kiconColor,
+        )
+      ],
+    );
   }
 }

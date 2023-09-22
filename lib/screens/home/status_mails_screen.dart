@@ -43,13 +43,9 @@ class StatusMailsScreen extends StatelessWidget {
                 itemBuilder: (context, index) {
                   Mail mail = statusProvider.statusMailsList.data![index];
                   return HomeMails(
-                    organization:
-                        mail.sender == null ? '' : mail.sender!.category!.name!,
+                   mail: mail,
                     singleMail: true,
-                    color: mail.status!.color!,
-                    date: mail.createdAt!,
-                    description: mail.description ?? '',
-                    subject: mail.subject!,
+                    
                   );
                 },
                 separatorBuilder: (context, index) => const SizedBox(

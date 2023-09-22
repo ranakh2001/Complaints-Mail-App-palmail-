@@ -39,6 +39,7 @@ class StatusGrid extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 4.0, vertical: 4),
                   child: StatusContainer(
+                      numOfMails: status.mailsCount!,
                       title: status.name!.tr(),
                       color: Color(int.parse(status.color!)),
                       onTap: () {

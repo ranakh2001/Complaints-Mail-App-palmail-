@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../models/mail.dart';
-import '../../screens/home/mail_details_screen.dart';
 import 'home_mails.dart';
 
 class MailContainer extends StatelessWidget {
@@ -38,23 +37,13 @@ class MailContainer extends StatelessWidget {
                       shrinkWrap: true,
                       itemBuilder: (context, index) {
                         Mail mail = snapshot.data![index];
-                        return GestureDetector(
-                            onTap: () {
-                              Navigator.pushNamed(
-                                  context, MailDetailsScreen.id);
-                            },
-                            child: HomeMails(
-                              singleMail:
-                                  categoryProvider.categoryList.data!.length >=
-                                          2
-                                      ? false
-                                      : true,
-                              organization: mail.sender!.category!.name!,
-                              color: mail.status!.color!,
-                              date: mail.createdAt!,
-                              description: mail.description ?? '',
-                              subject: mail.subject!,
-                            ));
+                        return HomeMails(
+                          singleMail:
+                              categoryProvider.categoryList.data!.length >= 2
+                                  ? false
+                                  : true,
+                          mail: mail,
+                        );
                       },
                       separatorBuilder: (context, index) => Padding(
                             padding: const EdgeInsetsDirectional.symmetric(

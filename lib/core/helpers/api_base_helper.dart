@@ -39,6 +39,39 @@ class ApiBaseHelper {
     return responseJson;
   }
 
+  Future<dynamic> put(
+      String url, Map<String, String> header, Map<String, dynamic> body) async {
+    var responseJson;
+    try {
+      final response = await http.put(
+        Uri.parse(baseUrl + url),
+        headers: header,
+        body: body,
+      );
+      responseJson = _returnResponse(response);
+    } on SocketException {
+      // intrnet error exception handlling
+      throw FetchDataException('No Internet connection');
+    }
+    return responseJson;
+  }
+
+  Future<dynamic> delete(
+      String url, Map<String, String> header,) async {
+    var responseJson;
+    try {
+      final response = await http.delete(
+        Uri.parse(baseUrl + url),
+        headers: header,
+      );
+      responseJson = _returnResponse(response);
+    } on SocketException {
+      // intrnet error exception handlling
+      throw FetchDataException('No Internet connection');
+    }
+    return responseJson;
+  }
+
   dynamic _returnResponse(http.Response response) {
     switch (response.statusCode) {
       case 200:

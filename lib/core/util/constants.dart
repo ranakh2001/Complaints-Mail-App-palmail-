@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 
 const String baseUrl = "https://palmail.gsgtt.tech/api";
+const String storageUrl = "https://palmail.gsgtt.tech/storage";
 
 //add the endpoints that you use (لانهم كتار)
 

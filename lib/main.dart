@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:finalproject/providers/app_provider.dart';
 import 'package:finalproject/providers/category_provider.dart';
+import 'package:finalproject/providers/mail_provider.dart';
 import 'package:finalproject/providers/search_provider.dart';
 import 'package:finalproject/providers/status_provider.dart';
 import 'package:finalproject/providers/tags_provider.dart';
@@ -33,7 +34,12 @@ class MyApp extends StatelessWidget {
       ChangeNotifierProvider<TagProvider>(
         create: (context) => TagProvider(),
       ),
-      ChangeNotifierProvider<SearchProvider>(create: (context) => SearchProvider(),)
+      ChangeNotifierProvider<SearchProvider>(
+        create: (context) => SearchProvider(),
+      ),
+      ChangeNotifierProvider<MailProvider>(
+        create: (context) => MailProvider(),
+      )
     ], child: const AppLocalization());
   }
 }

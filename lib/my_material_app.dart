@@ -37,7 +37,6 @@ class MyMaterialApp extends StatelessWidget {
       routes: {
         LoginScreen.id: (context) => const LoginScreen(),
         HomePage.id: (context) => const HomePage(),
-        MailDetailsScreen.id: (context) => const MailDetailsScreen(),
         SearchScreen.id: (context) => const SearchScreen(),
         NewInboxView.id: (context) => const NewInboxView(),
         StatusMailsScreen.id:(context) => const StatusMailsScreen(),

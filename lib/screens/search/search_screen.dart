@@ -6,7 +6,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
 import '../widgets/close_widget.dart';
-import '../widgets/my_appBar.dart';
 import 'filter_sheet.dart';
 
 class SearchScreen extends StatelessWidget {
@@ -44,7 +43,7 @@ class SearchScreen extends StatelessWidget {
                             child: TextField(
                               cursorColor: kinProgressStatus,
                               onChanged: (value) {
-                                if (value == null || value == '') {
+                                if (value == '') {
                                   searchProvider.searchMails.data!.clear();
                                 } else {
                                   searchProvider.fetchMails(value);
