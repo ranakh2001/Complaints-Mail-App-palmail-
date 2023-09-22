@@ -22,68 +22,81 @@ class MailDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
-          borderRadius: BorderRadius.vertical(top: Radius.circular(30))),
-      height: MediaQuery.of(context).size.height * 0.95,
-      child: Scaffold(
-        backgroundColor: kscaffoldBackgroundColor,
-        body: NestedScrollView(
-            // physics: const BouncingScrollPhysics(),
-            headerSliverBuilder: (context, innerBoxIsScrolled) => [
-                  MyAppBar(
-                    title: 'home'.tr(),
-                    actions: [
-                      TextButton(
-                          onPressed: () {},
-                          child: Text(
-                            "Done",
-                            style: TextStyle(
-                                color: kinProgressStatus, fontSize: 16),
-                          )),
-                      IconButton(
-                          onPressed: () {
-                            showModalBottomSheet(
-                                shape: const RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.vertical(
-                                        top: Radius.circular(30))),
-                                context: context,
-                                builder: (context) => const MoreEditsSheet());
-                          },
-                          icon: Icon(
-                            Icons.more_vert_rounded,
-                            color: kinProgressStatus,
-                          ))
+        decoration: const BoxDecoration(
+            borderRadius: BorderRadius.vertical(top: Radius.circular(30))),
+        height: MediaQuery.of(context).size.height * 0.95,
+        child: Scaffold(
+            backgroundColor: kscaffoldBackgroundColor,
+            body: NestedScrollView(
+                // physics: const BouncingScrollPhysics(),
+                headerSliverBuilder: (context, innerBoxIsScrolled) => [
+                      MyAppBar(
+                        title: 'home'.tr(),
+                        actions: [
+                          TextButton(
+                              onPressed: () {},
+                              child: Text(
+                                "Done",
+                                style: TextStyle(
+                                    color: kinProgressStatus, fontSize: 16),
+                              )),
+                          IconButton(
+                              onPressed: () {
+                                showModalBottomSheet(
+                                    shape: const RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.vertical(
+                                            top: Radius.circular(30))),
+                                    context: context,
+                                    builder: (context) =>
+                                        const MoreEditsSheet());
+                              },
+                              icon: Icon(
+                                Icons.more_vert_rounded,
+                                color: kinProgressStatus,
+                              ))
+                        ],
+                      )
                     ],
-                  )
-                ],
-            body: Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const MailDetailsContainer(),
-                    const DetailsTagsContainer(),
-                    const DetailsStatusContainer(),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    DecisionContainer(
-                      addDecisionController: Provider.of<MailProvider>(context)
-                          .mailDecisionControoler,
-                    ),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    const DetailsImagesContainer(),
-                    const ActivityList(),
-                    const AddActivityContainer(addNewActivityController: null),
-                  ],
-                ),
-              ),
-            )),
-      ),
-    );
+                body: Consumer<MailProvider>(
+                  builder: (context, mailProvider, child) {
+                    if (mailProvider.mailUpdated) {
+                      return Center(
+                        child: CircularProgressIndicator(
+                          color: kinProgressStatus,
+                        ),
+                      );
+                    } else {
+                      return Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 16.0, vertical: 8),
+                          child: SingleChildScrollView(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const MailDetailsContainer(),
+                                const DetailsTagsContainer(),
+                                const DetailsStatusContainer(),
+                                const SizedBox(
+                                  height: 8,
+                                ),
+                                DecisionContainer(
+                                  addDecisionController:
+                                      Provider.of<MailProvider>(context)
+                                          .mailDecisionControoler,
+                                ),
+                                const SizedBox(
+                                  height: 8,
+                                ),
+                                const DetailsImagesContainer(),
+                                const ActivityList(),
+                                AddActivityContainer(
+                                    addNewActivityController:
+                                        mailProvider.newActivity),
+                              ],
+                            ),
+                          ));
+                    }
+                  },
+                ))));
   }
 }

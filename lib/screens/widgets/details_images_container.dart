@@ -38,6 +38,7 @@ class DetailsImagesContainer extends StatelessWidget {
                   return Padding(
                       padding: const EdgeInsets.symmetric(vertical: 4),
                       child: ImageRow(
+                        index: index,
                         url: attachment.image!,
                       ));
                 },

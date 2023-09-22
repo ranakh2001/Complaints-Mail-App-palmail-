@@ -25,16 +25,18 @@ class ActivityContainer extends StatelessWidget {
                 height: 20,
                 decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    image: DecorationImage(
-                        image: NetworkImage(
-                            "$storageUrl/${activity.user!.image!}"),
-                        fit: BoxFit.cover)),
+                    image: activity.user == null
+                        ? DecorationImage(
+                            image: NetworkImage(
+                                "$storageUrl/${activity.user!.image!}"),
+                            fit: BoxFit.cover)
+                        : null),
               ),
               const SizedBox(
                 width: 8,
               ),
               Text(
-                activity.user!.name!,
+                activity.user == null ? "" : activity.user!.name!,
                 style: TextStyle(color: ktitleBlack, fontSize: 16),
               ),
               const Spacer(),
@@ -47,7 +49,7 @@ class ActivityContainer extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24.0),
             child: Text(
-              activity.body!,
+              activity.body! ?? '',
               style: TextStyle(color: kdescriptionColor, fontSize: 12),
             ),
           )
