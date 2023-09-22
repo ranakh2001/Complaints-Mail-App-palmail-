@@ -3,12 +3,13 @@ import 'package:flutter/material.dart';
 import '../../core/util/constants.dart';
 
 class CloseIconWidget extends StatelessWidget {
-  const CloseIconWidget({super.key});
+  final Function() ontap;
+  const CloseIconWidget({super.key, required this.ontap});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-        onTap: () => Navigator.pop(context),
+        onTap: ontap,
         child: Container(
           margin: const EdgeInsets.symmetric(horizontal: 8),
           decoration:

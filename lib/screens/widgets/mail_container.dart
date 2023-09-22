@@ -1,12 +1,16 @@
 import 'package:finalproject/core/util/constants.dart';
+import 'package:finalproject/providers/category_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-import '../../screens/home/mail_details_screen.dart';
+import '../../models/mail.dart';
 import 'home_mails.dart';
 
 class MailContainer extends StatelessWidget {
+  final int categoryId;
   const MailContainer({
     super.key,
+    required this.categoryId,
   });
 
   @override
@@ -17,22 +21,43 @@ class MailContainer extends StatelessWidget {
           borderRadius: BorderRadius.circular(30),
           color: Colors.white,
         ),
-        child: ListView.separated(
-            shrinkWrap: true,
-            itemBuilder: (context, index) {
-              return GestureDetector(
-                  onTap: () {
-                    Navigator.pushNamed(context, MailDetailsScreen.id);
-                  },
-                  child: const HomeMails(singleMail: false,));
-            },
-            separatorBuilder: (context, index) => Padding(
-                  padding:
-                      const EdgeInsetsDirectional.symmetric(horizontal: 16),
-                  child: Divider(
-                    color: kiconColor,
-                  ),
-                ),
-            itemCount: 3));
+        child: Consumer<CategoriesProvider>(
+          builder: (context, categoryProvider, child) {
+            return FutureBuilder(
+              future: categoryProvider.getCategoryMails(categoryId),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Center(
+                    child: CircularProgressIndicator(
+                      color: kinProgressStatus,
+                    ),
+                  );
+                } else if (snapshot.hasData) {
+                  return ListView.separated(
+                      shrinkWrap: true,
+                      itemBuilder: (context, index) {
+                        Mail mail = snapshot.data![index];
+                        return HomeMails(
+                          singleMail:
+                              categoryProvider.categoryList.data!.length >= 2
+                                  ? false
+                                  : true,
+                          mail: mail,
+                        );
+                      },
+                      separatorBuilder: (context, index) => Padding(
+                            padding: const EdgeInsetsDirectional.symmetric(
+                                horizontal: 16),
+                            child: Divider(
+                              color: kiconColor,
+                            ),
+                          ),
+                      itemCount: snapshot.data!.length);
+                }
+                return const Text("No Data");
+              },
+            );
+          },
+        ));
   }
 }

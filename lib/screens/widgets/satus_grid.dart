@@ -1,6 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:finalproject/core/util/constants.dart';
+import 'package:finalproject/models/satuses.dart';
 import 'package:finalproject/providers/status_provider.dart';
+import 'package:finalproject/screens/home/status_mails_screen.dart';
 import 'package:finalproject/screens/widgets/status_container.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -26,44 +28,26 @@ class StatusGrid extends StatelessWidget {
           );
         }
         return Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  StatusContainer(
-                    color: kinBoxStatus,
-                    title: 'inBox'.tr(),
-                  ),
-                  const SizedBox(
-                    width: 8,
-                  ),
-                  StatusContainer(
-                    color: kpendingStatus,
-                    title: 'pending'.tr(),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 8,
-              ),
-              Row(
-                children: [
-                  StatusContainer(
-                    color: kinProgressStatus,
-                    title: 'inProgress'.tr(),
-                  ),
-                  const SizedBox(
-                    width: 8,
-                  ),
-                  StatusContainer(
-                    color: kcompletedStatus,
-                    title: 'completted'.tr(),
-                  ),
-                ],
-              )
-            ],
-          ),
+          padding: const EdgeInsets.symmetric(horizontal: 12),
+          child: GridView.count(
+              crossAxisCount: 2,
+              shrinkWrap: true,
+              childAspectRatio: (1 / 0.65),
+              children: List.generate(4, (index) {
+                MailStatus status = statusProvider.statusList.data![index];
+                return Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 4.0, vertical: 4),
+                  child: StatusContainer(
+                      numOfMails: status.mailsCount!,
+                      title: status.name!.tr(),
+                      color: Color(int.parse(status.color!)),
+                      onTap: () {
+                        statusProvider.fetchStatusMails(index);
+                        Navigator.pushNamed(context, StatusMailsScreen.id);
+                      }),
+                );
+              })),
         );
       },
     );

@@ -3,11 +3,11 @@ import 'package:finalproject/screens/new%20inbox/new_inbox_view.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../core/util/constants.dart';
-import '../widgets/custom_expansion_tile.dart';
+import '../widgets/categories_listView.dart';
 import '../widgets/home_appBar.dart';
-import '../widgets/mail_container.dart';
 import '../widgets/satus_grid.dart';
 import '../widgets/search_container.dart';
+import '../widgets/tags_container.dart';
 
 class HomePage extends StatelessWidget {
   static const id = '/homePage';
@@ -27,22 +27,7 @@ class HomePage extends StatelessWidget {
               children: [
                 const SearchContainer(),
                 const StatusGrid(),
-                Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                    child: ListView.separated(
-                        physics: const NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemBuilder: (context, index) {
-                          return CustomExpansionTile(
-                            body: const MailContainer(),
-                            title: Text("ngo's".tr()),
-                            numOfMails: 12,
-                          );
-                        },
-                        separatorBuilder: (context, index) => const SizedBox(
-                              height: 8,
-                            ),
-                        itemCount: 3)),
+                const CategoriesListView(),
                 Padding(
                   padding: const EdgeInsets.symmetric(
                       vertical: 16.0, horizontal: 16),
@@ -51,32 +36,9 @@ class HomePage extends StatelessWidget {
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
                 ),
-                Container(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30),
-                      color: Colors.white),
-                  child: Text.rich(TextSpan(children: <WidgetSpan>[
-                    for (int i = 0; i < 5; i++) ...{
-                      WidgetSpan(
-                          child: Container(
-                        margin: const EdgeInsets.symmetric(
-                            horizontal: 8, vertical: 4),
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 8, horizontal: 16),
-                        decoration: BoxDecoration(
-                          color: ktagBackground,
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        child: Text(
-                          "allTags".tr(),
-                          style: TextStyle(color: ktagColor, fontSize: 14),
-                        ),
-                      ))
-                    }
-                  ])),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 8.0),
+                  child: TagsContainer(),
                 ),
               ],
             ),
@@ -89,8 +51,11 @@ class HomePage extends StatelessWidget {
                 onTap: () {
                   showModalBottomSheet(
                     isScrollControlled: true,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-                    context: context, builder: (context) =>const NewInboxView(),);
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30)),
+                    context: context,
+                    builder: (context) => const NewInboxView(),
+                  );
                 },
                 child: Container(
                   padding:

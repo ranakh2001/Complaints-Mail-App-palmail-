@@ -2,10 +2,11 @@
 import 'package:flutter/material.dart';
 
 const String baseUrl = "https://palmail.gsgtt.tech/api";
+const String storageUrl = "https://palmail.gsgtt.tech/storage";
 
 //add the endpoints that you use (لانهم كتار)
 
-String token = '988|opSJZ5ln0dUvlAFlgEq8TlS706eJ9L2Yi9diQdEK';
+String token = '1062|mKAZ9DI6NoAZ0P9Yt69diWodGjFEEnBBXpLYHNeH';
 
 // colors
 Color kprimaryColor = const Color(0xff003AFC);

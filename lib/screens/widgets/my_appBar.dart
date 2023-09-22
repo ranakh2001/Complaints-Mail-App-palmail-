@@ -15,7 +15,7 @@ class MyAppBar extends StatelessWidget {
       floating: true,
       pinned: true,
       snap: false,
-      leadingWidth: 20,
+      // leadingWidth: 20,
       title: Text(
         title,
         style: TextStyle(color: kinProgressStatus, fontSize: 18),

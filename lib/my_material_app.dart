@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:finalproject/screens/auth/login_screen.dart';
 import 'package:finalproject/screens/home/home_page.dart';
 import 'package:finalproject/screens/home/mail_details_screen.dart';
+import 'package:finalproject/screens/home/status_mails_screen.dart';
 import 'package:finalproject/screens/new%20inbox/new_inbox_view.dart';
 import 'package:finalproject/screens/search/search_screen.dart';
 import 'package:finalproject/screens/splash/splash_screen.dart';
@@ -36,9 +37,9 @@ class MyMaterialApp extends StatelessWidget {
       routes: {
         LoginScreen.id: (context) => const LoginScreen(),
         HomePage.id: (context) => const HomePage(),
-        MailDetailsScreen.id: (context) => const MailDetailsScreen(),
         SearchScreen.id: (context) => const SearchScreen(),
         NewInboxView.id: (context) => const NewInboxView(),
+        StatusMailsScreen.id:(context) => const StatusMailsScreen(),
         '/splash_screen': (context) => const SplashScreen(),
       },
     );
