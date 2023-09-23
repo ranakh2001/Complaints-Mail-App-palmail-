@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 
 // api links
+
 String palmailUrl = 'https://palmail.gsgtt.tech/api';
 String getCategoriesUrl = '${palmailUrl}/categories';
 String addCategoryUrl = '${palmailUrl}/categories';
+String getTagsUrl = '${palmailUrl}/tags';
+String addTagUrl = '${palmailUrl}/tags';
 String getStatusListUrl = '${palmailUrl}/statuses?mail=false';
+String token = '26|SD9TTZM3zFN0pQcV7uaegCzma2ssxqKdh6hczeA9';
+String getSendersUrl = '${palmailUrl}/senders';
 
-const String baseUrl = "https://palmail.gsgtt.tech/api";
 //add the endpoints that you use (لانهم كتار)
 
 // colors

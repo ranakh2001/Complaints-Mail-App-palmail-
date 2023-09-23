@@ -1,10 +1,14 @@
+import 'package:finalproject/screens/new%20inbox/new_inbox_view.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants.dart';
 
 class CustomAppBar extends StatelessWidget {
   final String title;
-  const CustomAppBar({
+  Function() doneFunction;
+
+  CustomAppBar({
+    required this.doneFunction,
     required this.title,
     super.key,
   });
@@ -18,9 +22,18 @@ class CustomAppBar extends StatelessWidget {
         children: [
           TextButton(
             onPressed: () {},
-            child: Text(
-              'cancel',
-              style: TextStyle(fontSize: 25, color: kinProgressStatus),
+            child: TextButton(
+              child: Text(
+                'cancel',
+                style: TextStyle(fontSize: 25, color: kinProgressStatus),
+              ),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => NewInboxView(),
+                    ));
+              },
             ),
           ),
           Text(
@@ -28,7 +41,7 @@ class CustomAppBar extends StatelessWidget {
             style: TextStyle(fontSize: 25, color: ktitleBlack),
           ),
           TextButton(
-            onPressed: () {},
+            onPressed: doneFunction,
             child: Text(
               'Done',
               style: TextStyle(fontSize: 25, color: kinProgressStatus),

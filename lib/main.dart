@@ -1,3 +1,4 @@
+import 'package:finalproject/providers/date_archive.dart';
 import 'package:finalproject/providers/mail_filter_provider.dart';
 import 'package:finalproject/providers/new_inbox_provider.dart';
 import 'package:finalproject/providers/sender_search_provider.dart';
@@ -5,6 +6,7 @@ import 'package:finalproject/providers/status_provider.dart';
 import 'package:finalproject/providers/tag_provider.dart';
 import 'package:finalproject/screens/new%20inbox/categories_view.dart';
 import 'package:finalproject/screens/new%20inbox/items.dart';
+import 'package:finalproject/screens/new%20inbox/new_inbox_view.dart';
 import 'package:finalproject/screens/new%20inbox/status_view.dart';
 import 'package:finalproject/screens/new%20inbox/tag_view.dart';
 import 'package:finalproject/screens/search/search_screen.dart';
@@ -33,7 +35,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -50,6 +51,8 @@ class MyApp extends StatelessWidget {
               create: (context) => StatusProvider()),
           ChangeNotifierProvider<TagStateNotifier>(
               create: (context) => TagStateNotifier()),
+          ChangeNotifierProvider<DateArchiveProvider>(
+              create: (context) => DateArchiveProvider()),
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
@@ -70,7 +73,7 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             // useMaterial3: true,
           ),
-          home: Scaffold(body: TagView()),
+          home: Scaffold(body: NewInboxView()),
           routes: {
             MailDetailsScreen.id: (context) => const MailDetailsScreen(),
             SearchScreen.id: (context) => const SearchScreen(),

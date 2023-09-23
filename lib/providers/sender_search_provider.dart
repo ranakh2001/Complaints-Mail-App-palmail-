@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-class SenderSearchProvider with ChangeNotifier {
+class SenderSearchProvider extends ChangeNotifier {
   TextEditingController senderSearchController = TextEditingController();
   List<String> orgsSenders = ['Logain', 'Rana', 'Tasneem'];
   List<String> otherSenders = ['Logain', 'Rana', 'Tasneem'];

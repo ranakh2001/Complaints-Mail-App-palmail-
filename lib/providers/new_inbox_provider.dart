@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 
-class NewInboxProvider with ChangeNotifier {
+import '../screens/new inbox/new_inbox_view.dart';
+
+class NewInboxProvider extends ChangeNotifier {
   TextEditingController? senderController;
   TextEditingController? titleController;
   TextEditingController? addDecisionController;
@@ -10,14 +12,12 @@ class NewInboxProvider with ChangeNotifier {
   TextEditingController? dateInputController;
   TextEditingController? descriptionController;
 
-  NewInboxModel() {
-    senderController = TextEditingController();
+  NewInboxProvider() {
+    // senderController = TextEditingController();
     titleController = TextEditingController();
     addDecisionController = TextEditingController();
     addNewActivityController = TextEditingController();
     dateInputController = TextEditingController();
     descriptionController = TextEditingController();
   }
-
-// You can add more methods and state management logic here if needed
 }

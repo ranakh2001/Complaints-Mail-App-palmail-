@@ -4,7 +4,7 @@
 
 import 'dart:convert';
 
-StatusModel statusModelFromJson(String str) =>
+Future<StatusModel> statusModelFromJson(String str) async =>
     StatusModel.fromJson(json.decode(str));
 
 String statusModelToJson(StatusModel data) => json.encode(data.toJson());

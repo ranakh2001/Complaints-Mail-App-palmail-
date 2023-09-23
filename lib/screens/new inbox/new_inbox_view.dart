@@ -1,7 +1,11 @@
+import 'package:finalproject/models/category_model.dart';
+import 'package:finalproject/screens/new%20inbox/tag_view.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../constants.dart';
+import '../../models/tag_model.dart';
 import '../../providers/new_inbox_provider.dart';
+import '../../providers/tag_provider.dart';
 import '../widgets/add_activity_container.dart';
 import '../widgets/app_bar.dart';
 import '../widgets/custom_expansion_tile.dart';
@@ -11,12 +15,25 @@ import '../widgets/sender_and_category_container.dart';
 import '../widgets/title_and_desription_container.dart';
 import '../widgets/wide_container.dart';
 import 'package:http/http.dart' as http;
+import 'tag_view.dart';
 
 class NewInboxView extends StatelessWidget {
+  final String? selectedSender;
+  final CategoryElement? selectedCategory;
+  final List<TagElement>? selectedTags;
+  NewInboxView(
+      {super.key,
+      this.selectedSender,
+      this.selectedCategory,
+      this.selectedTags});
+
   @override
   Widget build(BuildContext context) {
-    final newInboxProvider = Provider.of<NewInboxProvider>(context);
-    final senderController = newInboxProvider.senderController;
+    // final tagStateNotifier = context.watch<TagStateNotifier>();
+
+    final newInboxProvider =
+        Provider.of<NewInboxProvider>(context, listen: false);
+    // final senderController = newInboxProvider.senderController;
     final titleController = newInboxProvider.titleController;
     final addDecisionController = newInboxProvider.addDecisionController;
     final addNewActivityController = newInboxProvider.addNewActivityController;
@@ -30,6 +47,7 @@ class NewInboxView extends StatelessWidget {
           children: [
             SafeArea(
               child: CustomAppBar(
+                doneFunction: () {},
                 title: 'New Inbox',
               ),
             ),
@@ -42,7 +60,9 @@ class NewInboxView extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
                     child: SenderAndCategoryContainer(
-                        senderController: senderController),
+                        selectedCategory: selectedCategory,
+                        senderController:
+                            TextEditingController(text: selectedSender)),
                   ),
                   const SizedBox(
                     height: 12,
@@ -65,19 +85,62 @@ class NewInboxView extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                    child: WideContainer(
-                      child: Row(
-                        children: [
-                          Icon(Icons.tag, color: ksecondaryColor),
-                          const SizedBox(
-                            width: 16,
-                          ),
-                          Text(
-                            'Tags',
-                            style:
-                                TextStyle(fontSize: 20, color: ksecondaryColor),
-                          ),
-                        ],
+                    child: GestureDetector(
+                      onTap: () {
+                        // Navigator.push(context,
+                        //     MaterialPageRoute(builder: (context) => TagView()));
+                      },
+                      child: WideContainer(
+                        title: Row(
+                          children: [
+                            Icon(Icons.tag, color: ksecondaryColor),
+                            const SizedBox(
+                              width: 16,
+                            ),
+                            Text(
+                              'Tags',
+                              style: TextStyle(
+                                  fontSize: 20, color: ksecondaryColor),
+                            ),
+                          ],
+                        ),
+                        body: selectedTags == null
+                            ? SizedBox()
+                            : Wrap(
+                                //كيف اخلي طول ال container على حسب ما يوسع عدد التاجز؟؟
+                                runSpacing: 16,
+                                spacing: 16,
+                                children:
+                                    selectedTags!.asMap().entries.map((entry) {
+                                  final index = entry.key;
+                                  final item = entry.value;
+                                  return Container(
+                                    height: 35,
+                                    width: MediaQuery.of(context).size.width *
+                                        0.23,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(30),
+                                        color: kcloseBackground),
+                                    padding: EdgeInsets.all(8.0),
+                                    child: Center(
+                                      child: Text(
+                                        '#${item.name ?? ""}',
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 15,
+                                          color: ktagColor,
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                }).toList(),
+                              ),
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => TagView()));
+                        },
                       ),
                     ),
                   ),
@@ -87,7 +150,8 @@ class NewInboxView extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
                     child: WideContainer(
-                      child: Row(
+                      body: SizedBox(),
+                      title: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Icon(Icons.tag, color: ksecondaryColor),
@@ -127,7 +191,8 @@ class NewInboxView extends StatelessWidget {
                   Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20.0),
                       child: WideContainer(
-                        child: Padding(
+                        body: SizedBox(),
+                        title: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
                             'Add Image',

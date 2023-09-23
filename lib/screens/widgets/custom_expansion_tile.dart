@@ -23,36 +23,43 @@ class _CustomExpansionTileState extends State<CustomExpansionTile> {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        InkWell(
-          onTap: () {
-            setState(() {
-              _isExpanded = !_isExpanded;
-            });
-          },
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              widget.title,
-              const Spacer(),
-              widget.numOfMails == null
-                  ? const SizedBox()
-                  : Text(
-                      widget.numOfMails.toString(),
-                      style: TextStyle(color: kiconColor),
-                    ),
-              _isExpanded
-                  ? Icon(
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            widget.title,
+            const Spacer(),
+            widget.numOfMails == null
+                ? const SizedBox()
+                : Text(
+                    widget.numOfMails.toString(),
+                    style: TextStyle(color: kiconColor),
+                  ),
+            _isExpanded
+                ? InkWell(
+                    onTap: () {
+                      setState(() {
+                        _isExpanded = !_isExpanded;
+                      });
+                    },
+                    child: Icon(
                       Icons.keyboard_arrow_down_rounded,
                       color: kinProgressStatus,
                       size: 35,
-                    )
-                  : Icon(
+                    ),
+                  )
+                : InkWell(
+                    onTap: () {
+                      setState(() {
+                        _isExpanded = !_isExpanded;
+                      });
+                    },
+                    child: Icon(
                       Icons.keyboard_arrow_right_rounded,
                       color: kiconColor,
                       size: 35,
                     ),
-            ],
-          ),
+                  ),
+          ],
         ),
         if (_isExpanded) widget.body,
       ],
