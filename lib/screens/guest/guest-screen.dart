@@ -1,8 +1,44 @@
+import 'package:finalproject/models/user.dart';
+import 'package:finalproject/screens/auth/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class GuestScreen extends StatelessWidget {
+import '../../controller/auth_controller.dart';
+import '../../controller/user_controller.dart';
+
+
+class GuestScreen extends StatefulWidget {
+
+  static const id = '/guestScreen';
   const GuestScreen({super.key});
+
+  @override
+  State<GuestScreen> createState() => _GuestScreenState();
+}
+
+class _GuestScreenState extends State<GuestScreen> {
+  late Future<User2?> user;
+
+
+  Future<void> logout() async {
+   User2 userTok = await getLocalUser();
+
+    bool result = await logoutcon(userTok!.token!);
+    if (result == true) {
+
+      Navigator.pushReplacementNamed(context, LoginScreen.id);
+    } else {
+      print('reeor');
+    }
+  }
+
+
+
+  @override
+  void initState() {
+    user = getUser();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +52,7 @@ class GuestScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 SvgPicture.asset(
-                  'assets/images/menu.svg',
+                  '',
                   width: 26,
                   height: 10,
                 ),
@@ -33,13 +69,25 @@ class GuestScreen extends StatelessWidget {
                 ),
               ],
             ),
-            const Column(
+             Column(
               children: [
-                Text('Hello Ahmed...'),
-                SizedBox(
+                FutureBuilder(future: getLocalUser(),builder: (context,snapshot){
+                   // User user = snapshot.data!.user!;
+                  if(snapshot.connectionState == ConnectionState.waiting){
+                    return CircularProgressIndicator();
+                  }
+                  if(snapshot.hasData){
+                    return Text('Hello ${snapshot.data!.user!.name}....');
+                  }
+                  if(snapshot.hasError){
+                    print('error');
+                  }
+                  return  Text('loading ');
+                }),
+                const SizedBox(
                   height: 20,
                 ),
-                Text('Please contact the admin to change your role '),
+                const Text('Please contact the admin to change your role '),
               ],
             ),
             Container(
@@ -51,7 +99,7 @@ class GuestScreen extends StatelessWidget {
                   ),
                   backgroundColor: Colors.blue
                 ),
-                onPressed: () {},
+                onPressed: logout,
                 child: const Padding(
                   padding:
                   EdgeInsets.symmetric(horizontal: 70.0, vertical: 14),
