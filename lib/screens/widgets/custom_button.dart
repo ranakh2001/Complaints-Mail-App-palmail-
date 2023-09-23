@@ -4,7 +4,7 @@ class CustomButton extends StatelessWidget {
 
   final String text;
   final EdgeInsets padding;
-  final Function onPressed;
+  final Function() onPressed;
   const CustomButton({
     super.key, required this.text,  this.padding = const EdgeInsets.all(8), required this.onPressed,
   });
@@ -14,7 +14,7 @@ class CustomButton extends StatelessWidget {
     return Padding(
       padding: padding,//const EdgeInsets.only(top: 80),
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30),

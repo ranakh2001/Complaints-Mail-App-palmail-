@@ -8,6 +8,8 @@ import '../widgets/satus_grid.dart';
 import '../widgets/search_container.dart';
 
 class HomePage extends StatelessWidget {
+  static const id = '/homePage';
+
   const HomePage({super.key});
 
   @override

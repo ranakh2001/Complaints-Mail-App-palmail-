@@ -2,6 +2,9 @@
 import 'package:flutter/material.dart';
 
 const String baseUrl = "https://palmail.gsgtt.tech/api";
+const String loginUrl = "$baseUrl/login";
+const String registerUrl = "$baseUrl/register";
+const String logoutUrl = "$baseUrl/logout";
 //add the endpoints that you use (لانهم كتار)
 
 // colors
