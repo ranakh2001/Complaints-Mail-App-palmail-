@@ -1,6 +1,9 @@
+import 'package:finalproject/screens/auth/login_screen.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
+  static const id = '/splashScreen';
+
   const SplashScreen({super.key});
 
   @override
@@ -14,7 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
     // TODO: implement initState
     super.initState();
     Future.delayed(const Duration(seconds: 3),(){
-      Navigator.pushReplacementNamed(context, '/login_screen');
+      Navigator.pushReplacementNamed(context, LoginScreen.id);
     });
   }
   @override
