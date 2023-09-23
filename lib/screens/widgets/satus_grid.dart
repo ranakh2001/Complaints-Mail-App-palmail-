@@ -16,38 +16,51 @@ class StatusGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<StatusProvider>(
       builder: (context, statusProvider, child) {
-        if (statusProvider.statusList.status == Status.LOADING) {
-          return Center(
-            child: CircularProgressIndicator(
-              color: kinProgressStatus,
-            ),
-          );
-        } else if (statusProvider.statusList.status == Status.ERROR) {
-          return Center(
-            child: Text('${statusProvider.statusList.message}'),
-          );
-        }
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12),
-          child: GridView.count(
-              crossAxisCount: 2,
-              shrinkWrap: true,
-              childAspectRatio: (1 / 0.65),
-              children: List.generate(4, (index) {
-                MailStatus status = statusProvider.statusList.data![index];
-                return Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 4.0, vertical: 4),
-                  child: StatusContainer(
-                      numOfMails: status.mailsCount!,
-                      title: status.name!.tr(),
-                      color: Color(int.parse(status.color!)),
-                      onTap: () {
-                        statusProvider.fetchStatusMails(index);
-                        Navigator.pushNamed(context, StatusMailsScreen.id);
-                      }),
+          child: FutureBuilder(
+            future: statusProvider.fetchStatuses(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return Center(
+                  child: CircularProgressIndicator(
+                    color: kinProgressStatus,
+                  ),
                 );
-              })),
+              }
+              if (snapshot.hasData) {
+                return GridView.count(
+                    crossAxisCount: 2,
+                    shrinkWrap: true,
+                    childAspectRatio: (1 / 0.65),
+                    children: List.generate(4, (index) {
+                      MailStatus status = snapshot.data![index];
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 4.0, vertical: 4),
+                        child: StatusContainer(
+                            numOfMails: status.mailsCount!,
+                            title: status.name!.tr(),
+                            color: Color(int.parse(status.color!)),
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        StatusMailsScreen(index: index),
+                                  ));
+                            }),
+                      );
+                    }));
+              }
+              if (snapshot.hasError) {
+                return Center(
+                  child: Text(snapshot.error.toString()),
+                );
+              }
+              return const Text("No Data");
+            },
+          ),
         );
       },
     );

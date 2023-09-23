@@ -21,29 +21,21 @@ class StatusProvider extends ChangeNotifier {
     fetchStatuses();
   }
 
-  fetchStatuses() async {
-    _statusList = ApiResponse.loading('Fetching statuses');
-    notifyListeners();
+  Future<List<MailStatus>> fetchStatuses() async {
     try {
       List<MailStatus> mailStauses = await _statusesRepo.getAllStatuses(false);
-      _statusList = ApiResponse.completed(mailStauses);
-      notifyListeners();
-    } catch (e) {
-      _statusList = ApiResponse.error(e.toString());
-      notifyListeners();
+      return mailStauses;
+    } catch (err) {
+      return Future.error(err);
     }
   }
 
-  fetchStatusMails(int id) async {
-    _statusMailsList = ApiResponse.loading('Fetching mails');
-    notifyListeners();
+  Future<List<Mail>> fetchStatusMails(int id) async {
     try {
       List<Mail> statusMails = await _statusesRepo.getStatusMails(id);
-      _statusMailsList = ApiResponse.completed(statusMails);
-      notifyListeners();
-    } catch (e) {
-      _statusList = ApiResponse.error(e.toString());
-      notifyListeners();
+      return statusMails;
+    } catch (err) {
+      return Future.error(err);
     }
   }
 

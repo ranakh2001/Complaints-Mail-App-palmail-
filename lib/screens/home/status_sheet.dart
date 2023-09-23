@@ -48,64 +48,71 @@ class StatusSheet extends StatelessWidget {
                       borderRadius: BorderRadius.circular(30)),
                   child: Consumer<StatusProvider>(
                     builder: (context, statusProvider, child) {
-                      if (statusProvider.statusList.status == Status.LOADING) {
-                        return Center(
-                          child: CircularProgressIndicator(
-                            color: kinProgressStatus,
-                          ),
-                        );
-                      } else if (statusProvider.statusList.status ==
-                          Status.ERROR) {
-                        return Center(
-                          child: Text('${statusProvider.statusList.message}'),
-                        );
-                      }
-                      return ListView.separated(
-                          shrinkWrap: true,
-                          itemBuilder: (context, index) {
-                            MailStatus status =
-                                statusProvider.statusList.data![index];
-
-                            return GestureDetector(
-                              onTap: () {
-                                mailProvider.changeStatus(status);
-                                Navigator.pop(context);
-                              },
-                              child: Row(
-                                children: [
-                                  Container(
-                                    padding: const EdgeInsets.all(14),
-                                    decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadiusDirectional.circular(
-                                                10),
-                                        color: Color(int.parse(status.color!))),
-                                  ),
-                                  const SizedBox(
-                                    width: 16,
-                                  ),
-                                  Text(
-                                    status.name!,
-                                    style: TextStyle(
-                                        fontSize: 16, color: ktitleBlack),
-                                  ),
-                                  const Spacer(),
-                                  mailProvider.detailesMail.status!.id ==
-                                          status.id
-                                      ? SvgPicture.asset(
-                                          'assets/icons/selected.svg',
-                                          width: 20,
-                                          height: 20,
-                                        )
-                                      : const SizedBox()
-                                ],
+                      return FutureBuilder(
+                        future: statusProvider.fetchStatuses(),
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return Center(
+                              child: CircularProgressIndicator(
+                                color: kinProgressStatus,
                               ),
                             );
-                          },
-                          separatorBuilder: (context, index) => Divider(
-                                color: kdividerColor,
-                              ),
-                          itemCount: 4);
+                          }
+                          if (snapshot.hasData) {
+                            return ListView.separated(
+                                shrinkWrap: true,
+                                itemBuilder: (context, index) {
+                                  MailStatus status = snapshot.data![index];
+
+                                  return GestureDetector(
+                                    onTap: () {
+                                      mailProvider.changeStatus(status);
+                                      Navigator.pop(context);
+                                    },
+                                    child: Row(
+                                      children: [
+                                        Container(
+                                          padding: const EdgeInsets.all(14),
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadiusDirectional
+                                                      .circular(10),
+                                              color: Color(
+                                                  int.parse(status.color!))),
+                                        ),
+                                        const SizedBox(
+                                          width: 16,
+                                        ),
+                                        Text(
+                                          status.name!,
+                                          style: TextStyle(
+                                              fontSize: 16, color: ktitleBlack),
+                                        ),
+                                        const Spacer(),
+                                        mailProvider.detailesMail.status!.id ==
+                                                status.id
+                                            ? SvgPicture.asset(
+                                                'assets/icons/selected.svg',
+                                                width: 20,
+                                                height: 20,
+                                              )
+                                            : const SizedBox()
+                                      ],
+                                    ),
+                                  );
+                                },
+                                separatorBuilder: (context, index) => Divider(
+                                      color: kdividerColor,
+                                    ),
+                                itemCount: 4);
+                          }
+                          if (snapshot.hasError) {
+                            return Text(snapshot.error.toString());
+                          }
+                          return const Text("No Data");
+                        },
+                      );
                     },
                   ),
                 ),

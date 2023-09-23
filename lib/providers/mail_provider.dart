@@ -43,14 +43,13 @@ class MailProvider extends ChangeNotifier {
   }
 
   deleteImage(int index) {
-    detailesMail.attachments!.removeAt(index);
-    notifyListeners();
     imagesIdForDelete.add(detailesMail.attachments![index].id!.toString());
     imagesPathForDelete.add(detailesMail.attachments![index].image!);
+    updateMail();
   }
 
   updateMail() async {
-    detailesMail = await _mailRepository.updateMail({
+    Mail updated = await _mailRepository.updateMail({
       'decision': mailDecisionControoler.text,
       'final_decision': mailDecisionControoler.text,
       'tags': [].toString(),
@@ -59,6 +58,8 @@ class MailProvider extends ChangeNotifier {
       'idAttachmentsForDelete': jsonEncode(imagesIdForDelete),
       'pathAttachmentsForDelete': jsonEncode(imagesPathForDelete)
     }, detailesMail.id!.toString());
+    detailesMail = updated;
+    notifyListeners();
   }
 
   pickImage(ImageSource source) async {
@@ -79,7 +80,7 @@ class MailProvider extends ChangeNotifier {
   }
 
   addImage() async {
-    _mailRepository.uploadImage(file!, detailesMail.id!);
+    await _mailRepository.uploadImage(file!, detailesMail.id!);
     mailUpdated = true;
     notifyListeners();
     refresh();
@@ -89,9 +90,9 @@ class MailProvider extends ChangeNotifier {
     newactivities.add({'body': newActivity.text, "user_id": 1});
     newActivity.clear();
     updateMail();
-    // mailUpdated = true;
+    mailUpdated = true;
     notifyListeners();
-    // refresh();
+    refresh();
   }
 
   refresh() {

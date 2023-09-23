@@ -33,7 +33,7 @@ class MailRepository {
     final rsponse = await _helper.get("/mails/$id", {
       'Authorization': 'Bearer $token',
     });
-    return Mail.fromMap(rsponse);
+    return Mail.fromMap(rsponse['mail']);
   }
 
   deleteMail(String id) async {
@@ -57,6 +57,6 @@ class MailRepository {
         },
         body);
     print(response);
-    return Mail.fromMap(response);
+    return Mail.fromMap(response['mail']);
   }
 }

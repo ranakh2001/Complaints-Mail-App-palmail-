@@ -31,6 +31,7 @@ class MailDetailsScreen extends StatelessWidget {
                 // physics: const BouncingScrollPhysics(),
                 headerSliverBuilder: (context, innerBoxIsScrolled) => [
                       MyAppBar(
+                        onpressed: () => Navigator.pop(context),
                         title: 'home'.tr(),
                         actions: [
                           TextButton(

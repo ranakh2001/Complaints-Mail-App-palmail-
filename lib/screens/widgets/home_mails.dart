@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:finalproject/core/util/constants.dart';
 import 'package:finalproject/providers/mail_provider.dart';
 import 'package:finalproject/screens/home/mail_details_screen.dart';
 import 'package:flutter/material.dart';
@@ -61,7 +62,38 @@ class HomeMails extends StatelessWidget {
                 softWrap: true,
                 overflow: TextOverflow.ellipsis,
               ),
-            )
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: RichText(
+                text: TextSpan(children: [
+                  for (int i = 0; i < mail.tags!.length; i++) ...{
+                    TextSpan(
+                        text: "#${mail.tags![i].name}",
+                        style:
+                            TextStyle(color: kinProgressStatus, fontSize: 14))
+                  }
+                ]),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: RichText(
+                text: TextSpan(children: <WidgetSpan>[
+                  for (int i = 0; i < mail.attachments!.length; i++) ...{
+                    WidgetSpan(
+                        child: Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 4),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(16),
+                          image: DecorationImage(
+                              image: NetworkImage(
+                                  "$storageUrl/${mail.attachments![i].image}"))),
+                    ))
+                  }
+                ]),
+              ),
+            ),
           ],
         ),
       ),

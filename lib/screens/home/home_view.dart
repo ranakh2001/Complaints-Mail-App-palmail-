@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 import '../../core/util/constants.dart';
 import '../new inbox/new_inbox_view.dart';
@@ -17,7 +18,7 @@ class HomePageView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: NestedScrollView(
-       headerSliverBuilder: (context, innerBoxIsScrolled) => [
+        headerSliverBuilder: (context, innerBoxIsScrolled) => [
           const HomeAppBar(),
         ],
         body: Stack(children: [
@@ -29,8 +30,8 @@ class HomePageView extends StatelessWidget {
                 const StatusGrid(),
                 const CategoriesListView(),
                 Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16),
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 16.0, horizontal: 16),
                   child: Text(
                     "tags".tr(),
                     style: Theme.of(context).textTheme.bodyMedium,
@@ -62,7 +63,8 @@ class HomePageView extends StatelessWidget {
                       const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                   decoration: const BoxDecoration(
                       color: Colors.white,
-                      border: Border(top: BorderSide(color: Color(0xffD0D0D0)))),
+                      border:
+                          Border(top: BorderSide(color: Color(0xffD0D0D0)))),
                   child: Row(
                     children: [
                       Container(

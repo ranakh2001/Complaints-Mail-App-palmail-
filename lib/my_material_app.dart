@@ -40,7 +40,6 @@ class MyMaterialApp extends StatelessWidget {
         HomePage.id: (context) => const HomePage(),
         SearchScreen.id: (context) => const SearchScreen(),
         NewInboxView.id: (context) => const NewInboxView(),
-        StatusMailsScreen.id:(context) => const StatusMailsScreen(),
         '/splash_screen': (context) => const SplashScreen(),
       },
     );

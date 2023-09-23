@@ -1,17 +1,18 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:finalproject/models/mail.dart';
 import 'package:finalproject/providers/status_provider.dart';
+import 'package:finalproject/screens/home/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../core/helpers/api_response.dart';
 import '../../core/util/constants.dart';
 import '../widgets/home_mails.dart';
 import '../widgets/my_appBar.dart';
 
 class StatusMailsScreen extends StatelessWidget {
   static const id = '/statusMailsScreen';
-  const StatusMailsScreen({super.key});
+  final int index;
+  const StatusMailsScreen({super.key, required this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +20,7 @@ class StatusMailsScreen extends StatelessWidget {
         body: NestedScrollView(
       headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) => [
         MyAppBar(
+          onpressed: () => Navigator.pushReplacementNamed(context, HomePage.id),
           title: 'home'.tr(),
         )
       ],
@@ -26,32 +28,41 @@ class StatusMailsScreen extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Consumer<StatusProvider>(
           builder: (context, statusProvider, child) {
-            if (statusProvider.statusMailsList.status == Status.LOADING) {
-              return Center(
-                child: CircularProgressIndicator(
-                  color: kinProgressStatus,
-                ),
-              );
-            } else if (statusProvider.statusMailsList.status == Status.ERROR) {
-              return Center(
-                child: Text('${statusProvider.statusMailsList.message}'),
-              );
-            }
-
-            return ListView.separated(
-                shrinkWrap: true,
-                itemBuilder: (context, index) {
-                  Mail mail = statusProvider.statusMailsList.data![index];
-                  return HomeMails(
-                   mail: mail,
-                    singleMail: true,
-                    
-                  );
-                },
-                separatorBuilder: (context, index) => const SizedBox(
-                      height: 8,
+            return FutureBuilder(
+              future: statusProvider.fetchStatusMails(index),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Center(
+                    child: CircularProgressIndicator(
+                      color: kinProgressStatus,
                     ),
-                itemCount: statusProvider.statusMailsList.data!.length);
+                  );
+                }
+                if (snapshot.hasData) {
+                  return ListView.separated(
+                      shrinkWrap: true,
+                      itemBuilder: (context, index) {
+                        Mail mail = snapshot.data![index];
+                        return HomeMails(
+                          mail: mail,
+                          singleMail: true,
+                        );
+                      },
+                      separatorBuilder: (context, index) => const SizedBox(
+                            height: 8,
+                          ),
+                      itemCount: snapshot.data!.length);
+                }
+                if (snapshot.hasError) {
+                  return Center(
+                    child: Text(snapshot.error.toString()),
+                  );
+                }
+                return const Center(
+                  child: Text("No Data"),
+                );
+              },
+            );
           },
         ),
       ),

@@ -7,7 +7,9 @@ import '../../core/util/constants.dart';
 class MyAppBar extends StatelessWidget {
   final List<Widget>? actions;
   final String title;
-  const MyAppBar({super.key, this.actions, required this.title});
+  final Function() onpressed;
+  const MyAppBar(
+      {super.key, this.actions, required this.title, required this.onpressed});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +24,7 @@ class MyAppBar extends StatelessWidget {
       ),
       actions: actions,
       leading: IconButton(
-          onPressed: () => Navigator.pop(context),
+          onPressed: onpressed,
           icon: Icon(
             Icons.arrow_back_ios_new_rounded,
             color: kinProgressStatus,
