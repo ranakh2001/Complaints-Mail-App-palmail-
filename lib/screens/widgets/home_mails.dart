@@ -63,37 +63,56 @@ class HomeMails extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: RichText(
-                text: TextSpan(children: [
-                  for (int i = 0; i < mail.tags!.length; i++) ...{
-                    TextSpan(
-                        text: "#${mail.tags![i].name}",
-                        style:
-                            TextStyle(color: kinProgressStatus, fontSize: 14))
-                  }
-                ]),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: RichText(
-                text: TextSpan(children: <WidgetSpan>[
-                  for (int i = 0; i < mail.attachments!.length; i++) ...{
-                    WidgetSpan(
-                        child: Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 4),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(16),
-                          image: DecorationImage(
-                              image: NetworkImage(
-                                  "$storageUrl/${mail.attachments![i].image}"))),
-                    ))
-                  }
-                ]),
-              ),
-            ),
+            mail.tags!.isNotEmpty
+                ? Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    child: RichText(
+                      text: TextSpan(children: [
+                        for (int i = 0; i < mail.tags!.length; i++) ...{
+                          TextSpan(
+                              text: "#${mail.tags![i].name} ",
+                              style: TextStyle(
+                                  color: kinProgressStatus, fontSize: 14))
+                        }
+                      ]),
+                    ),
+                  )
+                : const SizedBox(),
+            mail.attachments!.isNotEmpty
+                ? Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                    child: Row(
+                      children: [
+                        Container(
+                          margin: const EdgeInsets.symmetric(
+                              horizontal: 4, vertical: 4),
+                          width: 50,
+                          height: 50,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(16),
+                              image: DecorationImage(
+                                  image: NetworkImage(
+                                      "$storageUrl/${mail.attachments![0].image}"),
+                                  fit: BoxFit.cover)),
+                        ),
+                        mail.attachments!.length >= 2
+                            ? Container(
+                                margin: const EdgeInsets.symmetric(
+                                    horizontal: 4, vertical: 4),
+                                width: 50,
+                                height: 50,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(16),
+                                    image: DecorationImage(
+                                        image: NetworkImage(
+                                            "$storageUrl/${mail.attachments![1].image}"),
+                                        fit: BoxFit.cover)),
+                              )
+                            : const SizedBox()
+                      ],
+                    ),
+                  )
+                : const SizedBox()
           ],
         ),
       ),

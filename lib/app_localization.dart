@@ -16,7 +16,7 @@ class AppLocalization extends StatelessWidget {
         Locale('ar'),
         Locale('en'),
       ],
-      startLocale: Provider.of<AppProvider>(context).appLocale,
+      fallbackLocale:const Locale('en'),
       child: const MyMaterialApp(),
     );
   }

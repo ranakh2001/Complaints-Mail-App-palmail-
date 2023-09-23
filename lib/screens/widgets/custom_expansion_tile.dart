@@ -1,7 +1,9 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'package:finalproject/core/util/constants.dart';
+import 'package:finalproject/providers/app_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class CustomExpansionTile extends StatefulWidget {
   final Widget title;
@@ -45,13 +47,15 @@ class _CustomExpansionTileState extends State<CustomExpansionTile> {
               _isExpanded
                   ? Icon(
                       Icons.keyboard_arrow_down_rounded,
-                      color: kinProgressStatus,
+                      color: kiconColor,
                       size: 35,
                     )
                   : Icon(
-                      Icons.keyboard_arrow_right_rounded,
+                      Provider.of<AppProvider>(context).locae ==
+                              const Locale('ar')
+                          ? Icons.arrow_back_ios_new_rounded
+                          : Icons.arrow_forward_ios_rounded,
                       color: kiconColor,
-                      size: 35,
                     ),
             ],
           ),

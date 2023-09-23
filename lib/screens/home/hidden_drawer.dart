@@ -38,11 +38,17 @@ class HiddenDrawer extends StatelessWidget {
                     itemBuilder: (context, index) {
                       return GestureDetector(
                         onTap: () {
-                          appProvider.changeView(index);
+                          appProvider.changeView(index,context);
                         },
                         child: Text(
                           appProvider.drawerItems[index].title,
-                          style: appProvider.drawerItems[index].style,
+                          style: appProvider.drawerItems[index].isSelected
+                              ? const TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16)
+                              : const TextStyle(
+                                  color: Colors.white, fontSize: 14),
                         ),
                       );
                     },

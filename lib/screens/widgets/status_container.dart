@@ -11,7 +11,8 @@ class StatusContainer extends StatelessWidget {
       {super.key,
       required this.title,
       required this.color,
-      required this.onTap, required this.numOfMails});
+      required this.onTap,
+      required this.numOfMails});
 
   @override
   Widget build(BuildContext context) {
@@ -40,14 +41,14 @@ class StatusContainer extends StatelessWidget {
                   decoration:
                       BoxDecoration(shape: BoxShape.circle, color: color),
                 ),
-                 Text(
+                Text(
                   numOfMails,
-                  style:const TextStyle(fontSize: 20),
+                  style: const TextStyle(fontSize: 20),
                 )
               ],
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 24.0),
+              padding: const EdgeInsets.only(top: 16.0),
               child: Text(
                 title,
                 style: TextStyle(color: kiconColor, fontSize: 18),

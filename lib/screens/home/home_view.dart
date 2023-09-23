@@ -1,4 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:finalproject/providers/app_provider.dart';
+import 'package:finalproject/screens/auth/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -17,81 +19,145 @@ class HomePageView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: NestedScrollView(
-        headerSliverBuilder: (context, innerBoxIsScrolled) => [
-          const HomeAppBar(),
-        ],
-        body: Stack(children: [
-          SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SearchContainer(),
-                const StatusGrid(),
-                const CategoriesListView(),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 16.0, horizontal: 16),
-                  child: Text(
-                    "tags".tr(),
-                    style: Theme.of(context).textTheme.bodyMedium,
+      body: Stack(children: [
+        NestedScrollView(
+          headerSliverBuilder: (context, innerBoxIsScrolled) => [
+            const HomeAppBar(),
+          ],
+          body: Stack(children: [
+            SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SearchContainer(),
+                  const StatusGrid(),
+                  const CategoriesListView(),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 16.0, horizontal: 16),
+                    child: Text(
+                      "tags".tr(),
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
                   ),
-                ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 8.0),
-                  child: TagsContainer(),
-                ),
-              ],
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 8.0),
+                    child: TagsContainer(),
+                  ),
+                ],
+              ),
             ),
-          ),
-          Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: GestureDetector(
-                onTap: () {
-                  showModalBottomSheet(
-                    isScrollControlled: true,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30)),
-                    context: context,
-                    builder: (context) => const NewInboxView(),
-                  );
-                },
+            Positioned(
+                bottom: 0,
+                left: 0,
+                right: 0,
+                child: GestureDetector(
+                  onTap: () {
+                    showModalBottomSheet(
+                      isScrollControlled: true,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30)),
+                      context: context,
+                      builder: (context) => const NewInboxView(),
+                    );
+                  },
+                  child: Container(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    decoration: const BoxDecoration(
+                        color: Colors.white,
+                        border:
+                            Border(top: BorderSide(color: Color(0xffD0D0D0)))),
+                    child: Row(
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.all(4),
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle, color: kinProgressStatus),
+                          child: const Icon(
+                            Icons.add,
+                            color: Colors.white,
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 8,
+                        ),
+                        Text(
+                          "newInBox".tr(),
+                          style: GoogleFonts.poppins(
+                            color: kinProgressStatus,
+                            fontSize: 20,
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ))
+          ]),
+        ),
+        Provider.of<AppProvider>(context).isShown
+            ? Positioned(
+                top: 70,
+                right: 20,
                 child: Container(
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                  decoration: const BoxDecoration(
+                      const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                  decoration: BoxDecoration(
                       color: Colors.white,
-                      border:
-                          Border(top: BorderSide(color: Color(0xffD0D0D0)))),
-                  child: Row(
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.all(4),
-                        decoration: BoxDecoration(
-                            shape: BoxShape.circle, color: kinProgressStatus),
-                        child: const Icon(
-                          Icons.add,
-                          color: Colors.white,
+                      borderRadius: BorderRadius.circular(16)),
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.pushReplacementNamed(
+                                context, LoginScreen.id);
+                            Provider.of<AppProvider>(context, listen: false)
+                                .changeLanguage(context);
+                            //logout function
+                          },
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.language,
+                                color: kiconColor,
+                              ),
+                              const SizedBox(
+                                width: 8,
+                              ),
+                              Text(
+                                "changeLang".tr(),
+                                style:
+                                    TextStyle(color: kiconColor, fontSize: 16),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                      const SizedBox(
-                        width: 8,
-                      ),
-                      Text(
-                        "newInBox".tr(),
-                        style: GoogleFonts.poppins(
-                          color: kinProgressStatus,
-                          fontSize: 20,
+                        const SizedBox(
+                          height: 8,
                         ),
-                      )
-                    ],
-                  ),
-                ),
-              ))
-        ]),
-      ),
+                        Divider(
+                          color: kdividerColor,
+                        ),
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.logout,
+                              color: kiconColor,
+                            ),
+                            const SizedBox(
+                              width: 8,
+                            ),
+                            Text(
+                              "logout".tr(),
+                              style: TextStyle(color: kiconColor, fontSize: 16),
+                            ),
+                          ],
+                        ),
+                      ]),
+                ))
+            : const SizedBox()
+      ]),
     );
   }
 }

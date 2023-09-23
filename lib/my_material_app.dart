@@ -1,9 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:finalproject/screens/auth/login_screen.dart';
-import 'package:finalproject/screens/home/hidden_drawer.dart';
 import 'package:finalproject/screens/home/home_page.dart';
-import 'package:finalproject/screens/home/mail_details_screen.dart';
-import 'package:finalproject/screens/home/status_mails_screen.dart';
 import 'package:finalproject/screens/new%20inbox/new_inbox_view.dart';
 import 'package:finalproject/screens/search/search_screen.dart';
 import 'package:finalproject/screens/splash/splash_screen.dart';
