@@ -1,5 +1,6 @@
 import 'package:finalproject/models/dreawer_item.dart';
 import 'package:finalproject/screens/home/home_view.dart';
+import 'package:finalproject/screens/home/user_profile.dart';
 import 'package:flutter/material.dart';
 
 class AppProvider extends ChangeNotifier {
@@ -15,7 +16,7 @@ class AppProvider extends ChangeNotifier {
       title: "Home",
       itemView: const HomePageView(),
     ),
-    DrawerMenueItem(title: "Profile", itemView: const Placeholder()),
+    DrawerMenueItem(title: "Profile", itemView: const UserProfile()),
     DrawerMenueItem(title: "Users", itemView: const Placeholder()),
     DrawerMenueItem(title: "Change Language", itemView: const Placeholder()),
     DrawerMenueItem(title: "Logout", itemView: const Placeholder())
@@ -52,6 +53,10 @@ class AppProvider extends ChangeNotifier {
           color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold);
       selectedItem = index;
     }
+    xoffset = 0;
+    yoffset = 0;
+    scaleFactor = 1;
+    isOpen = false;
     notifyListeners();
   }
 }
