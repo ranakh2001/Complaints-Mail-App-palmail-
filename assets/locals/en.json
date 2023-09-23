@@ -42,5 +42,6 @@
     "status":"Status",
     "filters":"Filters",
     "found":"Found",
-    "home":"Home"
+    "home":"Home",
+    "profile":"Profile"
 }
