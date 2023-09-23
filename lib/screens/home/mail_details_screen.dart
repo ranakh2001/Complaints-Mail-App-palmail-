@@ -34,7 +34,12 @@ class MailDetailsScreen extends StatelessWidget {
                         title: 'home'.tr(),
                         actions: [
                           TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Provider.of<MailProvider>(context,
+                                        listen: false)
+                                    .updateMail();
+                                Navigator.pop(context);
+                              },
                               child: Text(
                                 "Done",
                                 style: TextStyle(

@@ -54,10 +54,10 @@ class MailProvider extends ChangeNotifier {
       'decision': mailDecisionControoler.text,
       'final_decision': mailDecisionControoler.text,
       'tags': [].toString(),
-      'activities':jsonEncode(newactivities) ,
-      'status_id': detailesMail.id.toString(),
-      'idAttachmentsForDelete':jsonEncode(imagesIdForDelete) ,
-      'pathAttachmentsForDelete':jsonEncode(imagesPathForDelete) 
+      'activities': jsonEncode(newactivities),
+      'status_id': detailesMail.status!.id!.toString(),
+      'idAttachmentsForDelete': jsonEncode(imagesIdForDelete),
+      'pathAttachmentsForDelete': jsonEncode(imagesPathForDelete)
     }, detailesMail.id!.toString());
   }
 

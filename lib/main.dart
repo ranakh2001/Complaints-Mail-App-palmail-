@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
       ),
       ChangeNotifierProvider<MailProvider>(
         create: (context) => MailProvider(),
-      )
+      ),
     ], child: const AppLocalization());
   }
 }

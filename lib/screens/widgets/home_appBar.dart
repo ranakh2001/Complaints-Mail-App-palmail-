@@ -18,7 +18,10 @@ class HomeAppBar extends StatelessWidget {
       pinned: true,
       snap: false,
       leading: IconButton(
-          onPressed: () {}, icon: SvgPicture.asset('assets/icons/menu.svg')),
+          onPressed: () {
+            Provider.of<AppProvider>(context, listen: false).openDrawer();
+          },
+          icon: SvgPicture.asset('assets/icons/menu.svg')),
       actions: [
         PopupMenuButton(
           offset: const Offset(-20, 50),
