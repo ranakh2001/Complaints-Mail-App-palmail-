@@ -24,6 +24,27 @@ class MailProvider extends ChangeNotifier {
     _mailRepository = MailRepository();
   }
 
+  // void createMail() {
+    // _mailRepository.newMail({
+    //   'subject':"new mail subject",
+    //   'description':"no description yet",
+    //   'sender_id':'267',
+    //   'archive_number':'555',
+    //   'archive_date':"${DateTime.now()}",
+    //   'decision':'',
+    //   'status_id':'1',
+    //   'final_decision':'',
+    //   'tags':jsonEncode([2,3]),
+    //   'activities':jsonEncode([{'body':'create activity','user_id':1}])
+    // });
+  //   _mailRepository.createNewMail(
+  //       subject: 'test test',
+  //       senderId: '267',
+  //       archive: '333',
+  //       date: DateTime.now(),
+  //       status_id: '1');
+  // }
+
   void setDetailesMail(Mail mail) {
     detailesMail = mail;
     mailDecisionControoler.text = detailesMail.decision ?? '';

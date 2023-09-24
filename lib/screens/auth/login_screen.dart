@@ -1,4 +1,6 @@
+import 'package:finalproject/providers/mail_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../home/home_page.dart';
 import '../widgets/custom_button.dart';
@@ -157,6 +159,7 @@ class _LoginScreenState extends State<LoginScreen>
                                   onPressed: () {
                                     Navigator.pushReplacementNamed(
                                         context, HomePage.id);
+                                   
                                   },
                                   text: 'Login',
                                   padding: const EdgeInsets.only(top: 80),
@@ -183,6 +186,7 @@ class _LoginScreenState extends State<LoginScreen>
                                   onPressed: () {
                                     Navigator.pushReplacementNamed(
                                         context, HomePage.id);
+                                   
                                   },
                                   text: 'Sign Up',
                                   padding:

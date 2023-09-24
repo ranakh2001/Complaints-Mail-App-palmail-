@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:http/http.dart' as http;
@@ -8,6 +9,19 @@ import '../core/util/constants.dart';
 
 class MailRepository {
   final ApiBaseHelper _helper = ApiBaseHelper();
+
+
+  // Future<void> newMail(Map<String, dynamic> body) async {
+  //   final respons = await _helper.post(
+  //       "/mails",
+  //       {
+  //         'Accept': 'application/json',
+  //         'Authorization': 'Bearer $token',
+  //       },
+  //       body);
+
+  //   print(respons);
+  // }
 
   uploadImage(File image, int mailId) async {
     var request =
