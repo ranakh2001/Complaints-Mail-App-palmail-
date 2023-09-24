@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:finalproject/controllers/mail_controller.dart';
+import 'package:finalproject/controllers/sender_controller.dart';
 import 'package:finalproject/models/category_model.dart';
 import 'package:finalproject/screens/new%20inbox/tag_view.dart';
 import 'package:flutter/material.dart';
@@ -81,6 +82,40 @@ class NewInboxView extends StatelessWidget {
       print('Error: $e');
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text('Failed to create mail: $e'),
+        backgroundColor: Colors.red,
+        behavior: SnackBarBehavior.floating,
+        margin: EdgeInsets.all(12),
+      ));
+    });
+  }
+
+  void _createNewSender(BuildContext context, String name, int mobile,
+      String address, int categoryId) {
+    createNewSender(
+            name: name,
+            mobile: mobile,
+            address: address,
+            categoryId: categoryId)
+        .then((newSender) {
+      if (newSender == true) {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text('Sender created successfully'),
+          backgroundColor: Colors.black,
+          behavior: SnackBarBehavior.floating,
+          margin: EdgeInsets.all(12),
+        ));
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text('Failed to create sender'),
+          backgroundColor: Colors.red,
+          behavior: SnackBarBehavior.floating,
+          margin: EdgeInsets.all(12),
+        ));
+      }
+    }).catchError((e) {
+      print('Error: $e');
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text('Failed to create sender: $e'),
         backgroundColor: Colors.red,
         behavior: SnackBarBehavior.floating,
         margin: EdgeInsets.all(12),

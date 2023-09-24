@@ -10,6 +10,7 @@ String addTagUrl = '${palmailUrl}/tags';
 String getStatusListUrl = '${palmailUrl}/statuses?mail=false';
 String token = '1347|s2Ajpouo0N2Qw77LQeHyihH9yIW5z4g1HNgdkdHV';
 String getSendersUrl = '${palmailUrl}/senders';
+String createSenderUrl = '${palmailUrl}/senders';
 String createMailUrl = '${palmailUrl}/mails';
 
 //add the endpoints that you use (لانهم كتار)
