@@ -113,10 +113,10 @@ class Datum {
 
   Datum({
     this.id,
-    this.name,
-    this.mobile,
+    required this.name,
+    required this.mobile,
     this.address,
-    this.categoryId,
+    required this.categoryId,
     this.createdAt,
     this.updatedAt,
     this.mailsCount,

@@ -3,6 +3,7 @@ import 'package:finalproject/screens/new%20inbox/new_inbox_view.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../constants.dart';
+import '../../models/sender.dart';
 import '../../providers/sender_search_provider.dart';
 import '../widgets/app_bar.dart';
 import '../widgets/search_bar_widget.dart';
@@ -18,7 +19,7 @@ class SenderSearchView extends StatelessWidget {
     final filteredSenders = senderSearchModel.filteredSenders;
     //للبحث كانوا دول
 
-    String selectedSender = '';
+    Datum selectedSender = senderSearchModel.selectedSender;
 
     return Scaffold(
       body: Container(
@@ -32,9 +33,10 @@ class SenderSearchView extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                         builder: (context) => NewInboxView(
-                          selectedSender: selectedSender,
+                          selectedSenderName: selectedSender.name,
                         ),
                       ));
+                  print(selectedSender.name);
                 },
                 title: 'Sender',
               ),
@@ -114,7 +116,8 @@ class SenderSearchView extends StatelessWidget {
                               excludeFromSemantics: true,
                               behavior: HitTestBehavior.deferToChild,
                               onTap: () {
-                                selectedSender = snapshot.data![index].name!;
+                                senderSearchModel.updateSelectedSender(
+                                    snapshot.data![index]);
                               },
                               child: ListTile(
                                   leading: CircleAvatar(
@@ -165,7 +168,8 @@ class SenderSearchView extends StatelessWidget {
                               excludeFromSemantics: true,
                               behavior: HitTestBehavior.deferToChild,
                               onTap: () {
-                                selectedSender = snapshot.data![index].name!;
+                                senderSearchModel.updateSelectedSender(
+                                    snapshot.data![index]);
                               },
                               child: ListTile(
                                   leading: CircleAvatar(
@@ -216,7 +220,8 @@ class SenderSearchView extends StatelessWidget {
                               excludeFromSemantics: true,
                               behavior: HitTestBehavior.deferToChild,
                               onTap: () {
-                                selectedSender = snapshot.data![index].name!;
+                                senderSearchModel.updateSelectedSender(
+                                    snapshot.data![index]);
                               },
                               child: ListTile(
                                   leading: CircleAvatar(
@@ -267,7 +272,8 @@ class SenderSearchView extends StatelessWidget {
                               excludeFromSemantics: true,
                               behavior: HitTestBehavior.deferToChild,
                               onTap: () {
-                                selectedSender = snapshot.data![index].name!;
+                                senderSearchModel.updateSelectedSender(
+                                    snapshot.data![index]);
                               },
                               child: ListTile(
                                   leading: CircleAvatar(

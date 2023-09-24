@@ -11,7 +11,7 @@ class TagView extends StatelessWidget {
   // final _formKey = GlobalKey<FormState>();
 
   late TextEditingController addTagController;
-  late List<TagElement> selectedTagsToShow;
+
   _addTag(BuildContext context, String text) {
     final body = {'name': text};
     addNewTag(context, body).then((checkData) {
@@ -37,10 +37,11 @@ class TagView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // final tagModel = Provider.of<TagStateNotifier>(context);
+
     addTagController = TextEditingController();
     final tagStateNotifier = context.watch<TagStateNotifier>();
     Future<List<TagElement>> tags = getAllTags(context);
-    selectedTagsToShow = [];
 
     return Scaffold(
       body: Column(
@@ -49,12 +50,12 @@ class TagView extends StatelessWidget {
             child: CustomAppBar(
               title: 'Tags',
               doneFunction: () {
-                Navigator.push(
+                Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
                       builder: (context) => NewInboxView(
-                        selectedTags: selectedTagsToShow,
-                      ),
+                          // selectedTags: tagModel.selectedTagsToShow,
+                          ),
                     ));
               },
             ),
@@ -67,7 +68,7 @@ class TagView extends StatelessWidget {
                 color: Colors.white,
               ),
               width: 378,
-              height: MediaQuery.of(context).size.height * 0.13,
+              // height: MediaQuery.of(context).size.height * 0.13,
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: FutureBuilder<List<TagElement>>(
@@ -75,15 +76,16 @@ class TagView extends StatelessWidget {
                   builder: (BuildContext context,
                       AsyncSnapshot<List<TagElement>> snapshot) {
                     // if (snapshot.connectionState == ConnectionState.waiting) {
-                    //   return CircularProgressIndicator(); // Display a loading indicator while fetching data
+                    //   return CircularProgressIndicator();
+                    // }
+                    // if (snapshot.connectionState == ConnectionState.waiting) {
+                    //   return CircularProgressIndicator();
                     // }
                     if (snapshot.hasError) {
                       print(snapshot.error);
-                      return Text(
-                          'Error: ${snapshot.error}'); // Display an error message if there's an error
+                      return Text('Error: ${snapshot.error}');
                     } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                      return Text(
-                          'No tags available'); // Display a message when no tags are available
+                      return Text('No tags available');
                     } else {
                       // final List<TagElement> tagsList = snapshot.data!;
 
@@ -95,46 +97,60 @@ class TagView extends StatelessWidget {
                           final index = entry.key;
                           final item = entry.value;
                           return InkWell(
-                            child: Container(
-                              height: 35,
-                              width: MediaQuery.of(context).size.width * 0.23,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(30),
-                                color: index <
-                                            tagStateNotifier
-                                                .selectedTags.length &&
-                                        tagStateNotifier.selectedTags[index]
-                                    ? kinProgressStatus
-                                    : kcloseBackground,
-                              ),
-                              padding: EdgeInsets.all(8.0),
-                              child: Center(
-                                child: Text(
-                                  '#${item.name ?? ""}',
-                                  // Use null check for 'name'
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 15,
-                                    color: index <
-                                                tagStateNotifier
-                                                    .selectedTags.length &&
-                                            tagStateNotifier.selectedTags[index]
-                                        ? Colors.white
-                                        : ktagColor,
+                              child: Container(
+                                height: 35,
+                                width: MediaQuery.of(context).size.width * 0.23,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(30),
+                                  color: index <
+                                              tagStateNotifier
+                                                  .selectedTags.length &&
+                                          tagStateNotifier.selectedTags[index]
+                                      ? kinProgressStatus
+                                      : kcloseBackground,
+                                ),
+                                padding: EdgeInsets.all(8.0),
+                                child: Center(
+                                  child: Text(
+                                    '#${item.name ?? ""}',
+                                    // Use null check for 'name'
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 15,
+                                      color: index <
+                                                  tagStateNotifier
+                                                      .selectedTags.length &&
+                                              tagStateNotifier
+                                                  .selectedTags[index]
+                                          ? Colors.white
+                                          : ktagColor,
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                            onTap: () {
-                              tagStateNotifier.toggleTag(index);
-                              if (tagStateNotifier.selectedTags[index]) {
-                                selectedTagsToShow.add(snapshot.data![index]);
-                              } else {
-                                selectedTagsToShow
-                                    .remove(snapshot.data![index]);
-                              }
-                            },
-                          );
+                              onTap: () {
+                                tagStateNotifier.toggleTag(index);
+                                for (int i = 0;
+                                    i < snapshot.data!.length;
+                                    i++) {
+                                  if (tagStateNotifier.selectedTags[i]) {
+                                    if (!tagStateNotifier.selectedTagsToShow
+                                        .contains(snapshot.data![i])) {
+                                      tagStateNotifier.selectedTagsToShow
+                                          .add(snapshot.data![i]);
+
+                                      print(tagStateNotifier.selectedTagsToShow
+                                          .toString());
+                                    }
+                                  } else {
+                                    if (tagStateNotifier.selectedTagsToShow
+                                        .contains(snapshot.data![i])) {
+                                      tagStateNotifier.selectedTagsToShow
+                                          .remove(snapshot.data![i]);
+                                    }
+                                  }
+                                }
+                              });
                         }).toList(),
                       );
                     }
@@ -162,8 +178,13 @@ class TagView extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 16.0),
                     child: TextField(
                       controller: addTagController,
-                      onSubmitted: (text) =>
-                          _addTag(context, text), // Use a function reference
+                      onSubmitted: (text) {
+                        _addTag(context, text);
+                        final tagStateNotifier =
+                            context.read<TagStateNotifier>();
+                        tagStateNotifier.toggleTag(snapshot.data!.length - 1);
+                      },
+                      // Use a function reference
                       decoration: InputDecoration(
                         hintText: 'Add New Tag ...',
                         border: InputBorder.none,

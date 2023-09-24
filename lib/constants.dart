@@ -8,8 +8,9 @@ String addCategoryUrl = '${palmailUrl}/categories';
 String getTagsUrl = '${palmailUrl}/tags';
 String addTagUrl = '${palmailUrl}/tags';
 String getStatusListUrl = '${palmailUrl}/statuses?mail=false';
-String token = '26|SD9TTZM3zFN0pQcV7uaegCzma2ssxqKdh6hczeA9';
+String token = '1347|s2Ajpouo0N2Qw77LQeHyihH9yIW5z4g1HNgdkdHV';
 String getSendersUrl = '${palmailUrl}/senders';
+String createMailUrl = '${palmailUrl}/mails';
 
 //add the endpoints that you use (لانهم كتار)
 

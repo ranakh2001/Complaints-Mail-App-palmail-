@@ -4,6 +4,9 @@ import 'package:intl/intl.dart';
 class DateArchiveProvider extends ChangeNotifier {
   DateTime selectedDate = DateTime.now();
   String dayName = DateFormat('EEEE').format(DateTime.now());
+  TextEditingController archiveController = TextEditingController(
+    text: '2023/archNum',
+  );
 
   final DateTime firstDate = DateTime(2020, 1);
   final DateTime lastDate = DateTime(2100, 12);
@@ -30,13 +33,18 @@ class DateArchiveProvider extends ChangeNotifier {
     );
 
     if (date != null) {
-      updateDateAndName(date);
+      updateDate(date);
     }
   }
 
-  void updateDateAndName(DateTime date) {
+  void updateDate(DateTime date) {
     selectedDate = date;
     dayName = DateFormat('EEEE').format(date);
+    notifyListeners();
+  }
+
+  void updateArchive(String archiveName) {
+    archiveController.text = archiveName;
     notifyListeners();
   }
 }

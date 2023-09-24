@@ -40,15 +40,13 @@ class StatusView extends StatelessWidget {
               future: statusList,
               builder: (context, snapshot) {
                 // if (snapshot.connectionState == ConnectionState.waiting) {
-                //   return CircularProgressIndicator(); // Display a loading indicator while fetching data
+                //   return CircularProgressIndicator();
                 // }
                 if (snapshot.hasError) {
                   print(snapshot.error);
-                  return Text(
-                      'Error: ${snapshot.error}'); // Handle the error case
+                  return Text('Error: ${snapshot.error}');
                 } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                  return const Text(
-                      'No data available'); // Handle the case when there is no data
+                  return const Text('No data available');
                 } else {
                   final List<StatusElement> data = snapshot.data!;
 

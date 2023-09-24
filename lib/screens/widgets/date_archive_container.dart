@@ -11,10 +11,6 @@ class DateArchiveContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     final dateArchiveProvider = Provider.of<DateArchiveProvider>(context);
 
-    final archiveController = TextEditingController(
-      text: '${dateArchiveProvider.selectedDate.year} / archNum',
-    );
-
     return Container(
       height: 205,
       width: 378,
@@ -103,7 +99,7 @@ class DateArchiveContainer extends StatelessWidget {
                           border: InputBorder.none,
                         ),
                         showCursor: true,
-                        controller: archiveController,
+                        controller: dateArchiveProvider.archiveController,
                         style: TextStyle(fontSize: 15),
                       ),
                     ),

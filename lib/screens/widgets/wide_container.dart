@@ -20,8 +20,7 @@ class WideContainer extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        height: 68,
-        width: 378,
+        margin: EdgeInsets.symmetric(horizontal: 5),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(35),
           color: Colors.white,
