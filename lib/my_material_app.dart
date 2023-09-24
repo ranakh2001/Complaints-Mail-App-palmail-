@@ -1,6 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:finalproject/screens/admin/admin-users_screen.dart';
 import 'package:finalproject/screens/auth/login_screen.dart';
+import 'package:finalproject/screens/guest/guest-screen.dart';
 import 'package:finalproject/screens/home/home_page.dart';
+import 'package:finalproject/screens/home/mail_details_screen.dart';
+import 'package:finalproject/screens/loading/loading_screen.dart';
 import 'package:finalproject/screens/new%20inbox/new_inbox_view.dart';
 import 'package:finalproject/screens/search/search_screen.dart';
 import 'package:finalproject/screens/splash/splash_screen.dart';
@@ -33,11 +37,13 @@ class MyMaterialApp extends StatelessWidget {
       ),
       home: const LoginScreen(),
       routes: {
-        LoginScreen.id: (context) => const LoginScreen(),
+        LoadingScreen.id: (context) => const LoadingScreen(),
+        MailDetailsScreen.id: (context) => const MailDetailsScreen(),
         HomePage.id: (context) => const HomePage(),
         SearchScreen.id: (context) => const SearchScreen(),
-        NewInboxView.id: (context) => const NewInboxView(),
-        '/splash_screen': (context) => const SplashScreen(),
+        GuestScreen.id: (context) =>  const GuestScreen(),
+        LoginScreen.id: (context) =>  const LoginScreen(),
+        SplashScreen.id: (context) =>  const SplashScreen(),
       },
     );
   }

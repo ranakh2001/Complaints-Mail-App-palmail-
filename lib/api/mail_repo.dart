@@ -1,11 +1,12 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:http/http.dart' as http;
 import 'package:finalproject/core/helpers/api_base_helper.dart';
 import 'package:finalproject/models/mail.dart';
 
+import '../controller/user_controller.dart';
 import '../core/util/constants.dart';
+import '../models/user.dart';
 
 class MailRepository {
   final ApiBaseHelper _helper = ApiBaseHelper();
@@ -24,6 +25,7 @@ class MailRepository {
   // }
 
   uploadImage(File image, int mailId) async {
+     User2 user =await getLocalUser();
     var request =
         http.MultipartRequest("POST", Uri.parse("$baseUrl/attachments"));
 //create multipart using filepath, string or bytes
@@ -33,7 +35,7 @@ class MailRepository {
 //add multipart to request
     request.files.add(pic);
     request.headers.addAll(
-        {'Accept': 'application/json', 'Authorization': 'Bearer $token'});
+        {'Accept': 'application/json', 'Authorization': 'Bearer ${user.token}'});
     var response = await request.send();
 
 //Get the response from the server
@@ -44,29 +46,32 @@ class MailRepository {
   }
 
   Future<Mail> getSingleMail(String id) async {
+     User2 user =await getLocalUser();
     final rsponse = await _helper.get("/mails/$id", {
-      'Authorization': 'Bearer $token',
+      'Authorization': 'Bearer ${user.token}',
     });
     return Mail.fromMap(rsponse['mail']);
   }
 
   deleteMail(String id) async {
+     User2 user =await getLocalUser();
     final response = await _helper.delete(
       "/mails/$id",
       {
         'Accept': 'application/json',
-        'Authorization': 'Bearer $token',
+        'Authorization': 'Bearer ${user.token}',
       },
     );
     print(response);
   }
 
   Future<Mail> updateMail(Map<String, dynamic> body, String id) async {
+     User2 user =await getLocalUser();
     final response = await _helper.put(
         "/mails/$id",
         {
           'Accept': 'application/json',
-          'Authorization': 'Bearer $token',
+          'Authorization': 'Bearer ${user.token}',
           "Content-Type": "application/x-www-form-urlencoded"
         },
         body);

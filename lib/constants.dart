@@ -1,14 +1,11 @@
 // api links
 import 'package:flutter/material.dart';
 
-
 const String baseUrl = "https://palmail.gsgtt.tech/api";
-const String storageUrl = "https://palmail.gsgtt.tech/storage";
-
+const String loginUrl = "$baseUrl/login";
+const String registerUrl = "$baseUrl/register";
+const String logoutUrl = "$baseUrl/logout";
 //add the endpoints that you use (لانهم كتار)
-
-
-String token = '1478|ckNiHqBE2tGeioLVKihl9AGzCMyxIXicDvr6i6Ly';
 
 // colors
 Color kprimaryColor = const Color(0xff003AFC);

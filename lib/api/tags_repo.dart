@@ -1,14 +1,16 @@
 import 'package:finalproject/models/tags.dart';
 
+import '../controller/user_controller.dart';
 import '../core/helpers/api_base_helper.dart';
-import '../core/util/constants.dart';
+import '../models/user.dart';
 
 class TagRepository {
   final ApiBaseHelper _helper = ApiBaseHelper();
 
   Future<List<Tag>> getAllTags() async {
+    User2 user = await getLocalUser();
     final tags = await _helper.get('/tags', {
-      'Authorization': 'Bearer $token',
+      'Authorization': 'Bearer ${user.token}',
     });
     return Tags.fromMap(tags).tags!;
   }

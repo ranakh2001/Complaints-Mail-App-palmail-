@@ -10,7 +10,7 @@ class CustomTextField extends StatelessWidget {
     super.key,
     required this.label,
     this.keyboardType = TextInputType.text,
-    this.validatorFunction, this.controller,
+    this.validatorFunction, this.controller, required List<String> autofillHints,
   });
 
   @override
