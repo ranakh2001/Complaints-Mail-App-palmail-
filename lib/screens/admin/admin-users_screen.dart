@@ -1,5 +1,7 @@
+import 'package:finalproject/providers/app_provider_r.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 
 class AdminUsersScreen extends StatefulWidget {
   static const id = '/adminUsersScreen';
@@ -13,15 +15,10 @@ class AdminUsersScreen extends StatefulWidget {
 class _AdminUsersScreenState extends State<AdminUsersScreen> {
   String? selectedValue;
 
-
   @override
   void initState() {
     // TODO: implement initState
-
-
   }
-
-
 
   // List listItem = [
   //   'gust',
@@ -38,10 +35,16 @@ class _AdminUsersScreenState extends State<AdminUsersScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                SvgPicture.asset(
-                  'assets/images/menu.svg',
-                  width: 26,
-                  height: 10,
+                GestureDetector(
+                  onTap: () {
+                    Provider.of<AppProviderR>(context, listen: false)
+                        .openDrawer();
+                  },
+                  child: SvgPicture.asset(
+                    'assets/images/menu.svg',
+                    width: 26,
+                    height: 10,
+                  ),
                 ),
                 const Text(
                   'users',
@@ -50,7 +53,7 @@ class _AdminUsersScreenState extends State<AdminUsersScreen> {
                 Container(
                   width: 40,
                   height: 40,
-                  decoration:  BoxDecoration(
+                  decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     image: DecorationImage(
                       image: AssetImage(""),
