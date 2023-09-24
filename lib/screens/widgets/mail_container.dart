@@ -1,5 +1,5 @@
 import 'package:finalproject/core/util/constants.dart';
-import 'package:finalproject/providers/category_provider.dart';
+import 'package:finalproject/providers/category_provider_r.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -21,7 +21,7 @@ class MailContainer extends StatelessWidget {
           borderRadius: BorderRadius.circular(30),
           color: Colors.white,
         ),
-        child: Consumer<CategoriesProvider>(
+        child: Consumer<CategoriesProviderR>(
           builder: (context, categoryProvider, child) {
             return FutureBuilder(
               future: categoryProvider.getCategoryMails(categoryId),

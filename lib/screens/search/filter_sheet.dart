@@ -1,5 +1,5 @@
 import 'package:finalproject/core/util/constants.dart';
-import 'package:finalproject/providers/search_provider.dart';
+import 'package:finalproject/providers/search_provider_r.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -33,8 +33,8 @@ class FilterSheet extends StatelessWidget {
                 ),
                 TextButton(
                     onPressed: () {
-                      Provider.of<SearchProvider>(context, listen: false)
-                          .fetchMails(Provider.of<SearchProvider>(context,
+                      Provider.of<SearchProviderR>(context, listen: false)
+                          .fetchMails(Provider.of<SearchProviderR>(context,
                                   listen: false)
                               .searchController
                               .text);

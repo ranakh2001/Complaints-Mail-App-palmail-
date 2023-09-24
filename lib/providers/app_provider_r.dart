@@ -4,7 +4,9 @@ import 'package:finalproject/screens/home/home_view.dart';
 import 'package:finalproject/screens/home/user_profile.dart';
 import 'package:flutter/material.dart';
 
-class AppProvider extends ChangeNotifier {
+import '../screens/admin/admin-users_screen.dart';
+
+class AppProviderR extends ChangeNotifier {
   double xoffset = 0;
   double yoffset = 0;
   double scaleFactor = 1;
@@ -25,7 +27,7 @@ class AppProvider extends ChangeNotifier {
       itemView: const HomePageView(),
     ),
     DrawerMenueItem(title: "profile".tr(), itemView: const UserProfile()),
-    DrawerMenueItem(title: "users".tr(), itemView: const Placeholder()),
+    DrawerMenueItem(title: "users".tr(), itemView: const AdminUsersScreen()),
   ];
 
   void changeLanguage(BuildContext context) {

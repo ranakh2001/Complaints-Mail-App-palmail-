@@ -1,5 +1,5 @@
 import 'package:finalproject/models/activity.dart';
-import 'package:finalproject/providers/mail_provider.dart';
+import 'package:finalproject/providers/mail_provider_r.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -19,7 +19,7 @@ class ActivityList extends StatelessWidget {
             "Activities",
             style: TextStyle(color: ktitleBlack, fontSize: 20),
           ),
-          body: Consumer<MailProvider>(
+          body: Consumer<MailProviderR>(
             builder: (context, mailProvider, child) {
               return ListView.separated(
                   shrinkWrap: true,

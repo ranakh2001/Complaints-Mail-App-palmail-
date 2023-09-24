@@ -1,4 +1,5 @@
 import 'package:finalproject/models/user.dart';
+import 'package:finalproject/screens/home/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -38,7 +39,11 @@ class _LoginScreenState extends State<LoginScreen>
         final SharedPreferences prefs = await SharedPreferences.getInstance();
         prefs.setString('user', userToJson(user!));
         if (mounted) {
-          Navigator.pushNamed(context, GuestScreen.id);
+          if (user.user!.roleId == 1) {
+            Navigator.pushReplacementNamed(context, GuestScreen.id);
+          } else {
+            Navigator.pushReplacementNamed(context, HomePage.id);
+          }
         }
       }).catchError((err) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(

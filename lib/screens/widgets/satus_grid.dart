@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:finalproject/core/util/constants.dart';
 import 'package:finalproject/models/satuses.dart';
-import 'package:finalproject/providers/status_provider.dart';
+import 'package:finalproject/providers/status_provider_r.dart';
 import 'package:finalproject/screens/home/status_mails_screen.dart';
 import 'package:finalproject/screens/widgets/status_container.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +12,7 @@ class StatusGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<StatusProvider>(
+    return Consumer<StatusProviderR>(
       builder: (context, statusProvider, child) {
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12),

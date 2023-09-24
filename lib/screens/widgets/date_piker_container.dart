@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:finalproject/core/util/constants.dart';
-import 'package:finalproject/providers/search_provider.dart';
+import 'package:finalproject/providers/search_provider_r.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
@@ -18,7 +18,7 @@ class DatePickerContainer extends StatelessWidget {
       decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadiusDirectional.circular(30)),
-      child: Consumer<SearchProvider>(
+      child: Consumer<SearchProviderR>(
         builder: (context, searchProvider, child) {
           return CustomExpansionTile(
               title: Row(

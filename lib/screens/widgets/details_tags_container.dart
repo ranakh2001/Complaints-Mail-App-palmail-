@@ -1,4 +1,4 @@
-import 'package:finalproject/providers/mail_provider.dart';
+import 'package:finalproject/providers/mail_provider_r.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -12,7 +12,7 @@ class DetailsTagsContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<MailProvider>(
+    return Consumer<MailProviderR>(
       builder: (context, mailProvider, child) {
         return Container(
             padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),

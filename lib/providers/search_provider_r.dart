@@ -1,11 +1,11 @@
 import 'package:finalproject/api/search_repo.dart';
 import 'package:finalproject/models/mail.dart';
-import 'package:finalproject/providers/status_provider.dart';
+import 'package:finalproject/providers/status_provider_r.dart';
 import 'package:flutter/material.dart';
 
 import '../core/helpers/api_response.dart';
 
-class SearchProvider extends ChangeNotifier {
+class SearchProviderR extends ChangeNotifier {
   TextEditingController searchController = TextEditingController();
   late SearchRepository _searchRepo;
   late ApiResponse<List<Mail>> _searchMailsList;
@@ -24,7 +24,7 @@ class SearchProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  SearchProvider() {
+  SearchProviderR() {
     _searchRepo = SearchRepository();
   }
 
@@ -38,9 +38,9 @@ class SearchProvider extends ChangeNotifier {
           text,
           dates.isEmpty ? '' : dates.first.toString(),
           dates.isEmpty ? '' : dates.last.toString(),
-          StatusProvider.selectedstatus == null
+          StatusProviderR.selectedstatus == null
               ? ''
-              : StatusProvider.selectedstatus!.id.toString());
+              : StatusProviderR.selectedstatus!.id.toString());
       _searchMailsList = ApiResponse.completed(mail);
       notifyListeners();
     } catch (e) {

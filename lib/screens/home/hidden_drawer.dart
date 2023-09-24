@@ -1,5 +1,5 @@
 import 'package:finalproject/core/util/constants.dart';
-import 'package:finalproject/providers/app_provider.dart';
+import 'package:finalproject/providers/app_provider_r.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -31,7 +31,7 @@ class HiddenDrawer extends StatelessWidget {
             const SizedBox(
               height: 8,
             ),
-            Consumer<AppProvider>(
+            Consumer<AppProviderR>(
               builder: (context, appProvider, child) {
                 return ListView.separated(
                     shrinkWrap: true,

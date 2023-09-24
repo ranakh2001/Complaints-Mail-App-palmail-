@@ -1,4 +1,4 @@
-import 'package:finalproject/providers/mail_provider.dart';
+import 'package:finalproject/providers/mail_provider_r.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 import '../../core/helpers/api_response.dart';
 import '../../core/util/constants.dart';
 import '../../models/satuses.dart';
-import '../../providers/status_provider.dart';
+import '../../providers/status_provider_r.dart';
 
 class StatusSheet extends StatelessWidget {
   const StatusSheet({
@@ -15,7 +15,7 @@ class StatusSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<MailProvider>(
+    return Consumer<MailProviderR>(
       builder: (context, mailProvider, child) {
         return Container(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -46,7 +46,7 @@ class StatusSheet extends StatelessWidget {
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(30)),
-                  child: Consumer<StatusProvider>(
+                  child: Consumer<StatusProviderR>(
                     builder: (context, statusProvider, child) {
                       return FutureBuilder(
                         future: statusProvider.fetchStatuses(),

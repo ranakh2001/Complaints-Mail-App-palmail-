@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import '../../core/helpers/api_response.dart';
 import '../../core/util/constants.dart';
 import '../../models/categories.dart';
-import '../../providers/category_provider.dart';
+import '../../providers/category_provider_r.dart';
 import 'custom_expansion_tile.dart';
 import 'mail_container.dart';
 
@@ -16,7 +16,7 @@ class CategoriesListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: Consumer<CategoriesProvider>(
+        child: Consumer<CategoriesProviderR>(
           builder: (context, categoryProvider, child) {
             if (categoryProvider.categoryList.status == Status.LOADING) {
               return Center(

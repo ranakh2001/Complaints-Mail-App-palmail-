@@ -5,7 +5,7 @@ import '../api/status_repo.dart';
 import '../core/helpers/api_response.dart';
 import '../models/mail.dart';
 
-class StatusProvider extends ChangeNotifier {
+class StatusProviderR extends ChangeNotifier {
   late StatusRepository _statusesRepo;
 
   late ApiResponse<List<MailStatus>> _statusList;
@@ -16,7 +16,7 @@ class StatusProvider extends ChangeNotifier {
 
   static MailStatus? selectedstatus;
 
-  StatusProvider() {
+  StatusProviderR() {
     _statusesRepo = StatusRepository();
     fetchStatuses();
   }

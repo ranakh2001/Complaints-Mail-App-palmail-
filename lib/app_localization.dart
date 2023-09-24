@@ -1,5 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:finalproject/providers/app_provider.dart';
+import 'package:finalproject/providers/app_provider_r.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

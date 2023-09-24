@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:finalproject/core/util/constants.dart';
-import 'package:finalproject/providers/mail_provider.dart';
+import 'package:finalproject/providers/mail_provider_r.dart';
 import 'package:finalproject/screens/home/mail_details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -21,7 +21,7 @@ class HomeMails extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Provider.of<MailProvider>(context, listen: false).setDetailesMail(mail);
+        Provider.of<MailProviderR>(context, listen: false).setDetailesMail(mail);
         showModalBottomSheet(
           isScrollControlled: true,
           shape: const RoundedRectangleBorder(

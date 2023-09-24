@@ -1,5 +1,5 @@
 import 'package:finalproject/core/util/constants.dart';
-import 'package:finalproject/providers/search_provider.dart';
+import 'package:finalproject/providers/search_provider_r.dart';
 import 'package:finalproject/screens/widgets/search_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -31,7 +31,7 @@ class SearchScreen extends StatelessWidget {
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
           child: SingleChildScrollView(
-            child: Consumer<SearchProvider>(
+            child: Consumer<SearchProviderR>(
               builder: (context, searchProvider, child) {
                 return Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8.0),

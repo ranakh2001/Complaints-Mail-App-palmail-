@@ -1,10 +1,14 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:finalproject/providers/app_provider.dart';
+import 'package:finalproject/controller/user_controller.dart';
+import 'package:finalproject/models/user.dart';
+import 'package:finalproject/providers/app_provider_r.dart';
 import 'package:finalproject/screens/auth/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../controller/auth_controller.dart';
 import '../../core/util/constants.dart';
 import '../new inbox/new_inbox_view.dart';
 import '../widgets/categories_listView.dart';
@@ -95,7 +99,7 @@ class HomePageView extends StatelessWidget {
                 ))
           ]),
         ),
-        Provider.of<AppProvider>(context).isShown
+        Provider.of<AppProviderR>(context).isShown
             ? Positioned(
                 top: 70,
                 right: 20,
@@ -112,7 +116,7 @@ class HomePageView extends StatelessWidget {
                           onTap: () {
                             Navigator.pushReplacementNamed(
                                 context, LoginScreen.id);
-                            Provider.of<AppProvider>(context, listen: false)
+                            Provider.of<AppProviderR>(context, listen: false)
                                 .changeLanguage(context);
                             //logout function
                           },
@@ -139,20 +143,32 @@ class HomePageView extends StatelessWidget {
                         Divider(
                           color: kdividerColor,
                         ),
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.logout,
-                              color: kiconColor,
-                            ),
-                            const SizedBox(
-                              width: 8,
-                            ),
-                            Text(
-                              "logout".tr(),
-                              style: TextStyle(color: kiconColor, fontSize: 16),
-                            ),
-                          ],
+                        GestureDetector(
+                          onTap: () async {
+                            SharedPreferences pref =
+                                await SharedPreferences.getInstance();
+                            User2 user = await getLocalUser();
+                            logoutcon(user.token!);
+                            pref.remove('user');
+                            Navigator.pushReplacementNamed(
+                                context, LoginScreen.id);
+                          },
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.logout,
+                                color: kiconColor,
+                              ),
+                              const SizedBox(
+                                width: 8,
+                              ),
+                              Text(
+                                "logout".tr(),
+                                style:
+                                    TextStyle(color: kiconColor, fontSize: 16),
+                              ),
+                            ],
+                          ),
                         ),
                       ]),
                 ))

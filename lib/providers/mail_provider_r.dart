@@ -8,7 +8,7 @@ import 'package:image_picker/image_picker.dart';
 import '../models/mail.dart';
 import '../models/satuses.dart';
 
-class MailProvider extends ChangeNotifier {
+class MailProviderR extends ChangeNotifier {
   late MailRepository _mailRepository;
   TextEditingController mailDecisionControoler = TextEditingController();
   TextEditingController newActivity = TextEditingController();
@@ -20,7 +20,7 @@ class MailProvider extends ChangeNotifier {
   bool mailUpdated = false;
   List<Map<String, dynamic>> newactivities = [];
 
-  MailProvider() {
+  MailProviderR() {
     _mailRepository = MailRepository();
   }
 

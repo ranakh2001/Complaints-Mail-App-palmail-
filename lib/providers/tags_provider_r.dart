@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 
 import '../core/helpers/api_response.dart';
 
-class TagProvider extends ChangeNotifier{
+class TagProviderR extends ChangeNotifier{
    late TagRepository _tagsRepo;
 
   late ApiResponse<List<Tag>> _tagsList;
 
   ApiResponse<List<Tag>> get tagsList => _tagsList;
 
-  TagProvider() {
+  TagProviderR() {
     _tagsRepo = TagRepository();
     fetchTags();
   }

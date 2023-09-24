@@ -1,10 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:finalproject/providers/app_provider.dart';
-import 'package:finalproject/providers/category_provider.dart';
-import 'package:finalproject/providers/mail_provider.dart';
-import 'package:finalproject/providers/search_provider.dart';
-import 'package:finalproject/providers/status_provider.dart';
-import 'package:finalproject/providers/tags_provider.dart';
+import 'package:finalproject/providers/app_provider_r.dart';
+import 'package:finalproject/providers/category_provider_r.dart';
+import 'package:finalproject/providers/mail_provider_r.dart';
+import 'package:finalproject/providers/search_provider_r.dart';
+import 'package:finalproject/providers/status_provider_r.dart';
+import 'package:finalproject/providers/tags_provider_r.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'app_localization.dart';
@@ -22,23 +22,23 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(providers: [
-      ChangeNotifierProvider<AppProvider>(
-        create: (context) => AppProvider(),
+      ChangeNotifierProvider<AppProviderR>(
+        create: (context) => AppProviderR(),
       ),
-      ChangeNotifierProvider<StatusProvider>(
-        create: (context) => StatusProvider(),
+      ChangeNotifierProvider<StatusProviderR>(
+        create: (context) => StatusProviderR(),
       ),
-      ChangeNotifierProvider<CategoriesProvider>(
-        create: (context) => CategoriesProvider(),
+      ChangeNotifierProvider<CategoriesProviderR>(
+        create: (context) => CategoriesProviderR(),
       ),
-      ChangeNotifierProvider<TagProvider>(
-        create: (context) => TagProvider(),
+      ChangeNotifierProvider<TagProviderR>(
+        create: (context) => TagProviderR(),
       ),
-      ChangeNotifierProvider<SearchProvider>(
-        create: (context) => SearchProvider(),
+      ChangeNotifierProvider<SearchProviderR>(
+        create: (context) => SearchProviderR(),
       ),
-      ChangeNotifierProvider<MailProvider>(
-        create: (context) => MailProvider(),
+      ChangeNotifierProvider<MailProviderR>(
+        create: (context) => MailProviderR(),
       ),
     ], child: const AppLocalization());
   }

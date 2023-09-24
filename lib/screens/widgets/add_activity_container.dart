@@ -1,4 +1,4 @@
-import 'package:finalproject/providers/mail_provider.dart';
+import 'package:finalproject/providers/mail_provider_r.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -16,7 +16,7 @@ class AddActivityContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<MailProvider>(
+    return Consumer<MailProviderR>(
       builder: (context, mailProvider, child) {
         return TextField(
           controller: addNewActivityController,

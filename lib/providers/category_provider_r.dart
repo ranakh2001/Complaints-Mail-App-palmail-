@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 import '../core/helpers/api_response.dart';
 
-class CategoriesProvider extends ChangeNotifier {
+class CategoriesProviderR extends ChangeNotifier {
   late CategoryRepository _categoriesRepo;
 
   late ApiResponse<List<CategoryElement>> _categoryList;
@@ -13,7 +13,7 @@ class CategoriesProvider extends ChangeNotifier {
   ApiResponse<List<CategoryElement>> get categoryList => _categoryList;
 
   CategoryElement? selectedCategory;
-  CategoriesProvider() {
+  CategoriesProviderR() {
     _categoriesRepo = CategoryRepository();
     fetchCategories();
   }

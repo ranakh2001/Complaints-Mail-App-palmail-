@@ -1,5 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:finalproject/providers/mail_provider.dart';
+import 'package:finalproject/providers/mail_provider_r.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
@@ -14,7 +14,7 @@ class MailDetailsContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<MailProvider>(
+    return Consumer<MailProviderR>(
       builder: (context, mailProvider, child) {
         return Container(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),

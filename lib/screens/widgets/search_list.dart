@@ -1,4 +1,4 @@
-import 'package:finalproject/providers/search_provider.dart';
+import 'package:finalproject/providers/search_provider_r.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -12,7 +12,7 @@ class SearchList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<SearchProvider>(
+    return Consumer<SearchProviderR>(
       builder: (context, searchProvider, child) {
         if (searchProvider.searchMails.status == Status.LOADING) {
           return Center(

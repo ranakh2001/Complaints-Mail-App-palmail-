@@ -1,6 +1,6 @@
 // ignore_for_file: file_names
 
-import 'package:finalproject/providers/app_provider.dart';
+import 'package:finalproject/providers/app_provider_r.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
@@ -16,13 +16,13 @@ class HomeAppBar extends StatelessWidget {
       snap: false,
       leading: IconButton(
           onPressed: () {
-            Provider.of<AppProvider>(context, listen: false).openDrawer();
+            Provider.of<AppProviderR>(context, listen: false).openDrawer();
           },
           icon: SvgPicture.asset('assets/icons/menu.svg')),
       actions: [
         GestureDetector(
           onTap: () {
-            Provider.of<AppProvider>(context, listen: false).toggleIsShown();
+            Provider.of<AppProviderR>(context, listen: false).toggleIsShown();
           },
           child: Container(
             margin: const EdgeInsets.symmetric(horizontal: 16),

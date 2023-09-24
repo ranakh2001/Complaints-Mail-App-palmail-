@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:finalproject/core/util/constants.dart';
-import 'package:finalproject/providers/mail_provider.dart';
+import 'package:finalproject/providers/mail_provider_r.dart';
 import 'package:finalproject/screens/home/more_edits_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -36,7 +36,7 @@ class MailDetailsScreen extends StatelessWidget {
                         actions: [
                           TextButton(
                               onPressed: () {
-                                Provider.of<MailProvider>(context,
+                                Provider.of<MailProviderR>(context,
                                         listen: false)
                                     .updateMail();
                                 Navigator.pop(context);
@@ -63,7 +63,7 @@ class MailDetailsScreen extends StatelessWidget {
                         ],
                       )
                     ],
-                body: Consumer<MailProvider>(
+                body: Consumer<MailProviderR>(
                   builder: (context, mailProvider, child) {
                     if (mailProvider.mailUpdated) {
                       return Center(
@@ -87,7 +87,7 @@ class MailDetailsScreen extends StatelessWidget {
                                 ),
                                 DecisionContainer(
                                   addDecisionController:
-                                      Provider.of<MailProvider>(context)
+                                      Provider.of<MailProviderR>(context)
                                           .mailDecisionControoler,
                                 ),
                                 const SizedBox(

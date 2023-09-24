@@ -1,5 +1,5 @@
 import 'package:finalproject/models/categories.dart';
-import 'package:finalproject/providers/category_provider.dart';
+import 'package:finalproject/providers/category_provider_r.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
@@ -17,7 +17,7 @@ class CategoriewContainer extends StatelessWidget {
         decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadiusDirectional.circular(30)),
-        child: Consumer<CategoriesProvider>(
+        child: Consumer<CategoriesProviderR>(
           builder: (context, categoryProvider, child) {
             if (categoryProvider.categoryList.status == Status.LOADING) {
               return Center(

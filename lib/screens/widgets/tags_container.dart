@@ -1,5 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:finalproject/providers/tags_provider.dart';
+import 'package:finalproject/providers/tags_provider_r.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -11,7 +11,7 @@ class TagsContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<TagProvider>(
+    return Consumer<TagProviderR>(
       builder: (context, tagProvider, child) {
         if (tagProvider.tagsList.status == Status.LOADING) {
           return Center(

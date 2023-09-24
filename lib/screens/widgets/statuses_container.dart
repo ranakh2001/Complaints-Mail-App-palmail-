@@ -1,6 +1,6 @@
 import 'package:finalproject/core/util/constants.dart';
 import 'package:finalproject/models/satuses.dart';
-import 'package:finalproject/providers/status_provider.dart';
+import 'package:finalproject/providers/status_provider_r.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
@@ -16,7 +16,7 @@ class StatusesContainer extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       decoration: BoxDecoration(
           color: Colors.white, borderRadius: BorderRadius.circular(30)),
-      child: Consumer<StatusProvider>(
+      child: Consumer<StatusProviderR>(
         builder: (context, statusProvider, child) {
           if (statusProvider.statusList.status == Status.LOADING) {
             return Center(
