@@ -10,6 +10,7 @@ Intuitive Interfaces: Designed for ease of use and efficient navigation.
 Easy Localization: English & Arabic
 #### API Host Url: https://palmail.gsgtt.tech/api
 
+![](https://github.com/ranakh2001/Complaints-Mail-App-palmail-/blob/bb524cf74e6acbbf79ce7538900a6d8465000f4b/Purple%20Pink%20Gradient%20Mobile%20Application%20Presentation%20(12).jpg)
 ![Alt Text](https://github.com/ranakh2001/final-project/blob/d7e76537a6c7c226bd1f1b23a9b9ed96eda88bee/Screenshot%202024-12-08%20122233.png)
 ![Alt Text](https://github.com/ranakh2001/final-project/blob/d7e76537a6c7c226bd1f1b23a9b9ed96eda88bee/Screenshot%202024-12-08%20122248.png)
 ![Alt Text](https://github.com/ranakh2001/final-project/blob/d7e76537a6c7c226bd1f1b23a9b9ed96eda88bee/Screenshot%202024-12-08%20122255.png)
