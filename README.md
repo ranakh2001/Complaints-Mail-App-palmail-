@@ -9,7 +9,7 @@ Cloud Data Synchronization: Real-time data updates accessible at any moment.
 Intuitive Interfaces: Designed for ease of use and efficient navigation.
 Easy Localization: English & Arabic
 #### API Host Url: https://palmail.gsgtt.tech/api
-
+## More UI Screens: https://drive.google.com/drive/folders/1GR4B2J9ZWYDm9Qf-DIzqqbeWOqNdK1c6
 ![](https://github.com/ranakh2001/Complaints-Mail-App-palmail-/blob/292626556679e100be57b2f758c92eba1195c640/Blue%20Modern%20Mobile%20Application%20Presentation.png)
 ![Alt Text](https://github.com/ranakh2001/final-project/blob/d7e76537a6c7c226bd1f1b23a9b9ed96eda88bee/Screenshot%202024-12-08%20122233.png)
 ![Alt Text](https://github.com/ranakh2001/final-project/blob/d7e76537a6c7c226bd1f1b23a9b9ed96eda88bee/Screenshot%202024-12-08%20122248.png)
